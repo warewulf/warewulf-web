@@ -1,1 +1,5 @@
-{"componentChunkName":"component---src-pages-news-js","path":"/news/","result":{"data":{"allMarkdownRemark":{"edges":[{"node":{"id":"7d50e8d1-7287-52e0-a747-0517d5b90f30","excerpt":"We have a brand new site! A big thank you to Michael Kinder (https://dotslash.studio/) for developing the new Warewulf website! This website is hosted in GitHub (http://www.github.com/hpcng/warewulf-web), and we encourage updates and involvement from…","frontmatter":{"date":"June 30, 2021","slug":"/news/new-site","title":"New site is live!"}}}]}},"pageContext":{}},"staticQueryHashes":["3649515864","63159454"]}
+{
+    "componentChunkName": "component---src-pages-news-js",
+    "path": "/news/",
+    "result": {"data":{"allMarkdownRemark":{"edges":[{"node":{"id":"784895dc-726d-5aa3-ae7f-4dd6e262fa7e","excerpt":"We have a brand new site! A big thank you to Michael Kinder (https://dotslash.studio/) for developing the new Warewulf website! This website is hosted in GitHub (http://www.github.com/hpcng/warewulf-web), and we encourage updates and involvement from…","frontmatter":{"date":"June 30, 2021","slug":"/news/new-site","title":"New site is live!"}}}]}},"pageContext":{}},
+    "staticQueryHashes": ["3649515864","63159454"]}
