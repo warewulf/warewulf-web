@@ -2,7 +2,7 @@ import React from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
-import { NewspaperIcon, DownloadIcon, SupportIcon, ArrowsExpandIcon, LockClosedIcon, BadgeCheckIcon } from '@heroicons/react/outline'
+import { NewspaperIcon, DownloadIcon, SupportIcon, ArrowsExpandIcon, LockClosedIcon, BadgeCheckIcon, CubeTransparentIcon, CheckCircleIcon, ChartSquareBarIcon } from '@heroicons/react/outline'
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -68,11 +68,8 @@ const IndexPage = () => (
               <img src={logo} className="w-48 mb-5 inline-flex justify-center" /><br />
               Warewulf
             </h2>
-            <h3 className="text-base text-gray-800 md:text-lg mb-10 font-semibold">
-              HEADLINE HERE
-            </h3>
             <p className="text-base mb-10 text-gray-700 md:text-lg">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus interdum velit interdum bibendum. Vestibulum massa nulla, efficitur a ultrices eget, auctor quis elit. Curabitur dapibus tellus congue porttitor facilisis. In ac vehicula sapien. Sed eu pretium ligula, id condimentum augue. Cras ultricies lacinia rutrum. Aliquam erat volutpat. Nunc vulputate ante sem, eu suscipit ante imperdiet sed. Proin pharetra vel dui sed tristique. Ut varius ultricies elementum.
+              A stateless and diskless container operating system provisioning system for large clusters of bare metal and/or virtual systems.
             </p>
           </div>
 
@@ -108,88 +105,41 @@ const IndexPage = () => (
           <div className="flex mt-5 mb-5 flex-col bg-white rounded-2xl shadow-xl border border-gray-200">
             <div className="flex-1 relative pt-16 px-6 pb-8 md:px-8">
               <div className="absolute top-0 p-5 inline-block bg-green-900 rounded-xl shadow-lg transform -translate-y-1/2">
-                <LockClosedIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                <CubeTransparentIcon className="h-6 w-6 text-white" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-medium text-gray-900">
-                OVERVIEW 1
+                Lightweight
               </h3>
               <p className="mt-4 text-base text-gray-700">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus interdum velit interdum bibendum. Vestibulum massa nulla, efficitur a ultrices eget, auctor quis elit. Curabitur dapibus tellus congue porttitor facilisis. In ac vehicula sapien. Sed eu pretium ligula, id condimentum augue. Cras ultricies lacinia rutrum. Aliquam erat volutpat. Nunc vulputate ante sem, eu suscipit ante imperdiet sed. Proin pharetra vel dui sed tristique. Ut varius ultricies elementum.
+                Warewulf needs to do its job and stay out of the way. There should be no underlying system dependencies, changes or “stack” for the controller or worker nodes.
               </p>
             </div>
           </div>
           <div className="flex mt-5 mb-5 flex-col bg-white rounded-2xl shadow-xl border border-gray-200">
             <div className="flex-1 relative pt-16 px-6 pb-8 md:px-8">
               <div className="absolute top-0 p-5 inline-block bg-green-900 rounded-xl shadow-lg transform -translate-y-1/2">
-                <ArrowsExpandIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                <CheckCircleIcon className="h-6 w-6 text-white" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-medium text-gray-900">
-                OVERVIEW 2
+                Simple
               </h3>
               <p className="mt-4 text-base text-gray-700">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus interdum velit interdum bibendum. Vestibulum massa nulla, efficitur a ultrices eget, auctor quis elit. Curabitur dapibus tellus congue porttitor facilisis. In ac vehicula sapien. Sed eu pretium ligula, id condimentum augue. Cras ultricies lacinia rutrum. Aliquam erat volutpat. Nunc vulputate ante sem, eu suscipit ante imperdiet sed. Proin pharetra vel dui sed tristique. Ut varius ultricies elementum.
+                Warewulf is used by hobbyists, researchers, scientists, engineers and systems administrators. This means that Warewulf must be simple to use and understand.
               </p>
             </div>
           </div>
           <div className="flex mt-5 mb-5 flex-col bg-white rounded-2xl shadow-xl border border-gray-200">
             <div className="flex-1 relative pt-16 px-6 pb-8 md:px-8">
               <div className="absolute top-0 p-5 inline-block bg-green-900 rounded-xl shadow-lg transform -translate-y-1/2">
-                <BadgeCheckIcon className="h-6 w-6 text-white" aria-hidden="true" />
+                <ChartSquareBarIcon className="h-6 w-6 text-white" aria-hidden="true" />
               </div>
               <h3 className="text-xl font-medium text-gray-900">
-                OVERVIEW 3
+                Flexible
               </h3>
               <p className="mt-4 text-base text-gray-700">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus interdum velit interdum bibendum. Vestibulum massa nulla, efficitur a ultrices eget, auctor quis elit. Curabitur dapibus tellus congue porttitor facilisis. In ac vehicula sapien. Sed eu pretium ligula, id condimentum augue. Cras ultricies lacinia rutrum. Aliquam erat volutpat. Nunc vulputate ante sem, eu suscipit ante imperdiet sed. Proin pharetra vel dui sed tristique. Ut varius ultricies elementum.
+                Warewulf is highly flexible and can address the needs of any environment – from graphical workstations to massive supercomputing centers.
               </p>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="relative px-4 mb-10 sm:px-0 bg-gray-100 pb-10">
-        <div className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8">
-          <div className="px-4 py-8 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-10">
-            <div className="max-w-xl md:mx-auto sm:text-center lg:max-w-2xl">
-              <h3 className="max-w-xl font-sans text-4xl font-extrabold leading-none tracking-tight text-gray-900 sm:text-5xl md:mx-auto">
-                Features
-              </h3>
-            </div>
-          </div>
-          <div className="grid gap-8 row-gap-5 lg:grid-cols-3">
-            {features.map((feature) => (
-              <div key={feature.name}>
-                <div className="relative p-px overflow-hidden transition duration-300 transform border rounded shadow-sm hover:scale-105 group hover:shadow-xl">
-                  <div className="absolute bottom-0 left-0 w-full h-1 duration-300 origin-left transform scale-x-0 bg-green-900 group-hover:scale-x-100" />
-                  <div className="absolute bottom-0 left-0 w-1 h-full duration-300 origin-bottom transform scale-y-0 bg-green-900 group-hover:scale-y-100" />
-                  <div className="absolute top-0 left-0 w-full h-1 duration-300 origin-right transform scale-x-0 bg-green-900 group-hover:scale-x-100" />
-                  <div className="absolute bottom-0 right-0 w-1 h-full duration-300 origin-top transform scale-y-0 bg-green-900 group-hover:scale-y-100" />
-                  <div className="relative p-5 bg-white rounded-sm">
-                    <div className="flex flex-col mb-2 lg:items-center lg:flex-row">
-                      <div className="flex items-center justify-center w-10 h-10 mb-4 mr-2 rounded-full bg-green-50 lg:mb-0">
-                        <svg
-                          className="w-8 h-8 text-green-900"
-                          stroke="currentColor"
-                          viewBox="0 0 52 52"
-                        >
-                          <polygon
-                            strokeWidth="3"
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            fill="none"
-                            points="29 13 14 29 25 29 23 39 38 23 27 23"
-                          />
-                        </svg>
-                      </div>
-                      <h6 className="font-semibold leading-5">{feature.name}</h6>
-                    </div>
-                    <p className="text-sm text-gray-900">
-                      {feature.description}
-                    </p>
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </div>
