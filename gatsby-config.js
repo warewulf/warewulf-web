@@ -1,6 +1,6 @@
 module.exports = {
   siteMetadata: {
-    siteUrl: `https://hpcng.github.io/warewulf-web`,
+    siteUrl: `https://hpcng.github.io/warewulf-web/`,
     title: `Warewulf`,
     description: `A stateless and diskless container operating system provisioning system for large clusters of bare metal and/or virtual systems.`,
     author: `@ressonix`,
