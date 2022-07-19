@@ -1,7 +1,7 @@
 import { Link } from "gatsby"
 import PropTypes from "prop-types"
 import React, { useState } from "react"
-import Logo from "../images/logo.png"
+import Logo from "../images/logo.svg"
 
 function Header({ siteTitle }) {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -16,33 +16,10 @@ function Header({ siteTitle }) {
             title="Warewulf"
             className="inline-flex items-center mr-8"
           >
-            <img className="w-10 h-10" src={Logo} />
-            <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-              Warewulf
-            </span>
+            <img className="w-36" src={Logo} />
           </Link>
           <ul className="flex items-center hidden space-x-8 lg:flex">
-            <li>
-              <Link
-                to="/docs"
-                aria-label="Documentation"
-                title="Documentation"
-                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-500"
-              >
-                Documentation
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/help"
-                aria-label="Help"
-                title="Help"
-                className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-500"
-              >
-                Getting Help
-              </Link>
-            </li>
-            <li>
+          <li>
               <Link
                 to="/news"
                 aria-label="News"
@@ -53,23 +30,23 @@ function Header({ siteTitle }) {
               </Link>
             </li>
             <li>
-              <Link
-                to="/usecases"
-                aria-label="Use Cases"
-                title="Use Cases"
+              <a
+                href="https://documentation.warewulf.org/docs/"
+                aria-label="Documentation"
+                title="Documentation"
                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-500"
               >
-                Use Cases
-              </Link>
+                Documentation
+              </a>
             </li>
             <li>
               <Link
-                to="/talks"
-                aria-label="Talks"
-                title="Talks"
+                to="/help"
+                aria-label="Help"
+                title="Help"
                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-500"
               >
-                Talks
+                Getting Help
               </Link>
             </li>
           </ul>

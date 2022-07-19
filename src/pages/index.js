@@ -2,57 +2,31 @@ import React from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
-import { NewspaperIcon, DownloadIcon, SupportIcon, ArrowsExpandIcon, LockClosedIcon, BadgeCheckIcon, CubeTransparentIcon, CheckCircleIcon, ChartSquareBarIcon } from '@heroicons/react/outline'
+import { CubeTransparentIcon, ChartBarIcon, CheckIcon, ShieldCheckIcon } from '@heroicons/react/outline'
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import logo from "../images/logo.png"
 
 const features = [
   {
-    name: 'Feature 1 Here',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus interdum velit interdum bibendum. Vestibulum massa nulla, efficitur a ultrices eget, auctor quis elit. Curabitur dapibus tellus congue porttitor facilisis. In ac vehicula sapien. Sed eu pretium ligula, id condimentum augue. Cras ultricies lacinia rutrum. Aliquam erat volutpat. Nunc vulputate ante sem, eu suscipit ante imperdiet sed. Proin pharetra vel dui sed tristique. Ut varius ultricies elementum.',
+    name: 'Extensible',
+    description: 'Easy to change the default functionality, node images, and customize for any clustering use-case.',
+    icon: CubeTransparentIcon,
   },
   {
-    name: 'Feature 2 Here',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus interdum velit interdum bibendum. Vestibulum massa nulla, efficitur a ultrices eget, auctor quis elit. Curabitur dapibus tellus congue porttitor facilisis. In ac vehicula sapien. Sed eu pretium ligula, id condimentum augue. Cras ultricies lacinia rutrum. Aliquam erat volutpat. Nunc vulputate ante sem, eu suscipit ante imperdiet sed. Proin pharetra vel dui sed tristique. Ut varius ultricies elementum.',
+    name: 'Scalable',
+    description: 'From tens to tens of thousands of compute systems.',
+    icon: ChartBarIcon,
   },
   {
-    name: 'Feature 3 Here',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus interdum velit interdum bibendum. Vestibulum massa nulla, efficitur a ultrices eget, auctor quis elit. Curabitur dapibus tellus congue porttitor facilisis. In ac vehicula sapien. Sed eu pretium ligula, id condimentum augue. Cras ultricies lacinia rutrum. Aliquam erat volutpat. Nunc vulputate ante sem, eu suscipit ante imperdiet sed. Proin pharetra vel dui sed tristique. Ut varius ultricies elementum.',
+    name: 'Easy',
+    description: 'Minimal system requirements, easy to get started, and simple to optimize, customize, and integrate.',
+    icon: CheckIcon,
   },
   {
-    name: 'Feature 4 Here',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus interdum velit interdum bibendum. Vestibulum massa nulla, efficitur a ultrices eget, auctor quis elit. Curabitur dapibus tellus congue porttitor facilisis. In ac vehicula sapien. Sed eu pretium ligula, id condimentum augue. Cras ultricies lacinia rutrum. Aliquam erat volutpat. Nunc vulputate ante sem, eu suscipit ante imperdiet sed. Proin pharetra vel dui sed tristique. Ut varius ultricies elementum.',
-  },
-  {
-    name: 'Feature 5 Here',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus interdum velit interdum bibendum. Vestibulum massa nulla, efficitur a ultrices eget, auctor quis elit. Curabitur dapibus tellus congue porttitor facilisis. In ac vehicula sapien. Sed eu pretium ligula, id condimentum augue. Cras ultricies lacinia rutrum. Aliquam erat volutpat. Nunc vulputate ante sem, eu suscipit ante imperdiet sed. Proin pharetra vel dui sed tristique. Ut varius ultricies elementum.',
-  },
-  {
-    name: 'Feature 6 Here',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus interdum velit interdum bibendum. Vestibulum massa nulla, efficitur a ultrices eget, auctor quis elit. Curabitur dapibus tellus congue porttitor facilisis. In ac vehicula sapien. Sed eu pretium ligula, id condimentum augue. Cras ultricies lacinia rutrum. Aliquam erat volutpat. Nunc vulputate ante sem, eu suscipit ante imperdiet sed. Proin pharetra vel dui sed tristique. Ut varius ultricies elementum.',
-  },
-  {
-    name: 'Feature 7 Here',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus interdum velit interdum bibendum. Vestibulum massa nulla, efficitur a ultrices eget, auctor quis elit. Curabitur dapibus tellus congue porttitor facilisis. In ac vehicula sapien. Sed eu pretium ligula, id condimentum augue. Cras ultricies lacinia rutrum. Aliquam erat volutpat. Nunc vulputate ante sem, eu suscipit ante imperdiet sed. Proin pharetra vel dui sed tristique. Ut varius ultricies elementum.',
-  },
-  {
-    name: 'Feature 8 Here',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus interdum velit interdum bibendum. Vestibulum massa nulla, efficitur a ultrices eget, auctor quis elit. Curabitur dapibus tellus congue porttitor facilisis. In ac vehicula sapien. Sed eu pretium ligula, id condimentum augue. Cras ultricies lacinia rutrum. Aliquam erat volutpat. Nunc vulputate ante sem, eu suscipit ante imperdiet sed. Proin pharetra vel dui sed tristique. Ut varius ultricies elementum.',
-  },
-  {
-    name: 'Feature 9 Here',
-    description:
-      'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras cursus interdum velit interdum bibendum. Vestibulum massa nulla, efficitur a ultrices eget, auctor quis elit. Curabitur dapibus tellus congue porttitor facilisis. In ac vehicula sapien. Sed eu pretium ligula, id condimentum augue. Cras ultricies lacinia rutrum. Aliquam erat volutpat. Nunc vulputate ante sem, eu suscipit ante imperdiet sed. Proin pharetra vel dui sed tristique. Ut varius ultricies elementum.',
+    name: 'Secure',
+    description: 'Stateless provisioning supporting SELinux, per-node asset key based provisioning, and access controls.',
+    icon: ShieldCheckIcon,
   },
 ]
 
@@ -60,93 +34,125 @@ const features = [
 const IndexPage = () => (
   <Layout>
     <Seo title="Home" />
-    <div className="mb-10">
-      <div className="bg-gray-100">
-        <div className="px-4 py-16 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:py-20">
-          <div className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
-            <h2 className="max-w-lg mb-6 font-sans text-4xl font-extrabold leading-none tracking-tight text-gray-900 sm:text-6xl md:mx-auto">
-              <img src={logo} className="w-48 mb-5 inline-flex justify-center" /><br />
-              Warewulf
-            </h2>
-            <p className="text-base mb-10 text-gray-700 md:text-lg">
-              A stateless and diskless container operating system provisioning system for large clusters of bare metal and/or virtual systems.
+    <div className="relative bg-gray-50 overflow-hidden">
+      <div className="hidden sm:block sm:absolute sm:inset-y-0 sm:h-full sm:w-full" aria-hidden="true">
+        <div className="relative h-full max-w-7xl mx-auto">
+          <svg
+            className="absolute right-full transform translate-y-1/4 translate-x-1/4 lg:translate-x-1/2"
+            width={404}
+            height={784}
+            fill="none"
+            viewBox="0 0 404 784"
+          >
+            <defs>
+              <pattern
+                id="f210dbf6-a58d-4871-961e-36d5016a0f49"
+                x={0}
+                y={0}
+                width={20}
+                height={20}
+                patternUnits="userSpaceOnUse"
+              >
+                <rect x={0} y={0} width={4} height={4} className="text-gray-200" fill="currentColor" />
+              </pattern>
+            </defs>
+            <rect width={404} height={784} fill="url(#f210dbf6-a58d-4871-961e-36d5016a0f49)" />
+          </svg>
+          <svg
+            className="absolute left-full transform -translate-y-3/4 -translate-x-1/4 md:-translate-y-1/2 lg:-translate-x-1/2"
+            width={404}
+            height={784}
+            fill="none"
+            viewBox="0 0 404 784"
+          >
+            <defs>
+              <pattern
+                id="5d0dd344-b041-4d26-bec4-8d33ea57ec9b"
+                x={0}
+                y={0}
+                width={20}
+                height={20}
+                patternUnits="userSpaceOnUse"
+              >
+                <rect x={0} y={0} width={4} height={4} className="text-gray-200" fill="currentColor" />
+              </pattern>
+            </defs>
+            <rect width={404} height={784} fill="url(#5d0dd344-b041-4d26-bec4-8d33ea57ec9b)" />
+          </svg>
+        </div>
+      </div>
+    </div>
+    <main className="mt-16 mx-auto max-w-7xl px-4 sm:mt-24 pb-24">
+          <div className="text-center">
+            <h1 className="text-4xl tracking-tight font-extrabold text-gray-900 sm:text-5xl md:text-6xl">
+              <span className="block xl:inline">Cluster Management & Provisioning</span>
+            </h1>
+            <p className="mt-3 max-w-md mx-auto text-base text-gray-500 sm:text-lg md:mt-5 md:text-xl md:max-w-3xl">
+            Being open source for over two-decades, and pioneering the concept of stateless node management, Warewulf is among the most successful HPC cluster platforms in the industry with support from OpenHPC, contributors around the world, and usage from every industry.
             </p>
+            <div className="mt-5 max-w-md mx-auto sm:flex sm:justify-center md:mt-8">
+              <div className="rounded-md shadow">
+                <Link
+                  to="/getting-started"
+                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded text-white bg-green-900 hover:bg-green-800 md:py-4 md:text-lg md:px-10"
+                >
+                  Get Started
+                </Link>
+              </div>
+              <div className="mt-3 rounded-md shadow sm:mt-0 sm:ml-3">
+                <Link
+                  to="/help"
+                  className="w-full flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded text-green-900 bg-white hover:bg-gray-50 md:py-4 md:text-lg md:px-10"
+                >
+                  Need help?
+                </Link>
+              </div>
+            </div>
           </div>
+        </main>
 
-          <div className="flex items-center sm:justify-center">
-
-            <Link to="/getting-started">
-              <button
-                className="inline-flex items-center justify-center h-12 px-6 mr-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-green-900 hover:bg-green-800 focus:shadow-outline focus:outline-none">
-                Get Started
-              </button>
-            </Link>
-            <Link
-              to="/help"
-              aria-label=""
-              className="inline-flex items-center font-semibold text-gray-800 transition-colors duration-200 hover:text-green-900">
-              Need help?
-            </Link>
-          </div>
+        <div className="bg-green-900">
+      <div className="max-w-4xl mx-auto px-4 py-16 sm:px-6 sm:pt-20 sm:pb-24 lg:max-w-7xl lg:pt-24 lg:px-8">
+        <h2 className="text-3xl font-extrabold text-white tracking-tight">Scalable. Flexible.</h2>
+        <p className="mt-4 max-w-3xl text-lg text-green-200">
+        Today, Warewulf unites the ecosystem with the ability to provision containers directly to the bare metal hardware at massive scale, simplistically while retaining massive flexibility.
+        </p>
+        <div className="mt-12 grid grid-cols-1 gap-x-6 gap-y-12 sm:grid-cols-2 lg:mt-16 lg:grid-cols-4 lg:gap-x-8 lg:gap-y-16">
+          {features.map((feature) => (
+            <div key={feature.name}>
+              <div>
+                <span className="flex items-center justify-center h-12 w-12 rounded-md bg-white bg-opacity-10">
+                  <feature.icon className="h-6 w-6 text-white" aria-hidden="true" />
+                </span>
+              </div>
+              <div className="mt-6">
+                <h3 className="text-lg font-medium text-white">{feature.name}</h3>
+                <p className="mt-2 text-base text-green-200">{feature.description}</p>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
-
-
-      <div className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 py-20">
-        <div className="px-4 mx-auto sm:max-w-xl md:max-w-full lg:max-w-screen-xl md:px-24 lg:px-8 lg:pb-10">
-          <div className="max-w-xl md:mx-auto sm:text-center lg:max-w-2xl">
-            <h3 className="max-w-xl font-sans text-4xl font-extrabold leading-none tracking-tight text-gray-900 sm:text-5xl md:mx-auto">
-              Overview
-            </h3>
-          </div>
-        </div>
-
-        <div className="grid mt-10 mb-10 grid-cols-1 gap-y-20 lg:grid-cols-3 lg:gap-y-0 lg:gap-x-8">
-          <div className="flex mt-5 mb-5 flex-col bg-white rounded-2xl shadow-xl border border-gray-200">
-            <div className="flex-1 relative pt-16 px-6 pb-8 md:px-8">
-              <div className="absolute top-0 p-5 inline-block bg-green-900 rounded-xl shadow-lg transform -translate-y-1/2">
-                <CubeTransparentIcon className="h-6 w-6 text-white" aria-hidden="true" />
-              </div>
-              <h3 className="text-xl font-medium text-gray-900">
-                Lightweight
-              </h3>
-              <p className="mt-4 text-base text-gray-700">
-                Warewulf needs to do its job and stay out of the way. There should be no underlying system dependencies, changes or “stack” for the controller or worker nodes.
-              </p>
-            </div>
-          </div>
-          <div className="flex mt-5 mb-5 flex-col bg-white rounded-2xl shadow-xl border border-gray-200">
-            <div className="flex-1 relative pt-16 px-6 pb-8 md:px-8">
-              <div className="absolute top-0 p-5 inline-block bg-green-900 rounded-xl shadow-lg transform -translate-y-1/2">
-                <CheckCircleIcon className="h-6 w-6 text-white" aria-hidden="true" />
-              </div>
-              <h3 className="text-xl font-medium text-gray-900">
-                Simple
-              </h3>
-              <p className="mt-4 text-base text-gray-700">
-                Warewulf is used by hobbyists, researchers, scientists, engineers and systems administrators. This means that Warewulf must be simple to use and understand.
-              </p>
-            </div>
-          </div>
-          <div className="flex mt-5 mb-5 flex-col bg-white rounded-2xl shadow-xl border border-gray-200">
-            <div className="flex-1 relative pt-16 px-6 pb-8 md:px-8">
-              <div className="absolute top-0 p-5 inline-block bg-green-900 rounded-xl shadow-lg transform -translate-y-1/2">
-                <ChartSquareBarIcon className="h-6 w-6 text-white" aria-hidden="true" />
-              </div>
-              <h3 className="text-xl font-medium text-gray-900">
-                Flexible
-              </h3>
-              <p className="mt-4 text-base text-gray-700">
-                Warewulf is highly flexible and can address the needs of any environment – from graphical workstations to massive supercomputing centers.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-
     </div>
 
+    <div className="bg-green-50">
+      <div className="max-w-7xl mx-auto py-12 px-4 sm:px-6 lg:py-24 lg:px-8 lg:flex lg:items-center lg:justify-between">
+        <h2 className="text-3xl font-extrabold tracking-tight text-gray-900 md:text-4xl">
+          <span className="block">Ready to dive in?</span>
+          <span className="block text-green-600">Get started today.</span>
+        </h2>
+        <div className="mt-8 flex lg:mt-0 lg:flex-shrink-0">
+          <div className="inline-flex rounded-md shadow">
+            <Link
+              to="/getting-started"
+              className="inline-flex items-center justify-center px-5 py-3 border border-transparent text-base font-medium rounded text-white bg-green-900 hover:bg-green-800"
+            >
+              Get Started
+            </Link>
+          </div>
+        </div>
+      </div>
+    </div>
 
   </Layout>
 )
