@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Warewulf Overlays &mdash; Warewulf User Guide development documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Node Provisioning" href="provisioning.html" />
+    <link rel="prev" title="Node Profiles" href="profiles.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Warewulf User Guide
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stateless.html">Stateless Provisioning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Control Server Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Warewulf Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Warewulf Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialization.html">Warewulf Initialization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="containers.html">Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kernel.html">Kernel Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nodeconfig.html">Node Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="profiles.html">Node Profiles</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Warewulf Overlays</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#system-overlay">System Overlay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#runtime-overlay">Runtime Overlay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#templates">Templates</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-overlays">Using Overlays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#viewing-the-files-within-an-overlay">Viewing the Files Within an Overlay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-new-file-within-an-overlay">Creating a New File Within an Overlay</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#building-overlays">Building Overlays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#other-overlay-actions">Other Overlay Actions</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="provisioning.html">Node Provisioning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ipmi.html">IPMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templating.html">Templating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/el7.html">EL7 (CentOS and RHEL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/el8.html">EL8 (Rocky Linux and RHEL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/suse15.html">openSUSE Leap and SLES 15</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/development-environment-kvm.html">Development Environment (KVM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/development-environment-vbox.html">Development Environment (VirtualBox)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Warewulf User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Warewulf Overlays</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/hpcng/warewulf/blob/development/userdocs/contents/overlays.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="warewulf-overlays">
+<h1>Warewulf Overlays<a class="headerlink" href="#warewulf-overlays" title="Permalink to this heading"></a></h1>
+<p>So at this point, we have discussed how Warewulf is designed to scalably provision and manage thousands of cluster nodes by utilizing identical stateless boot images. And there-in lies a problem to solve. If these boot images are completely identical, then how do we configure things like hostnames? IP addresses? Or any other node specific custom configurations?</p>
+<p>While some of this can be managed by services like DHCP, and other bits by configuration management, which can absolutely be done with Warewulf and many people choose to do, these are heavy-weight solutions to a simple problem to solve.</p>
+<p>Warewulf solves this with overlays and uses overlays in different ways through the provisioning process. Two of these overlays are exposed to the users, the <strong>system overlay</strong> and the <strong>runtime overlay</strong>.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Another overlay that isn’t directly exposed is the <strong>kmods overlay</strong> which contains all of the kernel modules to match the configured kernel. Because this overlay is used “behind the scenes” it is outside the scope of this document.</p>
+</div>
+<section id="system-overlay">
+<h2>System Overlay<a class="headerlink" href="#system-overlay" title="Permalink to this heading"></a></h2>
+<p>The System Overlay is used by the core of Warewulf to setup the environment on the node necessary for provisioning. The default system overlay is called <code class="docutils literal notranslate"><span class="pre">wwinit</span></code>. Generally speaking, it will not be necessary to make changes to this overlay, but it is possible to change or configure this overlay to meet site specific needs if necessary.</p>
+</section>
+<section id="runtime-overlay">
+<h2>Runtime Overlay<a class="headerlink" href="#runtime-overlay" title="Permalink to this heading"></a></h2>
+<p>The Runtime Overlay is the overlay that is responsible for most of the typical system administration configurations. Here you will make changes necessary to support your operating system as well as application configurations.</p>
+<p>Once the system is provisioned and booted, the <code class="docutils literal notranslate"><span class="pre">wwclient</span></code> program (which is provisioned as part of the <code class="docutils literal notranslate"><span class="pre">wwinit</span></code> system overlay) will continuously update the node with updates in the runtime overlay.</p>
+</section>
+<section id="templates">
+<h2>Templates<a class="headerlink" href="#templates" title="Permalink to this heading"></a></h2>
+<p>Templates allow you to create dynamic content such that the files downloaded for each node will be customized for that node. Templates allow you to insert everything from variables, to including files from the control node, as well as conditional content and loops.</p>
+<p>Warewulf uses the <code class="docutils literal notranslate"><span class="pre">text/template</span></code> engine to facilitate implementing dynamic content in a simple and standardized manner.</p>
+<p>All template files will end with the suffix of <code class="docutils literal notranslate"><span class="pre">.ww</span></code>. That tells Warewulf that when building a file, that it should parse that file as a template. When it does that, the resulting file is static and can have node customizations that are obtained from the node configuration attributes.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>When the file is persisted within the built overlay, the <code class="docutils literal notranslate"><span class="pre">.ww</span></code> will be dropped, so <code class="docutils literal notranslate"><span class="pre">/etc/hosts.ww</span></code> will end up being <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code>.</p>
+</div>
+</section>
+<section id="using-overlays">
+<h2>Using Overlays<a class="headerlink" href="#using-overlays" title="Permalink to this heading"></a></h2>
+<p>Warewulf includes a command group for manipulating overlays (<code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">overlay</span></code>). With this you can add, edit, remove, change ownership, permissions, etc.</p>
+<p>The general syntax is as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wwctl overlay <span class="o">[</span>action<span class="o">]</span> <span class="o">[</span>overlay name<span class="o">]</span> ...
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>action</strong>: the overlay subcommand you are invoking</p></li>
+<li><p><strong>overlay name</strong>: the name of the overlay in question within a given type</p></li>
+<li><p><strong>…</strong>: additional arguments are action specific</p></li>
+</ul>
+<p>By default there is one overlay in each of the system and runtime overlay types. Both overlays are called “default”. To say it differently, there are two default overlays, one is a system overlay and one is a runtime overlay.</p>
+</section>
+<section id="viewing-the-files-within-an-overlay">
+<h2>Viewing the Files Within an Overlay<a class="headerlink" href="#viewing-the-files-within-an-overlay" title="Permalink to this heading"></a></h2>
+<p>Overlays can be viewed with the command <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">overlay</span> <span class="pre">list</span></code>. You can see the files within an overlay by adding the <code class="docutils literal notranslate"><span class="pre">-a</span></code> or <code class="docutils literal notranslate"><span class="pre">-l</span></code> options as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl overlay list -l generic
+PERM MODE    UID GID   OVERLAY    FILE PATH
+-rwxr-xr-x     <span class="m">0</span> <span class="m">0</span>     generic            /etc/
+-rw-r--r--     <span class="m">0</span> <span class="m">0</span>     generic            /etc/group.ww
+-rw-r--r--     <span class="m">0</span> <span class="m">0</span>     generic            /etc/hosts.ww
+-rw-r--r--     <span class="m">0</span> <span class="m">0</span>     generic            /etc/passwd.ww
+-rwxr-xr-x     <span class="m">0</span> <span class="m">0</span>     generic            /root/
+-rwxr-xr-x     <span class="m">0</span> <span class="m">0</span>     generic            /root/.ssh/
+-rw-r--r--     <span class="m">0</span> <span class="m">0</span>     generic            /root/.ssh/authorized_keys.ww
+</pre></div>
+</div>
+</section>
+<section id="creating-a-new-file-within-an-overlay">
+<h2>Creating a New File Within an Overlay<a class="headerlink" href="#creating-a-new-file-within-an-overlay" title="Permalink to this heading"></a></h2>
+<p>Just like any file on the system, you can create and edit a file at the same time. So to do that, you simple <code class="docutils literal notranslate"><span class="pre">edit</span></code> a new file as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl overlay edit <span class="o">[</span>overlay name<span class="o">]</span> <span class="o">[</span>file path<span class="o">]</span>
+</pre></div>
+</div>
+<p>For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl overlay edit generic /etc/testfile
+</pre></div>
+</div>
+<p>and you can validate that the file is there with the <code class="docutils literal notranslate"><span class="pre">list</span></code> command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl overlay list generic -l
+PERM MODE    UID GID   RUNTIME-OVERLAY    FILE PATH
+-rwxr-xr-x     <span class="m">0</span> <span class="m">0</span>     generic            /etc/
+-rw-r--r--     <span class="m">0</span> <span class="m">0</span>     generic            /etc/group.ww
+-rw-r--r--     <span class="m">0</span> <span class="m">0</span>     generic            /etc/hosts.ww
+-rw-r--r--     <span class="m">0</span> <span class="m">0</span>     generic            /etc/passwd.ww
+-rwxr-xr-x     <span class="m">0</span> <span class="m">0</span>     generic            /etc/testfile
+-rwxr-xr-x     <span class="m">0</span> <span class="m">0</span>     generic            /root/
+-rwxr-xr-x     <span class="m">0</span> <span class="m">0</span>     generic            /root/.ssh/
+-rw-r--r--     <span class="m">0</span> <span class="m">0</span>     generic            /root/.ssh/authorized_keys.ww
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>To create a template file, simply name the file with the suffix <code class="docutils literal notranslate"><span class="pre">.ww</span></code>. This suffix will tell Warewulf that the file should be parsed by the templating engine and written into the overlay with the suffix stripped off.</p>
+</div>
+</section>
+<section id="building-overlays">
+<h2>Building Overlays<a class="headerlink" href="#building-overlays" title="Permalink to this heading"></a></h2>
+<p>By default Warewulf will build/update and cache overlays as needed (configurable in the <code class="docutils literal notranslate"><span class="pre">warewulf.conf</span></code>).</p>
+<p>You can however build overlays by hand, and in some cases this will be advantageous (like if you are freshly booting thousands of compute nodes in parallel). The command to do that is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># wwctl overlay build n00[00-10]</span>
+Building overlays <span class="k">for</span> n0000: <span class="o">[</span>wwinit, generic<span class="o">]</span>
+Building overlays <span class="k">for</span> n0001: <span class="o">[</span>wwinit, generic<span class="o">]</span>
+Building overlays <span class="k">for</span> n0002: <span class="o">[</span>wwinit, generic<span class="o">]</span>
+Building overlays <span class="k">for</span> n0003: <span class="o">[</span>wwinit, generic<span class="o">]</span>
+Building overlays <span class="k">for</span> n0004: <span class="o">[</span>wwinit, generic<span class="o">]</span>
+Building overlays <span class="k">for</span> n0005: <span class="o">[</span>wwinit, generic<span class="o">]</span>
+Building overlays <span class="k">for</span> n0006: <span class="o">[</span>wwinit, generic<span class="o">]</span>
+Building overlays <span class="k">for</span> n0007: <span class="o">[</span>wwinit, generic<span class="o">]</span>
+Building overlays <span class="k">for</span> n0008: <span class="o">[</span>wwinit, generic<span class="o">]</span>
+Building overlays <span class="k">for</span> n0009: <span class="o">[</span>wwinit, generic<span class="o">]</span>
+Building overlays <span class="k">for</span> n0010: <span class="o">[</span>wwinit, generic<span class="o">]</span>
+</pre></div>
+</div>
+</section>
+<section id="other-overlay-actions">
+<h2>Other Overlay Actions<a class="headerlink" href="#other-overlay-actions" title="Permalink to this heading"></a></h2>
+<p>Warewulf includes a number of overlay action commands to interact with the overlays in a programmatic and controlled manner. All of the commands use very similar usage structure and work as the above examples do. A summary of all of the overlay actions are as follows:</p>
+<ul class="simple">
+<li><p><strong>build</strong>: (Re)build an overlay</p></li>
+<li><p><strong>chmod</strong>: Change file permissions within an overlay</p></li>
+<li><p><strong>chown</strong>: Change file ownership within an overlay</p></li>
+<li><p><strong>create</strong>: Initialize a new Overlay</p></li>
+<li><p><strong>delete</strong>: Delete Warewulf Overlay or files</p></li>
+<li><p><strong>edit</strong>: Edit/Create a file within a Warewulf Overlay</p></li>
+<li><p><strong>import</strong>: Import a file into a Warewulf Overlay</p></li>
+<li><p><strong>list</strong>: List Warewulf Overlays and files</p></li>
+<li><p><strong>mkdir</strong>: Create a new directory within an Overlay</p></li>
+<li><p><strong>show</strong>: Show (cat) a file within a Warewulf Overlay</p></li>
+</ul>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="profiles.html" class="btn btn-neutral float-left" title="Node Profiles" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="provisioning.html" class="btn btn-neutral float-right" title="Node Provisioning" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

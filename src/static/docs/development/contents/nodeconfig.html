@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Node Configuration &mdash; Warewulf User Guide development documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Node Profiles" href="profiles.html" />
+    <link rel="prev" title="Kernel Management" href="kernel.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Warewulf User Guide
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="background.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="stateless.html">Stateless Provisioning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Control Server Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Warewulf Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Warewulf Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="initialization.html">Warewulf Initialization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="containers.html">Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kernel.html">Kernel Management</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Node Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-node-configuration-db">The Node Configuration DB</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#adding-a-new-node">Adding a New Node</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#node-names">Node Names</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#listing-nodes">Listing Nodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-node-attributes">Setting Node Attributes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#configuring-the-node-s-container-image">Configuring the Node’s Container Image</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-the-node-s-kernel">Configuring the Node’s Kernel</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#configuring-the-node-s-network">Configuring the Node’s Network</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#un-setting-node-attributes">Un-setting Node Attributes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="profiles.html">Node Profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="overlays.html">Warewulf Overlays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="provisioning.html">Node Provisioning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ipmi.html">IPMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="templating.html">Templating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/el7.html">EL7 (CentOS and RHEL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/el8.html">EL8 (Rocky Linux and RHEL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/suse15.html">openSUSE Leap and SLES 15</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/documentation.html">Documentation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/development-environment-kvm.html">Development Environment (KVM)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contributing/development-environment-vbox.html">Development Environment (VirtualBox)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Warewulf User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Node Configuration</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/hpcng/warewulf/blob/development/userdocs/contents/nodeconfig.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="node-configuration">
+<h1>Node Configuration<a class="headerlink" href="#node-configuration" title="Permalink to this heading"></a></h1>
+<section id="the-node-configuration-db">
+<h2>The Node Configuration DB<a class="headerlink" href="#the-node-configuration-db" title="Permalink to this heading"></a></h2>
+<p>As mentioned in the [Configuration](configuration) section, node
+configs are persisted to the <code class="docutils literal notranslate"><span class="pre">nodes.conf</span></code> YAML file, but generally it
+is best not to edit this file directly (however that is supported, it
+is just prone to errors).</p>
+<p>This method of using a YAML configuration file as a backend datastore
+is both scalable and very lightweight. We’ve tested this out to over
+10,000 node entries which yielded update latencies under 1 second,
+which we felt was both tolerable and advantageous.</p>
+</section>
+<section id="adding-a-new-node">
+<h2>Adding a New Node<a class="headerlink" href="#adding-a-new-node" title="Permalink to this heading"></a></h2>
+<p>Creating a new node is as simple as running the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node add n0000
+Added node: n0000
+</pre></div>
+</div>
+<section id="node-names">
+<h3>Node Names<a class="headerlink" href="#node-names" title="Permalink to this heading"></a></h3>
+<p>For small clusters, you can use simple names (e.g. <code class="docutils literal notranslate"><span class="pre">n0000</span></code>); but for
+larger, more complicated clusters that are comprised of multiple
+clusters and roles it is highly recommended to use node names that
+include a cluster descriptor. In Warewulf, this is generally done by
+using a domain name (e.g. <code class="docutils literal notranslate"><span class="pre">n0000.cluster01</span></code>). Warewulf will
+automatically assume that the domain is the equivalent of the cluster
+name.</p>
+<p>This also means that you can address groups of nodes by the cluster
+descriptor with globs. For example, you are able to refer to all nodes
+in “cluster01” with the following string: <code class="docutils literal notranslate"><span class="pre">*.cluster01</span></code> which is
+valuable for other <code class="docutils literal notranslate"><span class="pre">wwctl</span></code> commands.</p>
+</section>
+</section>
+<section id="listing-nodes">
+<h2>Listing Nodes<a class="headerlink" href="#listing-nodes" title="Permalink to this heading"></a></h2>
+<p>Once you have configured one or more nodes, you can list them and
+their attributes as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node list
+NODE NAME              PROFILES                   <span class="nv">NETWORK</span>
+<span class="o">================================================================================</span>
+n0000                  default
+</pre></div>
+</div>
+<p>You can also see the node’s full attribute list by specifying the <code class="docutils literal notranslate"><span class="pre">-a</span></code>
+option (all):</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node list -a
+<span class="c1">################################################################################</span>
+NODE                 FIELD              PROFILE      VALUE
+n0000                Id                 --           n0000
+n0000                Comment            default      This profile is automatically included <span class="k">for</span> each node
+n0000                Cluster            --           --
+n0000                Profiles           --           default
+n0000                Discoverable       --           <span class="nb">false</span>
+n0000                Container          --           --
+n0000                KernelOverride     --           --
+n0000                KernelArgs         --           <span class="o">(</span>quiet <span class="nv">crashkernel</span><span class="o">=</span>no <span class="nv">vga</span><span class="o">=</span><span class="m">791</span> <span class="nv">rootfstype</span><span class="o">=</span>rootfs<span class="o">)</span>
+n0000                RuntimeOverlay     --           <span class="o">(</span>default<span class="o">)</span>
+n0000                SystemOverlay      --           <span class="o">(</span>default<span class="o">)</span>
+n0000                Ipxe               --           <span class="o">(</span>default<span class="o">)</span>
+n0000                Init               --           <span class="o">(</span>/sbin/init<span class="o">)</span>
+n0000                Root               --           <span class="o">(</span>initramfs<span class="o">)</span>
+n0000                IpmiIpaddr         --           --
+n0000                IpmiNetmask        --           --
+n0000                IpmiPort           --           --
+n0000                IpmiGateway        --           --
+n0000                IpmiUserName       --           --
+n0000                IpmiInterface      --           --
+n0000                IpmiWrite          --           --
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The attribute values in parenthesis are default values and can
+be overridden in the next section, granted, the default values are
+generally usable.</p>
+</div>
+</section>
+<section id="setting-node-attributes">
+<h2>Setting Node Attributes<a class="headerlink" href="#setting-node-attributes" title="Permalink to this heading"></a></h2>
+<p>In the above output we can see that there is no kernel or container
+defined for this node. To provision a node, the minimum requirements
+are a kernel and container, and for that node to be useful, we will
+also need to configure the network so the nodes are reachable after
+they boot.</p>
+<p>Node configurations are set using the <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">node</span> <span class="pre">set</span></code> command. To see
+a list of all configuration attributes, use the command <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">node</span>
+<span class="pre">set</span> <span class="pre">--help</span></code>.</p>
+</section>
+<section id="configuring-the-node-s-container-image">
+<h2>Configuring the Node’s Container Image<a class="headerlink" href="#configuring-the-node-s-container-image" title="Permalink to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node <span class="nb">set</span> --container rocky-8 n0000
+Are you sure you want to modify <span class="m">1</span> nodes<span class="o">(</span>s<span class="o">)</span>: y
+</pre></div>
+</div>
+<p>And you can check that the container name is set for <code class="docutils literal notranslate"><span class="pre">n0000</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node list -a  n0000 <span class="p">|</span> grep Container
+n0000                Container          --           rocky-8
+</pre></div>
+</div>
+<section id="configuring-the-node-s-kernel">
+<h3>Configuring the Node’s Kernel<a class="headerlink" href="#configuring-the-node-s-kernel" title="Permalink to this heading"></a></h3>
+<p>While the recommended method for assigning a kernel in 4.3 and beyond
+is to include it in the container / node image, a kernel can still be
+specified as an override at the node or profile.</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node <span class="nb">set</span> --kerneloverride <span class="k">$(</span>uname -r<span class="k">)</span> n0000
+Are you sure you want to modify <span class="m">1</span> nodes<span class="o">(</span>s<span class="o">)</span>: y
+
+$ sudo wwctl node list -a n0000 <span class="p">|</span> grep KernelOverride
+n0000                KernelOverride     --           <span class="m">4</span>.18.0-305.3.1.el8_4.x86_64
+</pre></div>
+</div>
+</section>
+<section id="configuring-the-node-s-network">
+<h3>Configuring the Node’s Network<a class="headerlink" href="#configuring-the-node-s-network" title="Permalink to this heading"></a></h3>
+<p>To configure the network, we have to pick a network device name and
+provide the network information as follows:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node <span class="nb">set</span> --netdev eth0 --hwaddr <span class="m">11</span>:22:33:44:55:66 --ipaddr <span class="m">10</span>.0.2.1 --netmask <span class="m">255</span>.255.252.0 n0000
+Are you sure you want to modify <span class="m">1</span> nodes<span class="o">(</span>s<span class="o">)</span>: y
+</pre></div>
+</div>
+<p>You can now see that the node contains configuration attributes for
+container, kernel, and network:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node list -a n0000
+<span class="c1">################################################################################</span>
+NODE                 FIELD              PROFILE      VALUE
+n0000                Id                 --           n0000
+n0000                Comment            default      This profile is automatically included <span class="k">for</span> each node
+n0000                Cluster            --           --
+n0000                Profiles           --           default
+n0000                Discoverable       --           <span class="nb">false</span>
+n0000                Container          --           rocky-8
+n0000                Kernel             --           <span class="m">4</span>.18.0-305.3.1.el8_4.x86_64
+n0000                KernelArgs         --           <span class="o">(</span>quiet <span class="nv">crashkernel</span><span class="o">=</span>no <span class="nv">vga</span><span class="o">=</span><span class="m">791</span> <span class="nv">rootfstype</span><span class="o">=</span>rootfs<span class="o">)</span>
+n0000                RuntimeOverlay     --           <span class="o">(</span>default<span class="o">)</span>
+n0000                SystemOverlay      --           <span class="o">(</span>default<span class="o">)</span>
+n0000                Ipxe               --           <span class="o">(</span>default<span class="o">)</span>
+n0000                Init               --           <span class="o">(</span>/sbin/init<span class="o">)</span>
+n0000                Root               --           <span class="o">(</span>initramfs<span class="o">)</span>
+n0000                IpmiIpaddr         --           --
+n0000                IpmiNetmask        --           --
+n0000                IpmiPort           --           --
+n0000                IpmiGateway        --           --
+n0000                IpmiUserName       --           --
+n0000                IpmiInterface      --           --
+n0000                default:DEVICE     --           eth0
+n0000                default:HWADDR     --           <span class="m">11</span>:22:33:44:55:66
+n0000                default:IPADDR     --           <span class="m">10</span>.0.2.1
+n0000                default:NETMASK    --           <span class="m">255</span>.255.252.0
+n0000                default:GATEWAY    --           --
+n0000                default:TYPE       --           --
+n0000                default:DEFAULT    --           <span class="nb">false</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="un-setting-node-attributes">
+<h2>Un-setting Node Attributes<a class="headerlink" href="#un-setting-node-attributes" title="Permalink to this heading"></a></h2>
+<p>If you wish to <code class="docutils literal notranslate"><span class="pre">unset</span></code> a particular value, set the value to
+<code class="docutils literal notranslate"><span class="pre">UNDEF</span></code>. For example:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node <span class="nb">set</span> --cluster cluster01 n0000
+Are you sure you want to modify <span class="m">1</span> nodes<span class="o">(</span>s<span class="o">)</span>: y
+
+$ sudo wwctl node list -a n0000 <span class="p">|</span> grep Cluster
+n0000                Cluster            --           cluster01
+</pre></div>
+</div>
+<p>And to unset this configuration attribute:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node <span class="nb">set</span> --cluster UNDEF n0000
+Are you sure you want to modify <span class="m">1</span> nodes<span class="o">(</span>s<span class="o">)</span>: y
+
+$ sudo wwctl node list -a n0000 <span class="p">|</span> grep Cluster
+n0000                Cluster            --           --
+</pre></div>
+</div>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="kernel.html" class="btn btn-neutral float-left" title="Kernel Management" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="profiles.html" class="btn btn-neutral float-right" title="Node Profiles" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

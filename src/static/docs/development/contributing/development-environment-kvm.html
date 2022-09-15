@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Development Environment (KVM) &mdash; Warewulf User Guide development documentation</title>
+      <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+    <link rel="shortcut icon" href="../_static/favicon.png"/>
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+        <script src="../_static/jquery.js"></script>
+        <script src="../_static/underscore.js"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../_static/doctools.js"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Development Environment (VirtualBox)" href="development-environment-vbox.html" />
+    <link rel="prev" title="Documentation" href="documentation.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="../index.html" class="icon icon-home"> Warewulf User Guide
+            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Contents</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../contents/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/background.html">Background</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/stateless.html">Stateless Provisioning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/setup.html">Control Server Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/installation.html">Warewulf Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/configuration.html">Warewulf Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/initialization.html">Warewulf Initialization</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/containers.html">Container Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/kernel.html">Kernel Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/nodeconfig.html">Node Configuration</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/profiles.html">Node Profiles</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/overlays.html">Warewulf Overlays</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/provisioning.html">Node Provisioning</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/ipmi.html">IPMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/security.html">Security</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/templating.html">Templating</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Quickstart</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/el7.html">EL7 (CentOS and RHEL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/el8.html">EL8 (Rocky Linux and RHEL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../quickstart/suse15.html">openSUSE Leap and SLES 15</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Documentation</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Development Environment (KVM)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-centos-7-development-virtual-machine-under-kvm">Create CentOS 7 development virtual machine under KVM</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#turn-off-default-network-dhcp-on-server-master1">Turn off default network dhcp on server master1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#build-and-install-warewulf-on-wwdev">Build and install warewulf on wwdev</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="development-environment-vbox.html">Development Environment (VirtualBox)</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../reference/glossary.html">Glossary</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Warewulf User Guide</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content style-external-links">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Development Environment (KVM)</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/hpcng/warewulf/blob/development/userdocs/contributing/development-environment-kvm.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="development-environment-kvm">
+<h1>Development Environment (KVM)<a class="headerlink" href="#development-environment-kvm" title="Permalink to this heading"></a></h1>
+<section id="create-centos-7-development-virtual-machine-under-kvm">
+<h2>Create CentOS 7 development virtual machine under KVM<a class="headerlink" href="#create-centos-7-development-virtual-machine-under-kvm" title="Permalink to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># KVM is running on server called master1 which is not my desktop</span>
+ssh -X master1
+
+<span class="c1"># On master1 server</span>
+wget -P /global/downloads/centos http://mirror.mobap.edu/centos/7.8.2003/isos/x86_64/CentOS-7-x86_64-Everything-2003.iso
+
+qemu-img create -o <span class="nv">preallocation</span><span class="o">=</span>metadata -f qcow2 /global/images/centos-7.qcow2 32G
+
+<span class="c1"># install wwdev Centos 7 development VM</span>
+sudo virt-install --virt-type kvm --name centos7-wwdev --ram <span class="m">8192</span> <span class="se">\</span>
+   --disk /global/images/centos-7.qcow2,format<span class="o">=</span>qcow2 <span class="se">\</span>
+   --network <span class="nv">network</span><span class="o">=</span>default <span class="se">\</span>
+   --graphics vnc,listen<span class="o">=</span><span class="m">0</span>.0.0.0 --noautoconsole <span class="se">\</span>
+   --os-type<span class="o">=</span>linux --os-variant<span class="o">=</span>rhel7.0 <span class="se">\</span>
+   --location<span class="o">=</span>/global/downloads/centos/CentOS-7-x86_64-Everything-2003.iso
+
+<span class="c1"># Complete installation using virt-manager</span>
+
+<span class="c1"># To start virt-manager on non-local server</span>
+ssh -X master1
+
+sudo -E virt-manager
+
+<span class="c1"># Login to VM and install @development group and go language</span>
+ssh root@wwdev
+
+<span class="c1"># Disable selinux by modifying /etc/sysconfig/selinux</span>
+vi /etc/sysconfig/selinux
+
+    <span class="nv">SELINUX</span><span class="o">=</span>disabled
+
+<span class="c1"># disable firewall</span>
+systemctl stop firewalld
+systemctl disable firewalld
+</pre></div>
+</div>
+</section>
+<section id="turn-off-default-network-dhcp-on-server-master1">
+<h2>Turn off default network dhcp on server master1<a class="headerlink" href="#turn-off-default-network-dhcp-on-server-master1" title="Permalink to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># shutdown all VMs</span>
+sudo virsh net-destroy default
+
+sudo virsh net-edit default
+
+    <span class="c1"># remove dhcp lines from XML</span>
+
+sudo virsh net-start default
+</pre></div>
+</div>
+</section>
+<section id="build-and-install-warewulf-on-wwdev">
+<h2>Build and install warewulf on wwdev<a class="headerlink" href="#build-and-install-warewulf-on-wwdev" title="Permalink to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>ssh wwdev
+
+# Fedora prerequisites
+sudo dnf -y install tftp-server tftp
+sudo dnf -y install dhcp
+sudo dnf -y install ipmitool
+sudo dnf install singularity
+sudo dnf install gpgme-devel
+sudo dnf install libassuan.x86_64 libassuan-devel.x86_64
+sudo dnf golang
+sudo dnf nfs-utils
+
+# Centos prerequisites
+sudo yum -y install tftp-server tftp
+sudo yum -y install dhcp
+sudo yum -y install ipmitool
+sudo yum install http://repo.ctrliq.com/packages/rhel7/ctrl-release.rpm
+sudo yum install singularityplus
+sudo yum install gpgme-devel
+sudo yum install libassuan.x86_64 libassuan-devel.x86_64
+sudo yum install https://packages.endpoint.com/rhel/7/os/x86_64/endpoint-repo-1.7-1.x86_64.rpm
+sudo yum install golang
+sudo yum install nfs-utils
+
+# Install Warewulf and dependencies
+git clone https://github.com/hpcng/warewulf.git
+cd warewulf
+
+make all
+sudo make install
+
+# Configure the controller
+Edit the file /etc/warewulf/warewulf.conf and ensure that you&#39;ve ser the approprite configuration parameters
+
+# Configure system service automatically
+sudo wwctl configure dhcp # Create the default dhcpd.conf file and start/enable service
+sudo wwctl configure tftp # Install the base tftp/PXE boot files and start/enable service
+sudo wwctl configure nfs  # Configure the exports and create an fstab in the default system overlay
+sudo wwctl configure ssh  # Build the basic ssh keys to be included by the default system overlay
+
+# Pull and build the VNFS container and kernel
+sudo wwctl container import docker://warewulf/centos-8 centos-8 --setdefault
+sudo wwctl kernel import build $(uname -r) --setdefault
+
+# Set up the default node profile
+sudo wwctl profile set default -K $(uname -r) -C centos-7
+sudo wwctl profile set default --netdev eth0 -M WW_server_subnet_mask -G WW_server_ip
+sudo wwctl profile list
+
+# Add a node and build node specific overlays
+sudo wwctl node add n0000.cluster --netdev eth0 -I n0000_ip --discoverable
+sudo wwctl node list -a n0000
+
+# Review Warewulf overlays
+sudo wwctl overlay list -l
+sudo wwctl overlay list -ls
+sudo wwctl overlay edit default /etc/hello_world.ww
+sudo wwctl overlay build -a
+
+# Start the Warewulf daemon
+sudo wwctl ready
+sudo wwctl server start
+sudo wwctl server status
+</pre></div>
+</div>
+<p>Boot your node and watch the bash and the output of the Warewulfd process</p>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="documentation.html" class="btn btn-neutral float-left" title="Documentation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="development-environment-vbox.html" class="btn btn-neutral float-right" title="Development Environment (VirtualBox)" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p></p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
