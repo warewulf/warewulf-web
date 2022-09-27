@@ -17,7 +17,7 @@ const gettingStartedLinks = [
   },
   {
     name: 'Quick Start Guide',
-    href: '#',
+    href: 'https://warewulf.org/docs/development/quickstart/el8.html',
     description:
       'Check out the quick start documentation to get Warewulf installed and set up in a hurry.',
     icon: NewspaperIcon,
