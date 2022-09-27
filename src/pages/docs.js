@@ -5,7 +5,7 @@ import Layout from "../components/layout"
 import Seo from "../components/seo"
 
 const docsVersions = [
-    { version: 'master' },
+    { version: 'development' },
 ]
 
 const DocsPage = () => (
@@ -35,10 +35,6 @@ const DocsPage = () => (
                                     <th scope="col" className="relative px-6 py-3">
                                         <span className="sr-only">User Docs</span>
                                     </th>
-
-                                    <th scope="col" className="relative px-6 py-3">
-                                        <span className="sr-only">Admin Docs</span>
-                                    </th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -46,13 +42,8 @@ const DocsPage = () => (
                                     <tr key={docsVersion.version} className={docsVersionIdx % 2 === 0 ? 'bg-white' : 'bg-gray-50'}>
                                         <td className="px-6 py-4 whitespace-nowrap text-left text-sm font-medium text-gray-900">{docsVersion.version}</td>
                                         <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <Link to={`/user-docs/${docsVersion.version}/`} className="text-blue-900 hover:text-blue-700">
+                                            <Link to={`/docs/${docsVersion.version}/`} className="text-blue-900 hover:text-blue-700">
                                                 User Documentation
-                                            </Link>
-                                        </td>
-                                        <td className="px-6 py-4 whitespace-nowrap text-right text-sm font-medium">
-                                            <Link to={`/admin-docs/${docsVersion.version}/`} className="text-blue-900 hover:text-blue-700">
-                                                Admin Documentation
                                             </Link>
                                         </td>
                                     </tr>
