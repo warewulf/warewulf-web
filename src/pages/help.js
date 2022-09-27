@@ -29,13 +29,13 @@ const HelpPage = () => (
               Here is everything you need to know to get started, along with in-depth documentation for each version.
             </p>
           </div>
-          <a
-            href="https://documentation.warewulf.org/docs/"
+          <Link
+            to="/docs"
             aria-label="Documentation"
             className="inline-flex items-center font-semibold transition-colors duration-200 text-green-900 hover:text-green-700"
           >
             View Documentation
-          </a>
+          </Link>
         </div>
         <div className="flex flex-col justify-between p-5 border rounded shadow-sm">
           <div>

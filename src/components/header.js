@@ -30,14 +30,14 @@ function Header({ siteTitle }) {
               </Link>
             </li>
             <li>
-              <a
-                href="https://documentation.warewulf.org/docs/"
+              <Link
+                to="/docs"
                 aria-label="Documentation"
                 title="Documentation"
                 className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-500"
               >
                 Documentation
-              </a>
+              </Link>
             </li>
             <li>
               <Link
