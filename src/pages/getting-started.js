@@ -27,7 +27,7 @@ const gettingStartedLinks = [
     name: 'Supported Binary Packages',
     href: 'https://repo.ctrliq.com',
     description:
-      'CIQ is gratiously providing binary packages for non-production use; you can also find them in EPEL for RHEL dervitives.',
+      'CIQ is graciously providing binary packages for non-production use; you can also find them in EPEL for RHEL dervitives.',
     icon: SupportIcon,
     button: 'Repos'
   },
