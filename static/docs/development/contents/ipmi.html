@@ -201,71 +201,71 @@ set</cite> or <cite>wwctl node set</cite>.</p>
 reviewed from a Profile level, all the way down to a specific Node.</p>
 <section id="profile-view">
 <h3>Profile View<a class="headerlink" href="#profile-view" title="Permalink to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list<span class="w"> </span>-a
-PROFILE<span class="w">              </span>FIELD<span class="w">              </span>PROFILE<span class="w">      </span><span class="nv">VALUE</span>
-<span class="o">=====================================================================================</span>
-default<span class="w">              </span>Id<span class="w">                 </span>--<span class="w">           </span>default
-default<span class="w">              </span>comment<span class="w">            </span>--<span class="w">           </span>This<span class="w"> </span>profile<span class="w"> </span>is<span class="w"> </span>automatically<span class="w"> </span>included<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>node
-default<span class="w">              </span>cluster<span class="w">            </span>--<span class="w">           </span>--
-default<span class="w">              </span>container<span class="w">          </span>--<span class="w">           </span>sle-micro-5.3
-default<span class="w">              </span>ipxe<span class="w">               </span>--<span class="w">           </span>--
-default<span class="w">              </span>runtime<span class="w">            </span>--<span class="w">           </span>--
-default<span class="w">              </span>wwinit<span class="w">             </span>--<span class="w">           </span>--
-default<span class="w">              </span>root<span class="w">               </span>--<span class="w">           </span>--
-default<span class="w">              </span>discoverable<span class="w">       </span>--<span class="w">           </span>--
-default<span class="w">              </span>init<span class="w">               </span>--<span class="w">           </span>--
-default<span class="w">              </span>asset<span class="w">              </span>--<span class="w">           </span>--
-default<span class="w">              </span>profile<span class="w">            </span>--<span class="w">           </span>--
-default<span class="w">              </span>default:type<span class="w">       </span>--<span class="w">           </span>--
-default<span class="w">              </span>default:onboot<span class="w">     </span>--<span class="w">           </span>--
-default<span class="w">              </span>default:netdev<span class="w">     </span>--<span class="w">           </span>--
-default<span class="w">              </span>default:hwaddr<span class="w">     </span>--<span class="w">           </span>--
-default<span class="w">              </span>default:ipaddr<span class="w">     </span>--<span class="w">           </span>--
-default<span class="w">              </span>default:ipaddr6<span class="w">    </span>--<span class="w">           </span>--
-default<span class="w">              </span>default:netmask<span class="w">    </span>--<span class="w">           </span>--
-default<span class="w">              </span>default:gateway<span class="w">    </span>--<span class="w">           </span>--
-default<span class="w">              </span>default:mtu<span class="w">        </span>--<span class="w">           </span>--
-default<span class="w">              </span>default:primary<span class="w">    </span>--<span class="w">           </span>--
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list<span class="w"> </span>-a
+<span class="go">PROFILE              FIELD              PROFILE      VALUE</span>
+<span class="go">=====================================================================================</span>
+<span class="go">default              Id                 --           default</span>
+<span class="go">default              comment            --           This profile is automatically included for each node</span>
+<span class="go">default              cluster            --           --</span>
+<span class="go">default              container          --           sle-micro-5.3</span>
+<span class="go">default              ipxe               --           --</span>
+<span class="go">default              runtime            --           --</span>
+<span class="go">default              wwinit             --           --</span>
+<span class="go">default              root               --           --</span>
+<span class="go">default              discoverable       --           --</span>
+<span class="go">default              init               --           --</span>
+<span class="go">default              asset              --           --</span>
+<span class="go">default              profile            --           --</span>
+<span class="go">default              default:type       --           --</span>
+<span class="go">default              default:onboot     --           --</span>
+<span class="go">default              default:netdev     --           --</span>
+<span class="go">default              default:hwaddr     --           --</span>
+<span class="go">default              default:ipaddr     --           --</span>
+<span class="go">default              default:ipaddr6    --           --</span>
+<span class="go">default              default:netmask    --           --</span>
+<span class="go">default              default:gateway    --           --</span>
+<span class="go">default              default:mtu        --           --</span>
+<span class="go">default              default:primary    --           --</span>
 </pre></div>
 </div>
 </section>
 <section id="node-view">
 <h3>Node View<a class="headerlink" href="#node-view" title="Permalink to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span>n001
-NODE<span class="w">                 </span>FIELD<span class="w">              </span>PROFILE<span class="w">      </span><span class="nv">VALUE</span>
-<span class="o">=====================================================================================</span>
-n001<span class="w">                 </span>Id<span class="w">                 </span>--<span class="w">           </span>n001
-n001<span class="w">                 </span>comment<span class="w">            </span>default<span class="w">      </span>This<span class="w"> </span>profile<span class="w"> </span>is<span class="w"> </span>automatically<span class="w"> </span>included<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>node
-n001<span class="w">                 </span>cluster<span class="w">            </span>--<span class="w">           </span>--
-n001<span class="w">                 </span>container<span class="w">          </span>default<span class="w">      </span>sle-micro-5.3
-n001<span class="w">                 </span>ipxe<span class="w">               </span>--<span class="w">           </span><span class="o">(</span>default<span class="o">)</span>
-n001<span class="w">                 </span>runtime<span class="w">            </span>--<span class="w">           </span><span class="o">(</span>generic<span class="o">)</span>
-n001<span class="w">                 </span>wwinit<span class="w">             </span>--<span class="w">           </span><span class="o">(</span>wwinit<span class="o">)</span>
-n001<span class="w">                 </span>root<span class="w">               </span>--<span class="w">           </span><span class="o">(</span>initramfs<span class="o">)</span>
-n001<span class="w">                 </span>discoverable<span class="w">       </span>--<span class="w">           </span>--
-n001<span class="w">                 </span>init<span class="w">               </span>--<span class="w">           </span><span class="o">(</span>/sbin/init<span class="o">)</span>
-n001<span class="w">                 </span>asset<span class="w">              </span>--<span class="w">           </span>--
-n001<span class="w">                 </span>kerneloverride<span class="w">     </span>--<span class="w">           </span>tw
-n001<span class="w">                 </span>kernelargs<span class="w">         </span>--<span class="w">           </span><span class="o">(</span>quiet<span class="w"> </span><span class="nv">crashkernel</span><span class="o">=</span>no<span class="w"> </span><span class="nv">vga</span><span class="o">=</span><span class="m">791</span><span class="w"> </span>net.naming-scheme<span class="o">=</span>v238<span class="o">)</span>
-n001<span class="w">                 </span>ipmiaddr<span class="w">           </span>--<span class="w">           </span>--
-n001<span class="w">                 </span>ipminetmask<span class="w">        </span>--<span class="w">           </span>--
-n001<span class="w">                 </span>ipmiport<span class="w">           </span>--<span class="w">           </span>--
-n001<span class="w">                 </span>ipmigateway<span class="w">        </span>--<span class="w">           </span>--
-n001<span class="w">                 </span>ipmiuser<span class="w">           </span>--<span class="w">           </span>--
-n001<span class="w">                 </span>ipmipass<span class="w">           </span>--<span class="w">           </span>--
-n001<span class="w">                 </span>ipmiinterface<span class="w">      </span>--<span class="w">           </span>--
-n001<span class="w">                 </span>ipmiwrite<span class="w">          </span>--<span class="w">           </span>--
-n001<span class="w">                 </span>profile<span class="w">            </span>--<span class="w">           </span>default
-n001<span class="w">                 </span>default:type<span class="w">       </span>--<span class="w">           </span><span class="o">(</span>ethernet<span class="o">)</span>
-n001<span class="w">                 </span>default:onboot<span class="w">     </span>--<span class="w">           </span>--
-n001<span class="w">                 </span>default:netdev<span class="w">     </span>--<span class="w">           </span>eth0
-n001<span class="w">                 </span>default:hwaddr<span class="w">     </span>--<span class="w">           </span><span class="m">11</span>:22:33:44:55:66
-n001<span class="w">                 </span>default:ipaddr<span class="w">     </span>--<span class="w">           </span><span class="m">10</span>.0.2.1
-n001<span class="w">                 </span>default:ipaddr6<span class="w">    </span>--<span class="w">           </span>--
-n001<span class="w">                 </span>default:netmask<span class="w">    </span>--<span class="w">           </span><span class="m">255</span>.255.252.0
-n001<span class="w">                 </span>default:gateway<span class="w">    </span>--<span class="w">           </span>--
-n001<span class="w">                 </span>default:mtu<span class="w">        </span>--<span class="w">           </span>--
-n001<span class="w">                 </span>default:primary<span class="w">    </span>--<span class="w">           </span><span class="nb">true</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span>n001
+<span class="go">NODE                 FIELD              PROFILE      VALUE</span>
+<span class="go">=====================================================================================</span>
+<span class="go">n001                 Id                 --           n001</span>
+<span class="go">n001                 comment            default      This profile is automatically included for each node</span>
+<span class="go">n001                 cluster            --           --</span>
+<span class="go">n001                 container          default      sle-micro-5.3</span>
+<span class="go">n001                 ipxe               --           (default)</span>
+<span class="go">n001                 runtime            --           (generic)</span>
+<span class="go">n001                 wwinit             --           (wwinit)</span>
+<span class="go">n001                 root               --           (initramfs)</span>
+<span class="go">n001                 discoverable       --           --</span>
+<span class="go">n001                 init               --           (/sbin/init)</span>
+<span class="go">n001                 asset              --           --</span>
+<span class="go">n001                 kerneloverride     --           tw</span>
+<span class="go">n001                 kernelargs         --           (quiet crashkernel=no vga=791 net.naming-scheme=v238)</span>
+<span class="go">n001                 ipmiaddr           --           --</span>
+<span class="go">n001                 ipminetmask        --           --</span>
+<span class="go">n001                 ipmiport           --           --</span>
+<span class="go">n001                 ipmigateway        --           --</span>
+<span class="go">n001                 ipmiuser           --           --</span>
+<span class="go">n001                 ipmipass           --           --</span>
+<span class="go">n001                 ipmiinterface      --           --</span>
+<span class="go">n001                 ipmiwrite          --           --</span>
+<span class="go">n001                 profile            --           default</span>
+<span class="go">n001                 default:type       --           (ethernet)</span>
+<span class="go">n001                 default:onboot     --           --</span>
+<span class="go">n001                 default:netdev     --           eth0</span>
+<span class="go">n001                 default:hwaddr     --           11:22:33:44:55:66</span>
+<span class="go">n001                 default:ipaddr     --           10.0.2.1</span>
+<span class="go">n001                 default:ipaddr6    --           --</span>
+<span class="go">n001                 default:netmask    --           255.255.252.0</span>
+<span class="go">n001                 default:gateway    --           --</span>
+<span class="go">n001                 default:mtu        --           --</span>
+<span class="go">n001                 default:primary    --           true</span>
 </pre></div>
 </div>
 </section>
@@ -274,13 +274,13 @@ n001<span class="w">                 </span>default:primary<span class="w">    <
 <p>The above views show you everything that is set on a Profile or Node
 level. That is a lot of detail. If you want to view key IPMI connecton
 details for a node or all nodes, you can do the following.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-i
-NODE<span class="w"> </span>NAME<span class="w">              </span>IPMI<span class="w"> </span>IPADDR<span class="w">      </span>IPMI<span class="w"> </span>PORT<span class="w">  </span>IPMI<span class="w"> </span>USERNAME<span class="w">        </span>IPMI<span class="w"> </span><span class="nv">INTERFACE</span>
-<span class="o">==================================================================================================</span>
-n001<span class="w">                   </span><span class="m">192</span>.168.1.11<span class="w">     </span>--<span class="w">         </span>hwadmin<span class="w">              </span>--
-n002<span class="w">                   </span><span class="m">192</span>.168.1.12<span class="w">     </span>--<span class="w">         </span>hwadmin<span class="w">              </span>--
-n003<span class="w">                   </span><span class="m">192</span>.168.1.13<span class="w">     </span>--<span class="w">         </span>hwadmin<span class="w">              </span>--
-n004<span class="w">                   </span><span class="m">192</span>.168.1.14<span class="w">     </span>--<span class="w">         </span>hwadmin<span class="w">              </span>--
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-i
+<span class="go">NODE NAME              IPMI IPADDR      IPMI PORT  IPMI USERNAME        IPMI INTERFACE</span>
+<span class="go">==================================================================================================</span>
+<span class="go">n001                   192.168.1.11     --         hwadmin              --</span>
+<span class="go">n002                   192.168.1.12     --         hwadmin              --</span>
+<span class="go">n003                   192.168.1.13     --         hwadmin              --</span>
+<span class="go">n004                   192.168.1.14     --         hwadmin              --</span>
 </pre></div>
 </div>
 </section>

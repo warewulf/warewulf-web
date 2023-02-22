@@ -218,16 +218,15 @@ file from the <strong>wwinit</strong> overlay.  For this we will create a new
 overlay called welcome and import the file <cite>/etc/issue</cite> from the host
 to it. This overlay is then combined with the existing <strong>wwinit</strong>
 overlay.</p>
-<dl class="simple">
-<dt>..code-block:: bash</dt><dd><p>$ wwctl overlay create welcome
-$ wwctl overlay mkdir welcome /etc
-$ wwctl overlay import welcome /etc/issue
-$ wwctl profile set default –wwinit=wwinit,welcome
-? Are you sure you want to modify 1 profile(s)? [y/N] y
-$ wwctl profile list default -a <a href="#id1"><span class="problematic" id="id2">|</span></a>grep welcome
-default              SystemOverlay      wwinit,welcome</p>
-</dd>
-</dl>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>overlay<span class="w"> </span>create<span class="w"> </span>welcome
+<span class="gp"># </span>wwctl<span class="w"> </span>overlay<span class="w"> </span>mkdir<span class="w"> </span>welcome<span class="w"> </span>/etc
+<span class="gp"># </span>wwctl<span class="w"> </span>overlay<span class="w"> </span>import<span class="w"> </span>welcome<span class="w"> </span>/etc/issue
+<span class="gp"># </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>default<span class="w"> </span>--wwinit<span class="o">=</span>wwinit,welcome
+<span class="go">? Are you sure you want to modify 1 profile(s)? [y/N] y</span>
+<span class="gp"># </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list<span class="w"> </span>default<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span>grep<span class="w"> </span>welcome
+<span class="go">default              SystemOverlay      wwinit,welcome</span>
+</pre></div>
+</div>
 </section>
 <section id="templates">
 <h2>Templates<a class="headerlink" href="#templates" title="Permalink to this heading"></a></h2>
@@ -256,7 +255,7 @@ will be dropped, so <code class="docutils literal notranslate"><span class="pre"
 permissions, etc.</p>
 <section id="build">
 <h3>Build<a class="headerlink" href="#build" title="Permalink to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wwctl<span class="w"> </span>overlay<span class="w"> </span>build<span class="w"> </span><span class="o">[</span>-H,--hosts<span class="p">|</span>-N,--nodes<span class="p">|</span>-o,--output<span class="w"> </span>directory<span class="p">|</span>-O,--overlay-name<span class="o">]</span><span class="w">  </span>nodepattern
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wwctl overlay build [-H,--hosts|-N,--nodes|-o,--output directory|-O,--overlay-name] nodepattern</span>
 </pre></div>
 </div>
 <p>Without any arguments the command will interpret the templates for all
@@ -273,7 +272,7 @@ purposes the templates can be written to a directory given via the
 </section>
 <section id="chmod">
 <h3>Chmod<a class="headerlink" href="#chmod" title="Permalink to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wwctl<span class="w"> </span>overlay<span class="w"> </span>chmod<span class="w"> </span>overlay-name<span class="w"> </span>filename<span class="w"> </span>mode
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wwctl overlay chmod overlay-name filename mode</span>
 </pre></div>
 </div>
 <p>This subcommand changes the permissions of a single file within an
@@ -281,7 +280,7 @@ overlay. You can use any mode format supported by the chmod command.</p>
 </section>
 <section id="chown">
 <h3>Chown<a class="headerlink" href="#chown" title="Permalink to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wwctl<span class="w"> </span>overlay<span class="w"> </span>chown<span class="w"> </span>overlay-name<span class="w"> </span>filename<span class="w"> </span>UID<span class="w"> </span><span class="o">[</span>GID<span class="o">]</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wwctl overlay chown overlay-name filename UID [GID]</span>
 </pre></div>
 </div>
 <p>With this command you can change the ownership of a file within a
@@ -290,14 +289,14 @@ change group ownership to GID.</p>
 </section>
 <section id="create">
 <h3>Create<a class="headerlink" href="#create" title="Permalink to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wwctl<span class="w"> </span>overlay<span class="w"> </span>create<span class="w"> </span>overlay-name
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wwctl overlay create overlay-name</span>
 </pre></div>
 </div>
 <p>This command creates a new empty overlay with the given name.</p>
 </section>
 <section id="delete">
 <h3>Delete<a class="headerlink" href="#delete" title="Permalink to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wwctl<span class="w"> </span>overlay<span class="w"> </span>delete<span class="w"> </span><span class="o">[</span>-f,--force<span class="o">]</span><span class="w"> </span>overlay-name<span class="w"> </span><span class="o">[</span>File<span class="w"> </span><span class="o">[</span>File<span class="w"> </span>...<span class="o">]]</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wwctl overlay delete [-f,--force] overlay-name [File [File ...]]</span>
 </pre></div>
 </div>
 <p>Either the given overlay is deleted (must be empty or use the <cite>–force
@@ -307,7 +306,7 @@ no other file is in the directory.</p>
 </section>
 <section id="edit">
 <h3>Edit<a class="headerlink" href="#edit" title="Permalink to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wwctl<span class="w"> </span>overlay<span class="w"> </span>edit<span class="w"> </span><span class="o">[</span>--mode,-m<span class="w"> </span>MODE<span class="p">|</span>--parents,p<span class="o">]</span><span class="w"> </span>overlay-name<span class="w"> </span>file
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wwctl overlay edit [--mode,-m MODE|--parents,p] overlay-name file</span>
 </pre></div>
 </div>
 <p>Use this command to edit an existing or a new file in the given
@@ -317,7 +316,7 @@ necessary parent directories for a new file are created.</p>
 </section>
 <section id="import">
 <h3>Import<a class="headerlink" href="#import" title="Permalink to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wwctl<span class="w"> </span>overlay<span class="w"> </span>import<span class="w"> </span><span class="o">[</span>--mode,-m<span class="p">|</span>--noupdate,-n<span class="o">]</span><span class="w"> </span>overlay-name<span class="w"> </span>file-name<span class="w"> </span><span class="o">[</span>new-file-name<span class="o">]</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wwctl overlay import [--mode,-m|--noupdate,-n] overlay-name file-name [new-file-name]</span>
 </pre></div>
 </div>
 <p>The given file is imported to the overlay. If no new-file-name is
@@ -327,7 +326,7 @@ overlays.</p>
 </section>
 <section id="list">
 <h3>List<a class="headerlink" href="#list" title="Permalink to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wwctl<span class="w"> </span>overlay<span class="w"> </span>list<span class="w"> </span><span class="o">[</span>--all,-a<span class="p">|</span>--long,-l<span class="o">]</span><span class="w"> </span><span class="o">[</span>overlay-name<span class="o">]</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wwctl overlay list [--all,-a|--long,-l] [overlay-name]</span>
 </pre></div>
 </div>
 <p>With this command all existing overlays and files in them can be
@@ -338,7 +337,7 @@ GID of each file.</p>
 </section>
 <section id="show">
 <h3>Show<a class="headerlink" href="#show" title="Permalink to this heading"></a></h3>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wwctl<span class="w"> </span>overlay<span class="w"> </span>show<span class="w"> </span><span class="o">[</span>--quiet,-q<span class="p">|</span>--render,-r<span class="w"> </span>nodename<span class="o">]</span><span class="w"> </span>overlay-name<span class="w"> </span>file
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wwctl overlay show [--quiet,-q|--render,-r nodename] overlay-name file</span>
 </pre></div>
 </div>
 <p>The content of the file for the given overlay is displayed with this

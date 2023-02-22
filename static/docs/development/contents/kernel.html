@@ -123,11 +123,11 @@ by default use that kernel for any node configured to use that
 container image.</p>
 <p>You can see what kernel is included in a container by using the
 <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">container</span> <span class="pre">list</span></code> command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w"> </span>list
-CONTAINER<span class="w"> </span>NAME<span class="w">            </span>NODES<span class="w">  </span>KERNEL<span class="w"> </span>VERSION
-alpine<span class="w">                    </span><span class="m">0</span>
-rocky<span class="w">                     </span><span class="m">0</span><span class="w">      </span><span class="m">4</span>.18.0-348.12.2.el8_5.x86_64
-rocky_updated<span class="w">             </span><span class="m">1</span><span class="w">      </span><span class="m">4</span>.18.0-348.23.1.el8_5.x86_64
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>container<span class="w"> </span>list
+<span class="go">CONTAINER NAME            NODES  KERNEL VERSION</span>
+<span class="go">alpine                    0</span>
+<span class="go">rocky                     0      4.18.0-348.12.2.el8_5.x86_64</span>
+<span class="go">rocky_updated             1      4.18.0-348.23.1.el8_5.x86_64</span>
 </pre></div>
 </div>
 <p>Here you will notice the alpine contianer that was imported has no
@@ -148,8 +148,8 @@ or via the command line with the <code class="docutils literal notranslate"><spa
 <p>In this case you will also need to import a kernel specifically into
 Warewulf for this purpose using the <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">kernel</span> <span class="pre">import</span></code> command as
 follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>kernel<span class="w"> </span>import<span class="w"> </span><span class="k">$(</span>uname<span class="w"> </span>-r<span class="k">)</span>
-<span class="m">4</span>.18.0-305.3.1.el8_4.x86_64:<span class="w"> </span>Done
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>kernel<span class="w"> </span>import<span class="w"> </span><span class="k">$(</span>uname<span class="w"> </span>-r<span class="k">)</span>
+<span class="go">4.18.0-305.3.1.el8_4.x86_64: Done</span>
 </pre></div>
 </div>
 <p>This process will import not only the kernel image itself, but also
@@ -158,9 +158,9 @@ all of the kernel modules and firmware associated to this kernel.</p>
 <h3>Listing All Imported Kernels<a class="headerlink" href="#listing-all-imported-kernels" title="Permalink to this heading"></a></h3>
 <p>Once the kernel has been imported, you can list them all with the
 following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>kernel<span class="w"> </span>list
-VNFS<span class="w"> </span>NAME<span class="w">                           </span>NODES
-<span class="m">4</span>.18.0-305.3.1.el8_4.x86_64<span class="w">             </span><span class="m">0</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>kernel<span class="w"> </span>list
+<span class="go">VNFS NAME                           NODES</span>
+<span class="go">4.18.0-305.3.1.el8_4.x86_64             0</span>
 </pre></div>
 </div>
 <p>Once a kernel has been imported and showing up in this list you can
