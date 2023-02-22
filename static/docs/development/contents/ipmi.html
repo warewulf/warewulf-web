@@ -123,8 +123,8 @@ IPMI. We will discuss how to set this up below.</p>
 <section id="ipmi-settings">
 <h2>IPMI Settings<a class="headerlink" href="#ipmi-settings" title="Permalink to this heading"></a></h2>
 <p>The common settings for the IPMI interfaces on all nodes can be set on
-a Profile level.  The only field that would need to be assigned to
-each individual node would be the IP address.</p>
+a Profile level. The only field that would need to be assigned to each
+individual node would be the IP address.</p>
 <p>The settings are only written to the IPMI interface if <code class="docutils literal notranslate"><span class="pre">--ipmiwrite</span></code>
 is set to <cite>true</cite>. The write process happens at every boot of the node
 through the script <code class="docutils literal notranslate"><span class="pre">/warewulf/init.d/50-ipmi</span></code> in the <strong>system</strong>
@@ -132,8 +132,8 @@ overlay.</p>
 <p>If an individual node has different settings, you can set the IPMI
 settings for that specific node, overriding the default settings.</p>
 <p>Here is a table outlining the fields on a Profile and Node which is
-the same as the parameter that can be used when running <cite>wwctl profile
-set</cite> or <cite>wwctl node set</cite>.</p>
+the same as the parameter that can be used when running <code class="docutils literal notranslate"><span class="pre">wwctl</span>
+<span class="pre">profile</span> <span class="pre">set</span></code> or <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">node</span> <span class="pre">set</span></code>.</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter</p></th>
@@ -309,7 +309,9 @@ your nodes through IPMI.</p>
 <h2>Console<a class="headerlink" href="#console" title="Permalink to this heading"></a></h2>
 <p>If your node is setup to use serial over lan (SOL), Warewulf can
 connect a console to the node.</p>
-<p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">wwctl</span> <span class="pre">node</span> <span class="pre">console</span> <span class="pre">n001</span></code></p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span>console<span class="w"> </span>n001
+</pre></div>
+</div>
 </section>
 </section>
 

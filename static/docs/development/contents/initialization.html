@@ -133,7 +133,7 @@ the system service.</p></li>
 <li><p><strong>nfs</strong>: Configure the NFS server on the control node as well as the
 <code class="docutils literal notranslate"><span class="pre">/etc/fstab</span></code> in the system overlay based on the configuration in
 <code class="docutils literal notranslate"><span class="pre">/etc/warewulf/warewulf.conf</span></code> and enable the system service. Also
-the file <cite>/etc/exports.ww</cite> from the <strong>host</strong> template is installed.</p></li>
+the file <code class="docutils literal notranslate"><span class="pre">/etc/exports.ww</span></code> from the <strong>host</strong> template is installed.</p></li>
 <li><p><strong>ssh</strong>: Create the appropriate host keys (stored in
 <code class="docutils literal notranslate"><span class="pre">/etc/warewulf/keys/</span></code>) and user keys for passwordless <code class="docutils literal notranslate"><span class="pre">ssh</span></code> into
 the nodes. Addionally the shell profiles
@@ -154,7 +154,7 @@ Systemd service:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>warewulfd
 </pre></div>
 </div>
-<p>You can also check and control the Warewulf service using the <cite>wwctl</cite>
+<p>You can also check and control the Warewulf service using the <code class="docutils literal notranslate"><span class="pre">wwctl</span></code>
 command line program as follows:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>server<span class="w"> </span>status
 </pre></div>

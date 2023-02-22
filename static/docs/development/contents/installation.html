@@ -115,31 +115,49 @@
              
   <section id="warewulf-installation">
 <h1>Warewulf Installation<a class="headerlink" href="#warewulf-installation" title="Permalink to this heading"></a></h1>
-<p>There are multiple methods to install Warewulf, this page describes the installation process of multiple methods:</p>
+<p>There are multiple methods to install Warewulf, this page describes
+the installation process of multiple methods:</p>
 <section id="binary-rpms">
 <h2>Binary RPMs<a class="headerlink" href="#binary-rpms" title="Permalink to this heading"></a></h2>
-<p>While the Warewulf project does not build binary RPMs, you can obtain them from <a class="reference external" href="https://www.ctrliq.com/">CIQ</a> and use them for non-production use from their public YUM and DNF repositories at: <a class="reference external" href="https://repo.ctrliq.com/">https://repo.ctrliq.com</a></p>
+<p>While the Warewulf project does not build binary RPMs, you can obtain
+them from <a class="reference external" href="https://www.ctrliq.com/">CIQ</a> and use them for
+non-production use from their public YUM and DNF repositories at:
+<a class="reference external" href="https://repo.ctrliq.com/">https://repo.ctrliq.com</a></p>
 <p>This is the easiest method to install Warewulf and can be done as follows:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>https://repo.ctrliq.com/rhel/8/ciq-release.rpm
 <span class="gp"># </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>warewulf
 </pre></div>
 </div>
-<p>&gt; note: as mentioned, these binaries are part of CIQ’s commercial support offering but they can be used for non-production and testing uses. If you are interested in using these binaries for production, please contact CIQ at: <a class="reference external" href="mailto:info&#37;&#52;&#48;ctrliq&#46;com">info<span>&#64;</span>ctrliq<span>&#46;</span>com</a>.</p>
+<p>&gt; note: as mentioned, these binaries are part of CIQ’s commercial
+support offering but they can be used for non-production and testing
+uses. If you are interested in using these binaries for production,
+please contact CIQ at: <a class="reference external" href="mailto:info&#37;&#52;&#48;ctrliq&#46;com">info<span>&#64;</span>ctrliq<span>&#46;</span>com</a>.</p>
 </section>
 <section id="compiled-source-code">
 <h2>Compiled Source code<a class="headerlink" href="#compiled-source-code" title="Permalink to this heading"></a></h2>
-<p>Before you build the Warewulf source code you will first need to install the build dependencies:</p>
+<p>Before you build the Warewulf source code you will first need to
+install the build dependencies:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code>: This should be available via your Linux distribution’s package manager (e.g. <code class="docutils literal notranslate"><span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">make</span></code>)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">go</span></code>: Golang is also available on most current Linux distributions, but if you wish to install the most recent version, you can find that here: <a class="reference external" href="https://golang.org/dl/">https://golang.org/dl/</a></p></li>
-<li><p>Depending on your Linux Distribution, you may need to install other development packages. Typically it is recommended to install the entire development group like <code class="docutils literal notranslate"><span class="pre">dnf</span> <span class="pre">groupinstall</span> <span class="pre">&quot;Development</span> <span class="pre">Tools&quot;</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code>: This should be available via your Linux distribution’s
+package manager (e.g. <code class="docutils literal notranslate"><span class="pre">dnf</span> <span class="pre">install</span> <span class="pre">make</span></code>)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">go</span></code>: Golang is also available on most current Linux
+distributions, but if you wish to install the most recent version,
+you can find that here: <a class="reference external" href="https://golang.org/dl/">https://golang.org/dl/</a></p></li>
+<li><p>Depending on your Linux Distribution, you may need to install other
+development packages. Typically it is recommended to install the
+entire development group like <code class="docutils literal notranslate"><span class="pre">dnf</span> <span class="pre">groupinstall</span> <span class="pre">&quot;Development</span>
+<span class="pre">Tools&quot;</span></code></p></li>
 </ul>
-<p>Once these dependencies are installed, you can obtain and build the source code as follows:</p>
+<p>Once these dependencies are installed, you can obtain and build the
+source code as follows:</p>
 <section id="release-tarball">
 <h3>Release Tarball<a class="headerlink" href="#release-tarball" title="Permalink to this heading"></a></h3>
-<p>When the Warewulf project releases stable versions, they are available via source form here:</p>
+<p>When the Warewulf project releases stable versions, they are available
+via source form here:</p>
 <p><a class="reference external" href="https://github.com/hpcng/warewulf/tags/">https://github.com/hpcng/warewulf/tags</a></p>
-<p>Select the version you wish to install and download the tarball to any location on the server, then follow these directions making the appropriate substitutions:</p>
+<p>Select the version you wish to install and download the tarball to any
+location on the server, then follow these directions making the
+appropriate substitutions:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># EDIT HERE</span>
 <span class="nv">VERSION</span><span class="o">=</span><span class="m">4</span>.2.0
 <span class="nv">DOWNLOAD</span><span class="o">=</span>/tmp/warewulf-<span class="si">${</span><span class="nv">4</span><span class="p">.2.0</span><span class="si">}</span>.tar.gz

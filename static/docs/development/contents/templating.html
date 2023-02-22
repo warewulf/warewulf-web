@@ -179,7 +179,7 @@ overlays.</p>
 </section>
 <section id="access-tag">
 <h3>Access Tag<a class="headerlink" href="#access-tag" title="Permalink to this heading"></a></h3>
-<p>Acces the value of an individual tag <cite>foo</cite></p>
+<p>Acces the value of an individual tag <code class="docutils literal notranslate"><span class="pre">foo</span></code></p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">foo</span><span class="p">:</span><span class="w"> </span><span class="p">{{</span><span class="w"> </span><span class="nx">index</span><span class="w"> </span><span class="p">.</span><span class="nx">Tags</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="w"> </span><span class="p">}}</span>
 <span class="p">{{</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nx">eq</span><span class="w"> </span><span class="p">(</span><span class="nx">index</span><span class="w"> </span><span class="p">.</span><span class="nx">Tags</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="p">)</span><span class="w"> </span><span class="s">&quot;baar&quot;</span><span class="w"> </span><span class="o">-</span><span class="p">}}</span>
 <span class="nx">foo</span><span class="p">:</span><span class="w"> </span><span class="p">{{</span><span class="w"> </span><span class="nx">index</span><span class="w"> </span><span class="p">.</span><span class="nx">Tags</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="w"> </span><span class="p">}}</span>
@@ -190,7 +190,7 @@ overlays.</p>
 <section id="create-multiple-files">
 <h3>Create Multiple Files<a class="headerlink" href="#create-multiple-files" title="Permalink to this heading"></a></h3>
 <p>The following template will create a file called
-<cite>ifcfg-NETWORKNAME.xml</cite> for every network present on the node</p>
+<code class="docutils literal notranslate"><span class="pre">ifcfg-NETWORKNAME.xml</span></code> for every network present on the node</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span>{{- $host := .BuildHost }}
 {{- $time := .BuildTime }}
 {{- $source := .BuildSource }}
@@ -299,9 +299,10 @@ string is “# Do not edit after this line”</p>
 <section id="nobackup">
 <h4>Nobackup<a class="headerlink" href="#nobackup" title="Permalink to this heading"></a></h4>
 <p>If a file exists on the target, a backup file is written with the
-suffix <cite>.wwbackup</cite>. This only happens for the <cite>host</cite> overlay, as
-e.g. the <cite>/etc/hosts</cite> exists on the host. If this is not the intended
-behavior, the <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">nobackup</span> <span class="pre">}}</span></code> flag can be added to a template.</p>
+suffix <code class="docutils literal notranslate"><span class="pre">.wwbackup</span></code>. This only happens for the <code class="docutils literal notranslate"><span class="pre">host</span></code> overlay, as
+e.g. the <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> exists on the host. If this is not the
+intended behavior, the <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">nobackup</span> <span class="pre">}}</span></code> flag can be added to a
+template.</p>
 </section>
 <section id="split">
 <h4>Split<a class="headerlink" href="#split" title="Permalink to this heading"></a></h4>

@@ -157,7 +157,7 @@ configured.</p>
 <section id="system-or-wwinit-overlay">
 <h3>System or wwinit overlay<a class="headerlink" href="#system-or-wwinit-overlay" title="Permalink to this heading"></a></h3>
 <p>This overlay contains all the nesscesary scripts to provision a
-Warewulf node. It is available before the <cite>systemd</cite> or other init is
+Warewulf node. It is available before the <code class="docutils literal notranslate"><span class="pre">systemd</span></code> or other init is
 called and contains all configurations which are needed to bring up
 the compute node. It is not updated during run time. Besides the
 network configurations for</p>
@@ -167,9 +167,9 @@ network configurations for</p>
 <li><p>EL legacy network scripts</p></li>
 </ul>
 <p>it also contains udev rules, which will set the interface name of the
-first network device to <cite>eth0</cite>.  Before the <cite>systemd</cite> init is called,
-the overlay loops through the scripts in <cite>/wwinit/warwulf/init.d/*</cite>
-which will setup</p>
+first network device to <code class="docutils literal notranslate"><span class="pre">eth0</span></code>.  Before the <code class="docutils literal notranslate"><span class="pre">systemd</span></code> init is
+called, the overlay loops through the scripts in
+<code class="docutils literal notranslate"><span class="pre">/wwinit/warwulf/init.d/*</span></code> which will setup</p>
 <ul class="simple">
 <li><p>Ipmi</p></li>
 <li><p>wwclient</p></li>
@@ -178,32 +178,33 @@ which will setup</p>
 </section>
 <section id="runtime-overlay-or-generic-overlay">
 <h3>Runtime Overlay or generic Overlay<a class="headerlink" href="#runtime-overlay-or-generic-overlay" title="Permalink to this heading"></a></h3>
-<p>The runtime overlay is updated by the <cite>wwclient</cite> service on a regular
-basis (by default, once per minute). In the standard configuration it
-includes updates for <cite>/etc/passwd</cite>, <cite>/etc/group</cite> and
-<cite>/etc/hosts</cite>. Additionally the <cite>authorized_keys</cite> file of the root user
-is updated.  It is recommended to use this overlay for dynamic
-configuration files like <cite>slurm.conf</cite>.  Once the system is provisioned
-and booted, the <code class="docutils literal notranslate"><span class="pre">wwclient</span></code> program (which is provisioned as part of
-the <code class="docutils literal notranslate"><span class="pre">wwinit</span></code> system overlay) will continuously update the node with
-updates in the runtime overlay.</p>
+<p>The runtime overlay is updated by the <code class="docutils literal notranslate"><span class="pre">wwclient</span></code> service on a
+regular basis (by default, once per minute). In the standard
+configuration it includes updates for <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code>, <code class="docutils literal notranslate"><span class="pre">/etc/group</span></code>
+and <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code>. Additionally the <code class="docutils literal notranslate"><span class="pre">authorized_keys</span></code> file of the
+root user is updated.  It is recommended to use this overlay for
+dynamic configuration files like <code class="docutils literal notranslate"><span class="pre">slurm.conf</span></code>.  Once the system is
+provisioned and booted, the <code class="docutils literal notranslate"><span class="pre">wwclient</span></code> program (which is provisioned
+as part of the <code class="docutils literal notranslate"><span class="pre">wwinit</span></code> system overlay) will continuously update the
+node with updates in the runtime overlay.</p>
 </section>
 <section id="host-overlay">
 <h3>Host Overlay<a class="headerlink" href="#host-overlay" title="Permalink to this heading"></a></h3>
 <p>Configuration files used for the configuration of the Warewulf host /
 server are stored in the <strong>host</strong> overlay. Unlike other overlays, it
-<em>must</em> have the name <cite>host</cite>. Existing files on the host are copied to
-backup files with a <cite>wwbackup</cite> suffix at the first run. (Subsequent
-use of the host overlay won’t overwrite existing <cite>wwbackup</cite> files.)</p>
+<em>must</em> have the name <code class="docutils literal notranslate"><span class="pre">host</span></code>. Existing files on the host are copied
+to backup files with a <code class="docutils literal notranslate"><span class="pre">wwbackup</span></code> suffix at the first
+run. (Subsequent use of the host overlay won’t overwrite existing
+<code class="docutils literal notranslate"><span class="pre">wwbackup</span></code> files.)</p>
 <p>The following services get configuration files via the host overlay:</p>
 <ul class="simple">
-<li><p>ssh keys are created with the scrips <cite>ssh_setup.sh</cite> and
-<cite>ssh_setup.csh</cite></p></li>
-<li><p>hosts entries are created by manipulating <cite>/etc/hosts</cite> with the
-template <cite>hosts.ww</cite></p></li>
+<li><p>ssh keys are created with the scrips <code class="docutils literal notranslate"><span class="pre">ssh_setup.sh</span></code> and
+<code class="docutils literal notranslate"><span class="pre">ssh_setup.csh</span></code></p></li>
+<li><p>hosts entries are created by manipulating <code class="docutils literal notranslate"><span class="pre">/etc/hosts</span></code> with the
+template <code class="docutils literal notranslate"><span class="pre">hosts.ww</span></code></p></li>
 <li><p>nfs kernel server receives its exports from the template
-<cite>exports.ww</cite></p></li>
-<li><p>the dhcpd service is configured with <cite>dhcpd.conf.ww</cite></p></li>
+<code class="docutils literal notranslate"><span class="pre">exports.ww</span></code></p></li>
+<li><p>the dhcpd service is configured with <code class="docutils literal notranslate"><span class="pre">dhcpd.conf.ww</span></code></p></li>
 </ul>
 </section>
 </section>
@@ -213,11 +214,11 @@ template <cite>hosts.ww</cite></p></li>
 to add the changed files to a new overlay and combine them in the
 configuration. This is possible as the configuration fields for the
 <strong>wwinit</strong> and <strong>runtime</strong> overlays are lists and can contain several
-overlays.  As an example for this, we will overwrite the <cite>/etc/issue</cite>
-file from the <strong>wwinit</strong> overlay.  For this we will create a new
-overlay called welcome and import the file <cite>/etc/issue</cite> from the host
-to it. This overlay is then combined with the existing <strong>wwinit</strong>
-overlay.</p>
+overlays.  As an example for this, we will overwrite the
+<code class="docutils literal notranslate"><span class="pre">/etc/issue</span></code> file from the <strong>wwinit</strong> overlay.  For this we will
+create a new overlay called welcome and import the file <code class="docutils literal notranslate"><span class="pre">/etc/issue</span></code>
+from the host to it. This overlay is then combined with the existing
+<strong>wwinit</strong> overlay.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>overlay<span class="w"> </span>create<span class="w"> </span>welcome
 <span class="gp"># </span>wwctl<span class="w"> </span>overlay<span class="w"> </span>mkdir<span class="w"> </span>welcome<span class="w"> </span>/etc
 <span class="gp"># </span>wwctl<span class="w"> </span>overlay<span class="w"> </span>import<span class="w"> </span>welcome<span class="w"> </span>/etc/issue
@@ -262,13 +263,13 @@ permissions, etc.</p>
 overlays for every compute node and also all the templates in the host
 overlay. For every overlay of the compute nodes a gzip compressed cpio
 archive is created. The range of the nodes can be restricted as the
-last argument.  With the <cite>-H</cite> flag only the host overlay is
-built. With the <cite>-N</cite> flag only compute node overlays are
-built. Specific overlays can be selected with <cite>-O</cite> flag. For debugging
-purposes the templates can be written to a directory given via the
-<cite>-o</cite> flag.</p>
+last argument.  With the <code class="docutils literal notranslate"><span class="pre">-H</span></code> flag only the host overlay is
+built. With the <code class="docutils literal notranslate"><span class="pre">-N</span></code> flag only compute node overlays are
+built. Specific overlays can be selected with <code class="docutils literal notranslate"><span class="pre">-O</span></code> flag. For
+debugging purposes the templates can be written to a directory given
+via the <code class="docutils literal notranslate"><span class="pre">-o</span></code> flag.</p>
 <p>By default Warewulf will build/update and cache overlays as needed
-(configurable in the <cite>warewulf.conf</cite>).</p>
+(configurable in the <code class="docutils literal notranslate"><span class="pre">warewulf.conf</span></code>).</p>
 </section>
 <section id="chmod">
 <h3>Chmod<a class="headerlink" href="#chmod" title="Permalink to this heading"></a></h3>
@@ -299,10 +300,10 @@ change group ownership to GID.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wwctl overlay delete [-f,--force] overlay-name [File [File ...]]</span>
 </pre></div>
 </div>
-<p>Either the given overlay is deleted (must be empty or use the <cite>–force
-flag</cite>) or the specified file within the overlay is deleted. With the
-<cite>–parents</cite> flag the directory of the deleted file is also removed if
-no other file is in the directory.</p>
+<p>Either the given overlay is deleted (must be empty or use the
+<code class="docutils literal notranslate"><span class="pre">--force</span></code> flag) or the specified file within the overlay is
+deleted. With the <code class="docutils literal notranslate"><span class="pre">--parents</span></code> flag the directory of the deleted file
+is also removed if no other file is in the directory.</p>
 </section>
 <section id="edit">
 <h3>Edit<a class="headerlink" href="#edit" title="Permalink to this heading"></a></h3>
@@ -310,8 +311,8 @@ no other file is in the directory.</p>
 </pre></div>
 </div>
 <p>Use this command to edit an existing or a new file in the given
-overlay. If a the new file ends with a <cite>.ww</cite> suffix an example
-template header is added to the file.  With the <cite>–parents</cite> flag
+overlay. If a the new file ends with a <code class="docutils literal notranslate"><span class="pre">.ww</span></code> suffix an example
+template header is added to the file. With the <code class="docutils literal notranslate"><span class="pre">--parents</span></code> flag
 necessary parent directories for a new file are created.</p>
 </section>
 <section id="import">
@@ -321,8 +322,8 @@ necessary parent directories for a new file are created.</p>
 </div>
 <p>The given file is imported to the overlay. If no new-file-name is
 given, the file will be placed in the overlay at the same path as on
-the host. With the <cite>–noupdate</cite> flag you can block the rebuild of the
-overlays.</p>
+the host. With the <code class="docutils literal notranslate"><span class="pre">--noupdate</span></code> flag you can block the rebuild of
+the overlays.</p>
 </section>
 <section id="list">
 <h3>List<a class="headerlink" href="#list" title="Permalink to this heading"></a></h3>
@@ -331,9 +332,9 @@ overlays.</p>
 </div>
 <p>With this command all existing overlays and files in them can be
 listed. Without any option only the overlay names and their number of
-files are listed. With the <cite>–all</cite> switch also the every file is
-shown. The <cite>–long</cite> option will also display the permissions, UID, and
-GID of each file.</p>
+files are listed. With the <code class="docutils literal notranslate"><span class="pre">--all</span></code> switch also the every file is
+shown. The <code class="docutils literal notranslate"><span class="pre">--long</span></code> option will also display the permissions, UID,
+and GID of each file.</p>
 </section>
 <section id="show">
 <h3>Show<a class="headerlink" href="#show" title="Permalink to this heading"></a></h3>
@@ -341,10 +342,10 @@ GID of each file.</p>
 </pre></div>
 </div>
 <p>The content of the file for the given overlay is displayed with this
-command. With the <cite>–render</cite> option a template is rendered as it will
-be rendered for the given node. The node name is a mandatory argument
-to the <cite>–render</cite> flag. Additional information for the file can be
-suppressed with the <cite>–quiet</cite> option.</p>
+command. With the <code class="docutils literal notranslate"><span class="pre">--render</span></code> option a template is rendered as it
+will be rendered for the given node. The node name is a mandatory
+argument to the <code class="docutils literal notranslate"><span class="pre">--render</span></code> flag. Additional information for the file
+can be suppressed with the <code class="docutils literal notranslate"><span class="pre">--quiet</span></code> option.</p>
 </section>
 </section>
 </section>

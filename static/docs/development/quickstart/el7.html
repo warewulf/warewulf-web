@@ -170,9 +170,9 @@ address of your cluster’s private network interface:</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The DHCP range ends at <cite>192.168.200.99</cite> and as you will see below,
-the first node static IP address (post boot) is configured to
-<cite>192.168.200.100</cite>.</p>
+<p>The DHCP range ends at <code class="docutils literal notranslate"><span class="pre">192.168.200.99</span></code> and as you will see
+below, the first node static IP address (post boot) is configured
+to <code class="docutils literal notranslate"><span class="pre">192.168.200.100</span></code>.</p>
 </div>
 </section>
 <section id="start-and-enable-the-warewulf-service">
@@ -196,7 +196,7 @@ instructions.</p>
 <p>If you just installed the system fresh and have SELinux enforcing,
 you may need to reboot the system at this stage to properly set the
 contexts of the TFTP contents. After rebooting, you might also need
-to run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">restorecon</span> <span class="pre">-Rv</span> <span class="pre">/var/lib/tftpboot/</span></code> if there are
+to run <code class="docutils literal notranslate"><span class="pre">restorecon</span> <span class="pre">-Rv</span> <span class="pre">/var/lib/tftpboot/</span></code> if there are
 errors with TFTP still.</p>
 </div>
 </section>
