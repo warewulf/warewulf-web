@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Node Configuration &mdash; Warewulf User Guide development documentation</title>
@@ -12,10 +12,8 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -30,12 +28,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> Warewulf User Guide
-            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Warewulf User Guide
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -55,6 +57,7 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Node Configuration</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#the-node-configuration-db">The Node Configuration DB</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#adding-a-new-node">Adding a New Node</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#adding-several-nodes">Adding several nodes</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#node-names">Node Names</a></li>
 </ul>
 </li>
@@ -106,8 +109,8 @@
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Node Configuration</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Node Configuration</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/hpcng/warewulf/blob/development/userdocs/contents/nodeconfig.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -133,17 +136,36 @@ which we felt was both tolerable and advantageous.</p>
 <section id="adding-a-new-node">
 <h2>Adding a New Node<a class="headerlink" href="#adding-a-new-node" title="Permalink to this heading"></a></h2>
 <p>Creating a new node is as simple as running the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node add n0000
-Added node: n0000
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>add<span class="w"> </span>n001<span class="w"> </span>-I<span class="w"> </span><span class="m">172</span>.16.1.11
+Added<span class="w"> </span>node:<span class="w"> </span>n001
 </pre></div>
 </div>
+<section id="adding-several-nodes">
+<h3>Adding several nodes<a class="headerlink" href="#adding-several-nodes" title="Permalink to this heading"></a></h3>
+<p>Several nodes can be added with a single command if a node range is given. An
+additional IP address will incremented. So the command</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>add<span class="w"> </span>n00<span class="o">[</span><span class="m">2</span>-4<span class="o">]</span><span class="w"> </span>-I<span class="w"> </span><span class="m">172</span>.16.1.12
+Added<span class="w"> </span>node:<span class="w"> </span>n002
+Added<span class="w"> </span>node:<span class="w"> </span>n003
+Added<span class="w"> </span>node:<span class="w"> </span>n004
+$<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-n<span class="w">  </span>n00<span class="o">[</span><span class="m">1</span>-4<span class="o">]</span>
+NODE<span class="w"> </span>NAME<span class="w">              </span>NAME<span class="w">     </span>HWADDR<span class="w">             </span>IPADDR<span class="w">          </span>GATEWAY<span class="w">         </span><span class="nv">DEVICE</span>
+<span class="o">==========================================================================================</span>
+n001<span class="w">                   </span>default<span class="w">  </span>--<span class="w">                 </span><span class="m">172</span>.16.1.11<span class="w">     </span>--<span class="w">              </span><span class="o">(</span>eth0<span class="o">)</span>
+n002<span class="w">                   </span>default<span class="w">  </span>--<span class="w">                 </span><span class="m">172</span>.16.1.12<span class="w">     </span>--<span class="w">              </span><span class="o">(</span>eth0<span class="o">)</span>
+n003<span class="w">                   </span>default<span class="w">  </span>--<span class="w">                 </span><span class="m">172</span>.16.1.13<span class="w">     </span>--<span class="w">              </span><span class="o">(</span>eth0<span class="o">)</span>
+n004<span class="w">                   </span>default<span class="w">  </span>--<span class="w">                 </span><span class="m">172</span>.16.1.14<span class="w">     </span>--<span class="w">              </span><span class="o">(</span>eth0<span class="o">)</span>
+</pre></div>
+</div>
+<p>has added 4 nodes with the incremented IP addresses.</p>
+</section>
 <section id="node-names">
 <h3>Node Names<a class="headerlink" href="#node-names" title="Permalink to this heading"></a></h3>
 <p>For small clusters, you can use simple names (e.g. <code class="docutils literal notranslate"><span class="pre">n0000</span></code>); but for
 larger, more complicated clusters that are comprised of multiple
 clusters and roles it is highly recommended to use node names that
 include a cluster descriptor. In Warewulf, this is generally done by
-using a domain name (e.g. <code class="docutils literal notranslate"><span class="pre">n0000.cluster01</span></code>). Warewulf will
+using a domain name (e.g. <code class="docutils literal notranslate"><span class="pre">n001.cluster01</span></code>). Warewulf will
 automatically assume that the domain is the equivalent of the cluster
 name.</p>
 <p>This also means that you can address groups of nodes by the cluster
@@ -156,37 +178,50 @@ valuable for other <code class="docutils literal notranslate"><span class="pre">
 <h2>Listing Nodes<a class="headerlink" href="#listing-nodes" title="Permalink to this heading"></a></h2>
 <p>Once you have configured one or more nodes, you can list them and
 their attributes as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node list
-NODE NAME              PROFILES                   <span class="nv">NETWORK</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>NODE<span class="w"> </span>NAME<span class="w">              </span>PROFILES<span class="w">                   </span><span class="nv">NETWORK</span>
 <span class="o">================================================================================</span>
-n0000                  default
+n001<span class="w">                            </span>default
+
+<span class="w"> </span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list
 </pre></div>
 </div>
 <p>You can also see the node’s full attribute list by specifying the <code class="docutils literal notranslate"><span class="pre">-a</span></code>
 option (all):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node list -a
-<span class="c1">################################################################################</span>
-NODE                 FIELD              PROFILE      VALUE
-n0000                Id                 --           n0000
-n0000                Comment            default      This profile is automatically included <span class="k">for</span> each node
-n0000                Cluster            --           --
-n0000                Profiles           --           default
-n0000                Discoverable       --           <span class="nb">false</span>
-n0000                Container          --           --
-n0000                KernelOverride     --           --
-n0000                KernelArgs         --           <span class="o">(</span>quiet <span class="nv">crashkernel</span><span class="o">=</span>no <span class="nv">vga</span><span class="o">=</span><span class="m">791</span> <span class="nv">rootfstype</span><span class="o">=</span>rootfs<span class="o">)</span>
-n0000                RuntimeOverlay     --           <span class="o">(</span>default<span class="o">)</span>
-n0000                SystemOverlay      --           <span class="o">(</span>default<span class="o">)</span>
-n0000                Ipxe               --           <span class="o">(</span>default<span class="o">)</span>
-n0000                Init               --           <span class="o">(</span>/sbin/init<span class="o">)</span>
-n0000                Root               --           <span class="o">(</span>initramfs<span class="o">)</span>
-n0000                IpmiIpaddr         --           --
-n0000                IpmiNetmask        --           --
-n0000                IpmiPort           --           --
-n0000                IpmiGateway        --           --
-n0000                IpmiUserName       --           --
-n0000                IpmiInterface      --           --
-n0000                IpmiWrite          --           --
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span>n001
+NODE<span class="w">                 </span>FIELD<span class="w">              </span>PROFILE<span class="w">      </span><span class="nv">VALUE</span>
+<span class="o">=====================================================================================</span>
+n001<span class="w">                 </span>Id<span class="w">                 </span>--<span class="w">           </span>n001
+n001<span class="w">                 </span>comment<span class="w">            </span>default<span class="w">      </span>This<span class="w"> </span>profile<span class="w"> </span>is<span class="w"> </span>automatically<span class="w"> </span>included<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>node
+n001<span class="w">                 </span>cluster<span class="w">            </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>container<span class="w">          </span>default<span class="w">      </span>sle-micro-5.3
+n001<span class="w">                 </span>ipxe<span class="w">               </span>--<span class="w">           </span><span class="o">(</span>default<span class="o">)</span>
+n001<span class="w">                 </span>runtime<span class="w">            </span>--<span class="w">           </span><span class="o">(</span>generic<span class="o">)</span>
+n001<span class="w">                 </span>wwinit<span class="w">             </span>--<span class="w">           </span><span class="o">(</span>wwinit<span class="o">)</span>
+n001<span class="w">                 </span>root<span class="w">               </span>--<span class="w">           </span><span class="o">(</span>initramfs<span class="o">)</span>
+n001<span class="w">                 </span>discoverable<span class="w">       </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>init<span class="w">               </span>--<span class="w">           </span><span class="o">(</span>/sbin/init<span class="o">)</span>
+n001<span class="w">                 </span>asset<span class="w">              </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>kerneloverride<span class="w">     </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>kernelargs<span class="w">         </span>--<span class="w">           </span><span class="o">(</span>quiet<span class="w"> </span><span class="nv">crashkernel</span><span class="o">=</span>no<span class="w"> </span><span class="nv">vga</span><span class="o">=</span><span class="m">791</span><span class="w"> </span>net.naming-scheme<span class="o">=</span>v238<span class="o">)</span>
+n001<span class="w">                 </span>ipmiaddr<span class="w">           </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>ipminetmask<span class="w">        </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>ipmiport<span class="w">           </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>ipmigateway<span class="w">        </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>ipmiuser<span class="w">           </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>ipmipass<span class="w">           </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>ipmiinterface<span class="w">      </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>ipmiwrite<span class="w">          </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>profile<span class="w">            </span>--<span class="w">           </span>default
+n001<span class="w">                 </span>default:type<span class="w">       </span>--<span class="w">           </span><span class="o">(</span>ethernet<span class="o">)</span>
+n001<span class="w">                 </span>default:onboot<span class="w">     </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>default:netdev<span class="w">     </span>--<span class="w">           </span><span class="o">(</span>eth0<span class="o">)</span>
+n001<span class="w">                 </span>default:hwaddr<span class="w">     </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>default:ipaddr<span class="w">     </span>--<span class="w">           </span><span class="m">172</span>.16.1.11
+n001<span class="w">                 </span>default:ipaddr6<span class="w">    </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>default:netmask<span class="w">    </span>--<span class="w">           </span><span class="o">(</span><span class="m">255</span>.255.255.0<span class="o">)</span>
+n001<span class="w">                 </span>default:gateway<span class="w">    </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>default:mtu<span class="w">        </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>default:primary<span class="w">    </span>--<span class="w">           </span><span class="nb">true</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -209,25 +244,31 @@ a list of all configuration attributes, use the command <code class="docutils li
 </section>
 <section id="configuring-the-node-s-container-image">
 <h2>Configuring the Node’s Container Image<a class="headerlink" href="#configuring-the-node-s-container-image" title="Permalink to this heading"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node <span class="nb">set</span> --container rocky-8 n0000
-Are you sure you want to modify <span class="m">1</span> nodes<span class="o">(</span>s<span class="o">)</span>: y
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--container<span class="w"> </span>rocky-8<span class="w"> </span>n001
+Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>modify<span class="w"> </span><span class="m">1</span><span class="w"> </span>nodes<span class="o">(</span>s<span class="o">)</span>:<span class="w"> </span>y
 </pre></div>
 </div>
-<p>And you can check that the container name is set for <code class="docutils literal notranslate"><span class="pre">n0000</span></code>:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node list -a  n0000 <span class="p">|</span> grep Container
-n0000                Container          --           rocky-8
+<p>And you can check that the container name is set for <code class="docutils literal notranslate"><span class="pre">n001</span></code>:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w">  </span>n001<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Container
+n0000<span class="w">                </span>Container<span class="w">          </span>--<span class="w">           </span>rocky-8
 </pre></div>
 </div>
 <section id="configuring-the-node-s-kernel">
 <h3>Configuring the Node’s Kernel<a class="headerlink" href="#configuring-the-node-s-kernel" title="Permalink to this heading"></a></h3>
 <p>While the recommended method for assigning a kernel in 4.3 and beyond
 is to include it in the container / node image, a kernel can still be
-specified as an override at the node or profile.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node <span class="nb">set</span> --kerneloverride <span class="k">$(</span>uname -r<span class="k">)</span> n0000
-Are you sure you want to modify <span class="m">1</span> nodes<span class="o">(</span>s<span class="o">)</span>: y
+specified as an override at the node or profile.
+To illustrate this, we import the most recent kernel from a openSUSE Tumbleweed release</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w"> </span>import<span class="w"> </span>docker://registry.opensuse.org/science/warewulf/tumbleweed/containerfile/kernel:latest<span class="w"> </span>tw
+$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>kernel<span class="w"> </span>import<span class="w"> </span>-DC<span class="w"> </span>tw
+$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>kernel<span class="w"> </span>list
+KERNEL<span class="w"> </span>NAME<span class="w">                         </span>KERNEL<span class="w"> </span>VERSION<span class="w">            </span>NODES
+tw<span class="w">                                  </span><span class="m">6</span>.1.10-1-default<span class="w">               </span><span class="m">0</span>
+$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--kerneloverride<span class="w"> </span>tw<span class="w"> </span>n001
+Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>modify<span class="w"> </span><span class="m">1</span><span class="w"> </span>nodes<span class="o">(</span>s<span class="o">)</span>:<span class="w"> </span>y
 
-$ sudo wwctl node list -a n0000 <span class="p">|</span> grep KernelOverride
-n0000                KernelOverride     --           <span class="m">4</span>.18.0-305.3.1.el8_4.x86_64
+$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span>n001<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>kerneloverride
+n001<span class="w">                 </span>kerneloverride<span class="w">     </span>--<span class="w">           </span>tw
 </pre></div>
 </div>
 </section>
@@ -235,41 +276,52 @@ n0000                KernelOverride     --           <span class="m">4</span>.18
 <h3>Configuring the Node’s Network<a class="headerlink" href="#configuring-the-node-s-network" title="Permalink to this heading"></a></h3>
 <p>To configure the network, we have to pick a network device name and
 provide the network information as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node <span class="nb">set</span> --netdev eth0 --hwaddr <span class="m">11</span>:22:33:44:55:66 --ipaddr <span class="m">10</span>.0.2.1 --netmask <span class="m">255</span>.255.252.0 n0000
-Are you sure you want to modify <span class="m">1</span> nodes<span class="o">(</span>s<span class="o">)</span>: y
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--netdev<span class="w"> </span>eth0<span class="w"> </span>--hwaddr<span class="w"> </span><span class="m">11</span>:22:33:44:55:66<span class="w"> </span>--ipaddr<span class="w"> </span><span class="m">10</span>.0.2.1<span class="w"> </span>--netmask<span class="w"> </span><span class="m">255</span>.255.252.0<span class="w"> </span>n001
+<span class="w"> </span>Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>modify<span class="w"> </span><span class="m">1</span><span class="w"> </span>nodes<span class="o">(</span>s<span class="o">)</span>:<span class="w"> </span>y
 </pre></div>
 </div>
 <p>You can now see that the node contains configuration attributes for
 container, kernel, and network:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node list -a n0000
-<span class="c1">################################################################################</span>
-NODE                 FIELD              PROFILE      VALUE
-n0000                Id                 --           n0000
-n0000                Comment            default      This profile is automatically included <span class="k">for</span> each node
-n0000                Cluster            --           --
-n0000                Profiles           --           default
-n0000                Discoverable       --           <span class="nb">false</span>
-n0000                Container          --           rocky-8
-n0000                Kernel             --           <span class="m">4</span>.18.0-305.3.1.el8_4.x86_64
-n0000                KernelArgs         --           <span class="o">(</span>quiet <span class="nv">crashkernel</span><span class="o">=</span>no <span class="nv">vga</span><span class="o">=</span><span class="m">791</span> <span class="nv">rootfstype</span><span class="o">=</span>rootfs<span class="o">)</span>
-n0000                RuntimeOverlay     --           <span class="o">(</span>default<span class="o">)</span>
-n0000                SystemOverlay      --           <span class="o">(</span>default<span class="o">)</span>
-n0000                Ipxe               --           <span class="o">(</span>default<span class="o">)</span>
-n0000                Init               --           <span class="o">(</span>/sbin/init<span class="o">)</span>
-n0000                Root               --           <span class="o">(</span>initramfs<span class="o">)</span>
-n0000                IpmiIpaddr         --           --
-n0000                IpmiNetmask        --           --
-n0000                IpmiPort           --           --
-n0000                IpmiGateway        --           --
-n0000                IpmiUserName       --           --
-n0000                IpmiInterface      --           --
-n0000                default:DEVICE     --           eth0
-n0000                default:HWADDR     --           <span class="m">11</span>:22:33:44:55:66
-n0000                default:IPADDR     --           <span class="m">10</span>.0.2.1
-n0000                default:NETMASK    --           <span class="m">255</span>.255.252.0
-n0000                default:GATEWAY    --           --
-n0000                default:TYPE       --           --
-n0000                default:DEFAULT    --           <span class="nb">false</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span><span class="nv">n001</span>
+<span class="o">=====================================================================================</span>
+n001<span class="w">                 </span>Id<span class="w">                 </span>--<span class="w">           </span>n001
+n001<span class="w">                 </span>comment<span class="w">            </span>default<span class="w">      </span>This<span class="w"> </span>profile<span class="w"> </span>is<span class="w"> </span>automatically<span class="w"> </span>included<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>node
+n001<span class="w">                 </span>cluster<span class="w">            </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>container<span class="w">          </span>default<span class="w">      </span>sle-micro-5.3
+n001<span class="w">                 </span>ipxe<span class="w">               </span>--<span class="w">           </span><span class="o">(</span>default<span class="o">)</span>
+n001<span class="w">                 </span>runtime<span class="w">            </span>--<span class="w">           </span><span class="o">(</span>generic<span class="o">)</span>
+n001<span class="w">                 </span>wwinit<span class="w">             </span>--<span class="w">           </span><span class="o">(</span>wwinit<span class="o">)</span>
+n001<span class="w">                 </span>root<span class="w">               </span>--<span class="w">           </span><span class="o">(</span>initramfs<span class="o">)</span>
+n001<span class="w">                 </span>discoverable<span class="w">       </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>init<span class="w">               </span>--<span class="w">           </span><span class="o">(</span>/sbin/init<span class="o">)</span>
+n001<span class="w">                 </span>asset<span class="w">              </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>kerneloverride<span class="w">     </span>--<span class="w">           </span>tw
+n001<span class="w">                 </span>kernelargs<span class="w">         </span>--<span class="w">           </span><span class="o">(</span>quiet<span class="w"> </span><span class="nv">crashkernel</span><span class="o">=</span>no<span class="w"> </span><span class="nv">vga</span><span class="o">=</span><span class="m">791</span><span class="w"> </span>net.naming-scheme<span class="o">=</span>v238<span class="o">)</span>
+n001<span class="w">                 </span>ipmiaddr<span class="w">           </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>ipminetmask<span class="w">        </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>ipmiport<span class="w">           </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>ipmigateway<span class="w">        </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>ipmiuser<span class="w">           </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>ipmipass<span class="w">           </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>ipmiinterface<span class="w">      </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>ipmiwrite<span class="w">          </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>profile<span class="w">            </span>--<span class="w">           </span>default
+n001<span class="w">                 </span>default:type<span class="w">       </span>--<span class="w">           </span><span class="o">(</span>ethernet<span class="o">)</span>
+n001<span class="w">                 </span>default:onboot<span class="w">     </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>default:netdev<span class="w">     </span>--<span class="w">           </span>eth0
+n001<span class="w">                 </span>default:hwaddr<span class="w">     </span>--<span class="w">           </span><span class="m">11</span>:22:33:44:55:66
+n001<span class="w">                 </span>default:ipaddr<span class="w">     </span>--<span class="w">           </span><span class="m">10</span>.0.2.1
+n001<span class="w">                 </span>default:ipaddr6<span class="w">    </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>default:netmask<span class="w">    </span>--<span class="w">           </span><span class="m">255</span>.255.252.0
+n001<span class="w">                 </span>default:gateway<span class="w">    </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>default:mtu<span class="w">        </span>--<span class="w">           </span>--
+n001<span class="w">                 </span>default:primary<span class="w">    </span>--<span class="w">           </span><span class="nb">true</span>
+
+<span class="w"> </span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--cluster<span class="w"> </span>cluster01<span class="w"> </span>n001
+<span class="w"> </span>Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>modify<span class="w"> </span><span class="m">1</span><span class="w"> </span>nodes<span class="o">(</span>s<span class="o">)</span>:<span class="w"> </span>y
+
+<span class="w"> </span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span>n001<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>cluster
+<span class="w"> </span>n001<span class="w">                 </span>cluster<span class="w">            </span>--<span class="w">           </span>cluster01
 </pre></div>
 </div>
 </section>
@@ -278,19 +330,12 @@ n0000                default:DEFAULT    --           <span class="nb">false</spa
 <h2>Un-setting Node Attributes<a class="headerlink" href="#un-setting-node-attributes" title="Permalink to this heading"></a></h2>
 <p>If you wish to <code class="docutils literal notranslate"><span class="pre">unset</span></code> a particular value, set the value to
 <code class="docutils literal notranslate"><span class="pre">UNDEF</span></code>. For example:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node <span class="nb">set</span> --cluster cluster01 n0000
-Are you sure you want to modify <span class="m">1</span> nodes<span class="o">(</span>s<span class="o">)</span>: y
-
-$ sudo wwctl node list -a n0000 <span class="p">|</span> grep Cluster
-n0000                Cluster            --           cluster01
-</pre></div>
-</div>
 <p>And to unset this configuration attribute:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl node <span class="nb">set</span> --cluster UNDEF n0000
-Are you sure you want to modify <span class="m">1</span> nodes<span class="o">(</span>s<span class="o">)</span>: y
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--cluster<span class="w"> </span>UNDEF<span class="w"> </span>n001
+Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>modify<span class="w"> </span><span class="m">1</span><span class="w"> </span>nodes<span class="o">(</span>s<span class="o">)</span>:<span class="w"> </span>y
 
-$ sudo wwctl node list -a n0000 <span class="p">|</span> grep Cluster
-n0000                Cluster            --           --
+$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span>n001<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Cluster
+n001<span class="w">                </span>Cluster<span class="w">            </span>--<span class="w">           </span>--
 </pre></div>
 </div>
 </section>

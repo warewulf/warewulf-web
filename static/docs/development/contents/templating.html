@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Templating &mdash; Warewulf User Guide development documentation</title>
@@ -12,10 +12,8 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -30,12 +28,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> Warewulf User Guide
-            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Warewulf User Guide
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -60,9 +62,21 @@
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Templating</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#range">range</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#increment-variable-in-loop">increment variable in loop</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#decrement">decrement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#comment">Comment</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#range">Range</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#increment-variable-in-loop">Increment Variable In Loop</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decrement">Decrement</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#access-tag">Access Tag</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#create-multiple-files">Create Multiple Files</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#special-commands">Special Commands</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#include">Include</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#includefrom">IncludeFrom</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#includeblock">IncludeBlock</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#abort">Abort</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#nobackup">Nobackup</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#split">Split</a></li>
 </ul>
 </li>
 </ul>
@@ -101,8 +115,8 @@
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Templating</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Templating</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/hpcng/warewulf/blob/development/userdocs/contents/templating.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -119,8 +133,16 @@
 <p>(more documentation coming soon)</p>
 <section id="examples">
 <h2>Examples<a class="headerlink" href="#examples" title="Permalink to this heading"></a></h2>
+<section id="comment">
+<h3>Comment<a class="headerlink" href="#comment" title="Permalink to this heading"></a></h3>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>{{  /* This comment won&#39;t show up in file, but an empty line /* }}
+{{  /* No empty line, line break removed at end of this line /* -}}
+{{-  /* No empty line, line break removed at front of this line /* }}
+</pre></div>
+</div>
+</section>
 <section id="range">
-<h3>range<a class="headerlink" href="#range" title="Permalink to this heading"></a></h3>
+<h3>Range<a class="headerlink" href="#range" title="Permalink to this heading"></a></h3>
 <p>iterate over elements of an array</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span>{{ range $devname, $netdev := .NetDevs }}
     # netdev = {{ $netdev.Hwaddr }}
@@ -128,7 +150,7 @@
 </pre></div>
 </div>
 <section id="increment-variable-in-loop">
-<h4>increment variable in loop<a class="headerlink" href="#increment-variable-in-loop" title="Permalink to this heading"></a></h4>
+<h4>Increment Variable In Loop<a class="headerlink" href="#increment-variable-in-loop" title="Permalink to this heading"></a></h4>
 <p>iterate over elements of an array and increment <code class="docutils literal notranslate"><span class="pre">i</span></code> each loop cycle</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span>{{ $i := 0 }}
 {{ range $devname, $netdev := .NetDevs }}
@@ -139,13 +161,148 @@
 </div>
 </section>
 <section id="decrement">
-<h4>decrement<a class="headerlink" href="#decrement" title="Permalink to this heading"></a></h4>
+<h4>Decrement<a class="headerlink" href="#decrement" title="Permalink to this heading"></a></h4>
 <p>iterate over elements of an array and decrement <code class="docutils literal notranslate"><span class="pre">i</span></code> each loop cycle</p>
 <div class="highlight-go notranslate"><div class="highlight"><pre><span></span>{{ $i := 10 }}
 {{ range $devname, $netdev := .NetDevs }}
     # netdev{{$i}} = {{ $netdev.Hwaddr }}
     {{ $i = dec $i }}
 {{ end }}
+</pre></div>
+</div>
+</section>
+</section>
+<section id="access-tag">
+<h3>Access Tag<a class="headerlink" href="#access-tag" title="Permalink to this heading"></a></h3>
+<p>Acces the value of an individual tag <cite>foo</cite></p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="nx">foo</span><span class="p">:</span><span class="w"> </span><span class="p">{{</span><span class="w"> </span><span class="nx">index</span><span class="w"> </span><span class="p">.</span><span class="nx">Tags</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{{</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="nx">eq</span><span class="w"> </span><span class="p">(</span><span class="nx">index</span><span class="w"> </span><span class="p">.</span><span class="nx">Tags</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="p">)</span><span class="w"> </span><span class="s">&quot;baar&quot;</span><span class="w"> </span><span class="o">-</span><span class="p">}}</span>
+<span class="nx">foo</span><span class="p">:</span><span class="w"> </span><span class="p">{{</span><span class="w"> </span><span class="nx">index</span><span class="w"> </span><span class="p">.</span><span class="nx">Tags</span><span class="w"> </span><span class="s">&quot;foo&quot;</span><span class="w"> </span><span class="p">}}</span>
+<span class="p">{{</span><span class="w"> </span><span class="nx">end</span><span class="w"> </span><span class="o">-</span><span class="p">}}</span>
+</pre></div>
+</div>
+</section>
+<section id="create-multiple-files">
+<h3>Create Multiple Files<a class="headerlink" href="#create-multiple-files" title="Permalink to this heading"></a></h3>
+<p>The following template will create a file called <cite>ifcfg-NETWORKNAME.xml</cite> for every network present on the node</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>{{- $host := .BuildHost }}
+{{- $time := .BuildTime }}
+{{- $source := .BuildSource }}
+{{range $devname, $netdev := .NetDevs -}}
+{{- $filename := print &quot;ifcfg-&quot; $devname &quot;.xml&quot; }}
+{{- file $filename }}
+&lt;!--
+This file is autogenerated by warewulf
+Host:   {{ $host }}
+Time:   {{ $time }}
+Source: {{ $source }}
+--&gt;
+&lt;interface origin=&quot;static generated warewulf config&quot;&gt;
+  &lt;name&gt;{{$netdev.Device}}&lt;/name&gt;
+  {{ if $netdev.Type -}}
+  &lt;link-type&gt;{{ $netdev.Type }}&lt;/link-type&gt;
+  {{ end -}}
+  &lt;control&gt;
+    &lt;mode&gt;boot&lt;/mode&gt;
+  &lt;/control&gt;
+  &lt;firewall/&gt;
+  &lt;link/&gt;
+  &lt;ipv4&gt;
+    &lt;enabled&gt;true&lt;/enabled&gt;
+    &lt;arp-verify&gt;true&lt;/arp-verify&gt;
+  &lt;/ipv4&gt;
+  &lt;ipv4:static&gt;
+    &lt;address&gt;
+      &lt;local&gt;{{$netdev.IpCIDR}}&lt;/local&gt;
+    &lt;/address&gt;
+{{ if $netdev.Gateway -}}
+    &lt;route&gt;
+      &lt;nexthop&gt;
+        &lt;gateway&gt;{{$netdev.Gateway}}&lt;/gateway&gt;
+      &lt;/nexthop&gt;
+    &lt;/route&gt;
+{{ end -}}
+  &lt;/ipv4:static&gt;
+  &lt;ipv6&gt;
+    &lt;enabled&gt;true&lt;/enabled&gt;
+    &lt;privacy&gt;prefer-public&lt;/privacy&gt;
+    &lt;accept-redirects&gt;false&lt;/accept-redirects&gt;
+  &lt;/ipv6&gt;
+{{ if $netdev.Ipaddr6 -}}
+  &lt;ipv6:static&gt;
+    &lt;address&gt;
+      &lt;local&gt;{{ $netdev.Ipaddr6 }}&lt;/local&gt;
+    &lt;/address&gt;
+  &lt;/ipv6:static&gt;
+{{ end -}}
+&lt;/interface&gt;
+{{ end -}}
+</pre></div>
+</div>
+</section>
+<section id="special-commands">
+<h3>Special Commands<a class="headerlink" href="#special-commands" title="Permalink to this heading"></a></h3>
+<section id="include">
+<h4>Include<a class="headerlink" href="#include" title="Permalink to this heading"></a></h4>
+<p>A file from the host can be include with following template</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="p">{{</span><span class="w"> </span><span class="nx">Include</span><span class="w"> </span><span class="nx">file</span><span class="w"> </span><span class="p">}}</span>
+</pre></div>
+</div>
+</section>
+<section id="includefrom">
+<h4>IncludeFrom<a class="headerlink" href="#includefrom" title="Permalink to this heading"></a></h4>
+<p>With following snippet a file from a given container can be included</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span><span class="p">{{</span><span class="w"> </span><span class="nx">IncludeFrom</span><span class="w"> </span><span class="nx">container</span><span class="w"> </span><span class="nx">file</span><span class="w"> </span><span class="p">}}</span>
+</pre></div>
+</div>
+</section>
+<section id="includeblock">
+<h4>IncludeBlock<a class="headerlink" href="#includeblock" title="Permalink to this heading"></a></h4>
+<p>Includes a file up to the line where a abort string is found. This is useful, e.g.,
+for the hosts file, which can have local modifications which are not controlled
+by warewulf. For this example the abort string is
+“# Do not edit after this line”</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>{{ IncludeBlock &quot;/etc/hosts&quot; &quot;# Do not edit after this line&quot; }}
+# This block is autogenerated by warewulf
+# Host:   {{.BuildHost}}
+# Time:   {{.BuildTime}}
+# Source: {{.BuildSource}}
+
+
+# Warewulf Server
+{{$.Ipaddr}} warewulf {{$.BuildHost}}
+
+{{- range $node := $.AllNodes}}                  {{/* for each node */}}
+# Entry for {{$node.Id.Get}}
+{{- range $devname, $netdev := $node.NetDevs}} {{/* for each network device on the node */}}
+{{- if $netdev.Ipaddr.Defined}}                {{/* if we have an ip address on this network device */}}
+{{- /* emit the node name as hostname if this is the primary */}}
+{{$netdev.Ipaddr.Get}} {{$node.Id.Get}}-{{$devname}}
+{{- if $netdev.Device.Defined}} {{$node.Id.Get}}-{{$netdev.Device.Get}}{{end}}
+{{- if $netdev.Primary.GetB}} {{$node.Id.Get}}{{end}}
+{{- end}} {{/* end if ip */}}
+{{- end}} {{/* end for each network device */}}
+{{- end}} {{/* end for each node */}}
+</pre></div>
+</div>
+</section>
+<section id="abort">
+<h4>Abort<a class="headerlink" href="#abort" title="Permalink to this heading"></a></h4>
+<p>If <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">abort</span> <span class="pre">}}</span></code> is found in a template, the resulting file isn’t written.</p>
+</section>
+<section id="nobackup">
+<h4>Nobackup<a class="headerlink" href="#nobackup" title="Permalink to this heading"></a></h4>
+<p>If a file exists on the target, a backup file is written with the suffix
+<cite>.wwbackup</cite>. This only happens for the <cite>host</cite> overlay, as e.g. the <cite>/etc/hosts</cite>
+exists on the host. If this is not the intended behavior, the <code class="docutils literal notranslate"><span class="pre">{{</span> <span class="pre">nobackup</span> <span class="pre">}}</span></code>
+flag can be added to a template.</p>
+</section>
+<section id="split">
+<h4>Split<a class="headerlink" href="#split" title="Permalink to this heading"></a></h4>
+<p>A given string can be split into substrings.</p>
+<div class="highlight-go notranslate"><div class="highlight"><pre><span></span>{{ $x := &quot;a:b:c&quot; -}}
+{{ $y := (split $x &quot;:&quot;) -}}
+{{ range $y }} {{.}} {{ end }}
 </pre></div>
 </div>
 </section>

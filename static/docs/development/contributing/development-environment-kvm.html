@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Development Environment (KVM) &mdash; Warewulf User Guide development documentation</title>
@@ -12,10 +12,8 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -30,12 +28,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> Warewulf User Guide
-            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Warewulf User Guide
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -96,8 +98,8 @@
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Development Environment (KVM)</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Development Environment (KVM)</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/hpcng/warewulf/blob/development/userdocs/contributing/development-environment-kvm.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -112,52 +114,52 @@
 <section id="create-centos-7-development-virtual-machine-under-kvm">
 <h2>Create CentOS 7 development virtual machine under KVM<a class="headerlink" href="#create-centos-7-development-virtual-machine-under-kvm" title="Permalink to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># KVM is running on server called master1 which is not my desktop</span>
-ssh -X master1
+ssh<span class="w"> </span>-X<span class="w"> </span>master1
 
 <span class="c1"># On master1 server</span>
-wget -P /global/downloads/centos http://mirror.mobap.edu/centos/7.8.2003/isos/x86_64/CentOS-7-x86_64-Everything-2003.iso
+wget<span class="w"> </span>-P<span class="w"> </span>/global/downloads/centos<span class="w"> </span>http://mirror.mobap.edu/centos/7.8.2003/isos/x86_64/CentOS-7-x86_64-Everything-2003.iso
 
-qemu-img create -o <span class="nv">preallocation</span><span class="o">=</span>metadata -f qcow2 /global/images/centos-7.qcow2 32G
+qemu-img<span class="w"> </span>create<span class="w"> </span>-o<span class="w"> </span><span class="nv">preallocation</span><span class="o">=</span>metadata<span class="w"> </span>-f<span class="w"> </span>qcow2<span class="w"> </span>/global/images/centos-7.qcow2<span class="w"> </span>32G
 
 <span class="c1"># install wwdev Centos 7 development VM</span>
-sudo virt-install --virt-type kvm --name centos7-wwdev --ram <span class="m">8192</span> <span class="se">\</span>
-   --disk /global/images/centos-7.qcow2,format<span class="o">=</span>qcow2 <span class="se">\</span>
-   --network <span class="nv">network</span><span class="o">=</span>default <span class="se">\</span>
-   --graphics vnc,listen<span class="o">=</span><span class="m">0</span>.0.0.0 --noautoconsole <span class="se">\</span>
-   --os-type<span class="o">=</span>linux --os-variant<span class="o">=</span>rhel7.0 <span class="se">\</span>
-   --location<span class="o">=</span>/global/downloads/centos/CentOS-7-x86_64-Everything-2003.iso
+sudo<span class="w"> </span>virt-install<span class="w"> </span>--virt-type<span class="w"> </span>kvm<span class="w"> </span>--name<span class="w"> </span>centos7-wwdev<span class="w"> </span>--ram<span class="w"> </span><span class="m">8192</span><span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--disk<span class="w"> </span>/global/images/centos-7.qcow2,format<span class="o">=</span>qcow2<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--network<span class="w"> </span><span class="nv">network</span><span class="o">=</span>default<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--graphics<span class="w"> </span>vnc,listen<span class="o">=</span><span class="m">0</span>.0.0.0<span class="w"> </span>--noautoconsole<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--os-type<span class="o">=</span>linux<span class="w"> </span>--os-variant<span class="o">=</span>rhel7.0<span class="w"> </span><span class="se">\</span>
+<span class="w">   </span>--location<span class="o">=</span>/global/downloads/centos/CentOS-7-x86_64-Everything-2003.iso
 
 <span class="c1"># Complete installation using virt-manager</span>
 
 <span class="c1"># To start virt-manager on non-local server</span>
-ssh -X master1
+ssh<span class="w"> </span>-X<span class="w"> </span>master1
 
-sudo -E virt-manager
+sudo<span class="w"> </span>-E<span class="w"> </span>virt-manager
 
 <span class="c1"># Login to VM and install @development group and go language</span>
-ssh root@wwdev
+ssh<span class="w"> </span>root@wwdev
 
 <span class="c1"># Disable selinux by modifying /etc/sysconfig/selinux</span>
-vi /etc/sysconfig/selinux
+vi<span class="w"> </span>/etc/sysconfig/selinux
 
-    <span class="nv">SELINUX</span><span class="o">=</span>disabled
+<span class="w">    </span><span class="nv">SELINUX</span><span class="o">=</span>disabled
 
 <span class="c1"># disable firewall</span>
-systemctl stop firewalld
-systemctl disable firewalld
+systemctl<span class="w"> </span>stop<span class="w"> </span>firewalld
+systemctl<span class="w"> </span>disable<span class="w"> </span>firewalld
 </pre></div>
 </div>
 </section>
 <section id="turn-off-default-network-dhcp-on-server-master1">
 <h2>Turn off default network dhcp on server master1<a class="headerlink" href="#turn-off-default-network-dhcp-on-server-master1" title="Permalink to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># shutdown all VMs</span>
-sudo virsh net-destroy default
+sudo<span class="w"> </span>virsh<span class="w"> </span>net-destroy<span class="w"> </span>default
 
-sudo virsh net-edit default
+sudo<span class="w"> </span>virsh<span class="w"> </span>net-edit<span class="w"> </span>default
 
-    <span class="c1"># remove dhcp lines from XML</span>
+<span class="w">    </span><span class="c1"># remove dhcp lines from XML</span>
 
-sudo virsh net-start default
+sudo<span class="w"> </span>virsh<span class="w"> </span>net-start<span class="w"> </span>default
 </pre></div>
 </div>
 </section>
