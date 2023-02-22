@@ -131,7 +131,7 @@
 </pre></div>
 </div>
 <ol class="arabic simple" start="3">
-<li><p>Build and install warewulf on wwdev</p></li>
+<li><p>Build and install Warewulf on wwdev</p></li>
 </ol>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span># Login to wwdev VM and install @development group and go language
 
@@ -238,7 +238,7 @@ sudo wwctl server status
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
-<li><p>Create a new guest VM instance inside the VirtualBox to be the warewulf client/compute node. Under the system configuration make sure to select the optical and network options only for the boot order. The default iPXE used by VirtualBox does not come with bzImage capability which is needed for warewulf. Download the ipxe.iso available at ipxe.org and mount the ipxe.iso to the optical drive. Enable one Network adapter for this VM and assign it to the NAT Network created in step #1 above.</p></li>
+<li><p>Create a new guest VM instance inside the VirtualBox to be the Warewulf client/compute node. Under the system configuration make sure to select the optical and network options only for the boot order. The default iPXE used by VirtualBox does not come with bzImage capability which is needed for Warewulf. Download the ipxe.iso available at ipxe.org and mount the ipxe.iso to the optical drive. Enable one Network adapter for this VM and assign it to the NAT Network created in step #1 above.</p></li>
 </ol>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Download<span class="w"> </span>ipxe.so<span class="w"> </span>available<span class="w"> </span>at<span class="w"> </span>http://boot.ipxe.org/ipxe.iso
 <span class="gp"># </span>VM<span class="w"> </span>Settings<span class="w"> </span>-&gt;<span class="w"> </span>System<span class="w"> </span>disable<span class="w"> </span>Floppy,<span class="w"> </span>Hard<span class="w"> </span>Disk<span class="w"> </span>from<span class="w"> </span>Boot<span class="w"> </span>order.<span class="w"> </span>Enable<span class="w"> </span>Optical<span class="w"> </span>and<span class="w"> </span>Network<span class="w"> </span>options.
