@@ -173,8 +173,8 @@ sudo<span class="w"> </span>-E<span class="w"> </span>wwctl<span class="w"> </sp
 </section>
 <section id="syncuser">
 <h3>Syncuser<a class="headerlink" href="#syncuser" title="Permalink to this heading"></a></h3>
-<p>At import time warewulf checks if the names of the users on the host match the users and UIDs/GIDs in the imported container. If there is mismatch, the import command will print out a warning.
-By setting the <code class="docutils literal notranslate"><span class="pre">--syncuser</span></code> flag you advise warewulf to try to syncronize the users from the host to the container, which means that <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> and <code class="docutils literal notranslate"><span class="pre">/etc/group</span></code> of the imported container are updated and all the files belonning to these UIDs and GIDs will also be updated.</p>
+<p>At import time Warewulf checks if the names of the users on the host match the users and UIDs/GIDs in the imported container. If there is mismatch, the import command will print out a warning.
+By setting the <code class="docutils literal notranslate"><span class="pre">--syncuser</span></code> flag you advise Warewulf to try to syncronize the users from the host to the container, which means that <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> and <code class="docutils literal notranslate"><span class="pre">/etc/group</span></code> of the imported container are updated and all the files belonning to these UIDs and GIDs will also be updated.</p>
 <p>A check if the users of the host and container matches can be triggered with the <code class="docutils literal notranslate"><span class="pre">syncuser</span></code> command.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wwctl<span class="w"> </span>container<span class="w"> </span>syncuser<span class="w"> </span>container-name
 </pre></div>
@@ -258,7 +258,7 @@ sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w
 </section>
 <section id="building-a-container-using-podman">
 <h3>Building A Container Using Podman<a class="headerlink" href="#building-a-container-using-podman" title="Permalink to this heading"></a></h3>
-<p>You can also build a container using podman via a <cite>Dockerfile</cite>. For this step the container must be exported to a tar archive, which then can be imported to warewulf. The following steps will create an openSUSE Leap container and import it to Warewulf:</p>
+<p>You can also build a container using podman via a <cite>Dockerfile</cite>. For this step the container must be exported to a tar archive, which then can be imported to Warewulf. The following steps will create an openSUSE Leap container and import it to Warewulf:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>podman<span class="w"> </span>build<span class="w"> </span>-f<span class="w"> </span>containers/Docker/openSUSE/Containerfile<span class="w"> </span>--tag<span class="w"> </span>leap-ww
 $<span class="w"> </span>sudo<span class="w"> </span>podman<span class="w"> </span>save<span class="w"> </span>localhost/leap-ww:latest<span class="w">  </span>-o<span class="w"> </span>~/leap-ww.tar
 $<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w"> </span>import<span class="w"> </span>file://root/leap-ww.tar<span class="w"> </span>leap-ww
