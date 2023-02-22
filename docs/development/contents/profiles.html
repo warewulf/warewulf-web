@@ -113,11 +113,24 @@
              
   <section id="node-profiles">
 <h1>Node Profiles<a class="headerlink" href="#node-profiles" title="Permalink to this heading"></a></h1>
-<p>Profiles provide a way to scalably group node configurations together. Instead of redundant configurations for each node, you can put that into a profile and the nodes will inherit these configurations. This is very handy if you have groups of node specific customizations. For example, a few hundred nodes that are running a particular container or kernel, and another group of nodes that are running a different kernel or container.</p>
-<p>Any node configuration attributes can be applied to a profile, but there are always going to be some node configurations which must be specific to a node, like a network HW/MAC address or an IP address.</p>
+<p>Profiles provide a way to scalably group node configurations
+together. Instead of redundant configurations for each node, you can
+put that into a profile and the nodes will inherit these
+configurations. This is very handy if you have groups of node specific
+customizations. For example, a few hundred nodes that are running a
+particular container or kernel, and another group of nodes that are
+running a different kernel or container.</p>
+<p>Any node configuration attributes can be applied to a profile, but
+there are always going to be some node configurations which must be
+specific to a node, like a network HW/MAC address or an IP address.</p>
 <section id="an-introduction-to-profiles">
 <h2>An Introduction To Profiles<a class="headerlink" href="#an-introduction-to-profiles" title="Permalink to this heading"></a></h2>
-<p>Every new node is automatically added to a profile called <code class="docutils literal notranslate"><span class="pre">default</span></code>. You can view the configuration attributes of this profile by using the <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">profile</span> <span class="pre">list</span></code> command. Like the <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">node</span> <span class="pre">list</span></code> command, this will provide a summary, but you can see <strong>all</strong> configuration attributes by using the <code class="docutils literal notranslate"><span class="pre">--all</span></code> or <code class="docutils literal notranslate"><span class="pre">-a</span></code> flag as follows:</p>
+<p>Every new node is automatically added to a profile called
+<code class="docutils literal notranslate"><span class="pre">default</span></code>. You can view the configuration attributes of this profile
+by using the <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">profile</span> <span class="pre">list</span></code> command. Like the <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">node</span>
+<span class="pre">list</span></code> command, this will provide a summary, but you can see <strong>all</strong>
+configuration attributes by using the <code class="docutils literal notranslate"><span class="pre">--all</span></code> or <code class="docutils literal notranslate"><span class="pre">-a</span></code> flag as
+follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list
 PROFILE<span class="w"> </span>NAME<span class="w">         </span>COMMENT/DESCRIPTION
 <span class="o">================================================================================</span>
@@ -147,7 +160,11 @@ default<span class="w">              </span>IpmiUserName<span class="w">       <
 default<span class="w">              </span>IpmiInterface<span class="w">      </span>--
 </pre></div>
 </div>
-<p>As you can see here, there is only one attribute set by default in this profile, and that is the “Comment” field. That Comment is inherited by any nodes that are configured to use this profile. So if we look at the node we configured in the last section, we can see that configuration attribute there:</p>
+<p>As you can see here, there is only one attribute set by default in
+this profile, and that is the “Comment” field. That Comment is
+inherited by any nodes that are configured to use this profile. So if
+we look at the node we configured in the last section, we can see that
+configuration attribute there:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
 <span class="c1">################################################################################</span>
 NODE<span class="w">                 </span>FIELD<span class="w">              </span>PROFILE<span class="w">      </span>VALUE
@@ -156,11 +173,16 @@ n0000<span class="w">                </span>Comment<span class="w">            <
 n0000<span class="w">                </span>Cluster<span class="w">            </span>--<span class="w">           </span>--
 </pre></div>
 </div>
-<p>Here you can see that the “Comment” attribute was inherited by this node, and it also provides you with the information of which profile this attribute was inherited from. This is very useful information as nodes can be part of multiple profiles with inheritance being cascading.</p>
+<p>Here you can see that the “Comment” attribute was inherited by this
+node, and it also provides you with the information of which profile
+this attribute was inherited from. This is very useful information as
+nodes can be part of multiple profiles with inheritance being
+cascading.</p>
 </section>
 <section id="multiple-profiles">
 <h2>Multiple Profiles<a class="headerlink" href="#multiple-profiles" title="Permalink to this heading"></a></h2>
-<p>For demonstration purposes, let’s create another profile and demonstrate how to use this second profile.</p>
+<p>For demonstration purposes, let’s create another profile and
+demonstrate how to use this second profile.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span>add<span class="w"> </span>test_profile
 $<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list
 PROFILE<span class="w"> </span>NAME<span class="w">         </span>COMMENT/DESCRIPTION
@@ -169,7 +191,8 @@ default<span class="w">              </span>This<span class="w"> </span>profile<
 test_profile<span class="w">         </span>--
 </pre></div>
 </div>
-<p>Now that we’ve created a new profile, let’s create a configuration attribute in this profile:</p>
+<p>Now that we’ve created a new profile, let’s create a configuration
+attribute in this profile:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--cluster<span class="w"> </span>cluster01<span class="w"> </span>test_profile
 ?<span class="w"> </span>Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>modify<span class="w"> </span><span class="m">1</span><span class="w"> </span>profile<span class="o">(</span>s<span class="o">)</span>?<span class="w"> </span><span class="o">[</span>y/N<span class="o">]</span><span class="w"> </span>y
 
@@ -195,7 +218,8 @@ n0000<span class="w">                </span>Profiles<span class="w">           <
 </section>
 <section id="cascading-profiles">
 <h2>Cascading Profiles<a class="headerlink" href="#cascading-profiles" title="Permalink to this heading"></a></h2>
-<p>In the previous example, we set a single node to have two profile configurations. We can also overwrite configurations as follows:</p>
+<p>In the previous example, we set a single node to have two profile
+configurations. We can also overwrite configurations as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--comment<span class="w"> </span><span class="s2">&quot;test comment&quot;</span><span class="w"> </span>test_profile
 Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>modify<span class="w"> </span><span class="m">1</span><span class="w"> </span>profile<span class="o">(</span>s<span class="o">)</span>:<span class="w"> </span>y
 
@@ -208,7 +232,8 @@ n0000<span class="w">                </span>Cluster<span class="w">            <
 n0000<span class="w">                </span>Profiles<span class="w">           </span>--<span class="w">           </span>default,test_profile
 </pre></div>
 </div>
-<p>And if we delete the superseded profile attribute from <code class="docutils literal notranslate"><span class="pre">test_profile</span></code> we can now see the previous configuration:</p>
+<p>And if we delete the superseded profile attribute from
+<code class="docutils literal notranslate"><span class="pre">test_profile</span></code> we can now see the previous configuration:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--comment<span class="w"> </span>UNDEF<span class="w"> </span>test_profile
 Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>modify<span class="w"> </span><span class="m">1</span><span class="w"> </span>profile<span class="o">(</span>s<span class="o">)</span>:<span class="w"> </span>y
 
@@ -221,11 +246,16 @@ n0000<span class="w">                </span>Cluster<span class="w">            <
 n0000<span class="w">                </span>Profiles<span class="w">           </span>--<span class="w">           </span>default,test_profile
 </pre></div>
 </div>
-<p>This is a very useful feature for dealing with many groups of cluster nodes and/or testing new configurations on smaller subsets of cluster nodes. For example, you can use this method to run a different kernel on only a subset or group of cluster nodes without changing any other node attributes.</p>
+<p>This is a very useful feature for dealing with many groups of cluster
+nodes and/or testing new configurations on smaller subsets of cluster
+nodes. For example, you can use this method to run a different kernel
+on only a subset or group of cluster nodes without changing any other
+node attributes.</p>
 </section>
 <section id="overriding-profiles">
 <h2>Overriding Profiles<a class="headerlink" href="#overriding-profiles" title="Permalink to this heading"></a></h2>
-<p>All profile configurations can be overwritten by a node configuration as can be seen here:</p>
+<p>All profile configurations can be overwritten by a node configuration
+as can be seen here:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--comment<span class="w"> </span><span class="s2">&quot;This value takes precedent&quot;</span><span class="w"> </span>n0000
 Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>modify<span class="w"> </span><span class="m">1</span><span class="w"> </span>nodes<span class="o">(</span>s<span class="o">)</span>:<span class="w"> </span>y
 
@@ -241,9 +271,20 @@ n0000<span class="w">                </span>Profiles<span class="w">           <
 </section>
 <section id="how-to-use-profiles-effectively">
 <h2>How To Use Profiles Effectively<a class="headerlink" href="#how-to-use-profiles-effectively" title="Permalink to this heading"></a></h2>
-<p>There are a lot of ways to use profiles to facilitate the management of large cluster node attributes, but there is nothing inherent in the design of Warewulf that requires use of them for anything. It is completely reasonable to not use profiles at all to help with node configuration attributes.</p>
-<p>But if you do wish to use profiles, the best way to use them is to manage “fixed” configurations of groups of cluster nodes. For example, if you have multiple sub-clusters in your cluster, it might be advantageous to have a <code class="docutils literal notranslate"><span class="pre">cluster_name</span></code> profile which includes things like network configurations, and/or a specific kernel, container, boot arguments, etc.</p>
-<p>Node specific information, like HW/MAC addresses and IP addresses should always be put in a node configuration rather than a profile configuration.</p>
+<p>There are a lot of ways to use profiles to facilitate the management
+of large cluster node attributes, but there is nothing inherent in the
+design of Warewulf that requires use of them for anything. It is
+completely reasonable to not use profiles at all to help with node
+configuration attributes.</p>
+<p>But if you do wish to use profiles, the best way to use them is to
+manage “fixed” configurations of groups of cluster nodes. For example,
+if you have multiple sub-clusters in your cluster, it might be
+advantageous to have a <code class="docutils literal notranslate"><span class="pre">cluster_name</span></code> profile which includes things
+like network configurations, and/or a specific kernel, container, boot
+arguments, etc.</p>
+<p>Node specific information, like HW/MAC addresses and IP addresses
+should always be put in a node configuration rather than a profile
+configuration.</p>
 </section>
 </section>
 

@@ -155,7 +155,17 @@ make<span class="w"> </span>all<span class="w"> </span><span class="o">&amp;&amp
 </section>
 <section id="git">
 <h3>Git<a class="headerlink" href="#git" title="Permalink to this heading"></a></h3>
-<p>Warewulf is developed in “Git”, a source code management platform that allows collaborative development and revision control. From the Git repository, you can download different versions of the project either from tags or branches. By default, when you go to the GitHub page, you will find the default branch entitled <code class="docutils literal notranslate"><span class="pre">main</span></code>. The <code class="docutils literal notranslate"><span class="pre">main</span></code> branch is where most of the active development occurs, so if you want to obtain the latest and greatest version of Warewulf, this is where to go. But be forewarned, using a snapshot from <code class="docutils literal notranslate"><span class="pre">main</span></code> is not guaranteed to be stable or generally supported for production. If you are building for production, it is best to download a release tarball from the main site, the GitHub releases page, or from a Git tag.</p>
+<p>Warewulf is developed in “Git”, a source code management platform that
+allows collaborative development and revision control. From the Git
+repository, you can download different versions of the project either
+from tags or branches. By default, when you go to the GitHub page, you
+will find the default branch entitled <code class="docutils literal notranslate"><span class="pre">main</span></code>. The <code class="docutils literal notranslate"><span class="pre">main</span></code> branch is
+where most of the active development occurs, so if you want to obtain
+the latest and greatest version of Warewulf, this is where to go. But
+be forewarned, using a snapshot from <code class="docutils literal notranslate"><span class="pre">main</span></code> is not guaranteed to be
+stable or generally supported for production. If you are building for
+production, it is best to download a release tarball from the main
+site, the GitHub releases page, or from a Git tag.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>~/git
 <span class="nb">cd</span><span class="w"> </span>~/git
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/hpcng/warewulf.git
@@ -167,14 +177,17 @@ make<span class="w"> </span>all<span class="w"> </span><span class="o">&amp;&amp
 </section>
 <section id="runtime-dependencies">
 <h3>Runtime Dependencies<a class="headerlink" href="#runtime-dependencies" title="Permalink to this heading"></a></h3>
-<p>In Warewulf’s default configuration, it will require some operating system provided services. Generally these are provided by your installation vendor and can be installed over the network.</p>
+<p>In Warewulf’s default configuration, it will require some operating
+system provided services. Generally these are provided by your
+installation vendor and can be installed over the network.</p>
 <p>These are the services you will need to install:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">dhcp-server</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">tftp-server</span></code></p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">nfs-utils</span></code></p></li>
 </ul>
-<p>If you are using an Enterprise Linux compatible distribution you can install them with: <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">install</span> <span class="pre">dhcp-server</span> <span class="pre">tftp-server</span> <span class="pre">nfs-utils</span></code></p>
+<p>If you are using an Enterprise Linux compatible distribution you can
+install them with <code class="docutils literal notranslate"><span class="pre">yum</span> <span class="pre">install</span> <span class="pre">dhcp-server</span> <span class="pre">tftp-server</span> <span class="pre">nfs-utils</span></code>.</p>
 </section>
 </section>
 </section>

@@ -108,7 +108,9 @@
 <h1>Development Environment (VirtualBox)<a class="headerlink" href="#development-environment-virtualbox" title="Permalink to this heading"></a></h1>
 <p>I have VirtualBox running on my desktop.</p>
 <ol class="arabic simple">
-<li><p>Create a NAT Network (a private vlan) to be used for the Warewlf Server and compute nodes inside the VirtualBox. Make sure to turnoff DHCP service within this NAT Network.</p></li>
+<li><p>Create a NAT Network (a private vlan) to be used for the Warewlf
+Server and compute nodes inside the VirtualBox. Make sure to
+turnoff DHCP service within this NAT Network.</p></li>
 </ol>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>On<span class="w"> </span>the<span class="w"> </span>host<span class="w"> </span>with<span class="w"> </span>VirtualBox<span class="w"> </span>execute<span class="w"> </span>below.<span class="w"> </span>In<span class="w"> </span>my<span class="w"> </span>example<span class="w"> </span>using<span class="w"> </span><span class="m">10</span>.0.8.0/24<span class="w"> </span>as<span class="w"> </span>the<span class="w"> </span>private<span class="w"> </span>vlan<span class="w"> </span><span class="k">for</span><span class="w"> </span>my<span class="w"> </span>experiment<span class="w"> </span>with<span class="w"> </span>Warewulf
 
@@ -116,7 +118,12 @@
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
-<li><p>Create a Centos 7 development Virtual machine (wwdev) to be used as the Warewulf Server. Enable two Network adapters one with a standard NAT and SSH port mapping such that you can access this VM from the host machine. Assign the second network adapter to the NAT Network created in step #1. Assign sufficient memory (e.g: 4GB) to the VM.</p></li>
+<li><p>Create a Centos 7 development Virtual machine (wwdev) to be used as
+the Warewulf Server. Enable two Network adapters one with a
+standard NAT and SSH port mapping such that you can access this VM
+from the host machine. Assign the second network adapter to the NAT
+Network created in step #1. Assign sufficient memory (e.g: 4GB) to
+the VM.</p></li>
 </ol>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Download<span class="w"> </span>a<span class="w"> </span>Centos7<span class="w"> </span>or<span class="w"> </span>SL7<span class="w"> </span>ISO<span class="w"> </span>and<span class="w"> </span>mount<span class="w"> </span>it<span class="w"> </span>to<span class="w"> </span>the<span class="w"> </span>optical<span class="w"> </span>drive<span class="w"> </span>to<span class="w"> </span>boot<span class="w"> </span>and<span class="w"> </span>install<span class="w"> </span>OS<span class="w"> </span><span class="k">for</span><span class="w"> </span>the<span class="w"> </span>wwdev<span class="w"> </span>VM.
 <span class="gp"># </span>Attach<span class="w"> </span>Network<span class="w"> </span>adapter<span class="w"> </span><span class="c1">#1 of the wwdev VM to the standard NAT via VM Settings -&gt; Network option.</span>
@@ -238,7 +245,14 @@ sudo wwctl server status
 </pre></div>
 </div>
 <ol class="arabic simple" start="4">
-<li><p>Create a new guest VM instance inside the VirtualBox to be the Warewulf client/compute node. Under the system configuration make sure to select the optical and network options only for the boot order. The default iPXE used by VirtualBox does not come with bzImage capability which is needed for Warewulf. Download the ipxe.iso available at ipxe.org and mount the ipxe.iso to the optical drive. Enable one Network adapter for this VM and assign it to the NAT Network created in step #1 above.</p></li>
+<li><p>Create a new guest VM instance inside the VirtualBox to be the
+Warewulf client/compute node. Under the system configuration make
+sure to select the optical and network options only for the boot
+order. The default iPXE used by VirtualBox does not come with
+bzImage capability which is needed for Warewulf. Download the
+ipxe.iso available at ipxe.org and mount the ipxe.iso to the
+optical drive. Enable one Network adapter for this VM and assign it
+to the NAT Network created in step #1 above.</p></li>
 </ol>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>Download<span class="w"> </span>ipxe.so<span class="w"> </span>available<span class="w"> </span>at<span class="w"> </span>http://boot.ipxe.org/ipxe.iso
 <span class="gp"># </span>VM<span class="w"> </span>Settings<span class="w"> </span>-&gt;<span class="w"> </span>System<span class="w"> </span>disable<span class="w"> </span>Floppy,<span class="w"> </span>Hard<span class="w"> </span>Disk<span class="w"> </span>from<span class="w"> </span>Boot<span class="w"> </span>order.<span class="w"> </span>Enable<span class="w"> </span>Optical<span class="w"> </span>and<span class="w"> </span>Network<span class="w"> </span>options.
@@ -246,7 +260,8 @@ sudo wwctl server status
 <span class="gp"># </span>VM<span class="w"> </span>Settings<span class="w"> </span>-&gt;<span class="w"> </span>Network<span class="w"> </span>Enable<span class="w"> </span>adapter<span class="w"> </span><span class="c1">#1, attach to &#39;Nat Network&#39; and choose &#39;wwnatnetwork&#39; from the drop down list.</span>
 </pre></div>
 </div>
-<p>Boot your node and watch the console and the output of the Warewulfd process</p>
+<p>Boot your node and watch the console and the output of the Warewulfd
+process.</p>
 </section>
 
 

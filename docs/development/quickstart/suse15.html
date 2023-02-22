@@ -133,21 +133,25 @@ make<span class="w"> </span>all
 sudo<span class="w"> </span>make<span class="w"> </span>install
 </pre></div>
 </div>
-<p>The standard configuration template for the dhcpd service is installed at the wrong location, you have to fix this with</p>
+<p>The standard configuration template for the dhcpd service is installed
+at the wrong location, you have to fix this with</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mv<span class="w"> </span>/var/lib/warewulf/overlays/host/etc/dhcp/dhcpd.conf.ww<span class="w"> </span>/var/lib/warewulf/overlays/host/etc/dhcpd.conf.ww
 </pre></div>
 </div>
 </section>
 <section id="install-warewulf-from-the-open-build-service">
 <h2>Install Warewulf from the open build service<a class="headerlink" href="#install-warewulf-from-the-open-build-service" title="Permalink to this heading"></a></h2>
-<p>You can also just install the ‘warewulf4’ package with <code class="docutils literal notranslate"><span class="pre">zypper</span></code> from the openbuild service. Up to date versions are available on the devel project</p>
+<p>You can also just install the ‘warewulf4’ package with <code class="docutils literal notranslate"><span class="pre">zypper</span></code> from
+the openbuild service. Up to date versions are available on the devel
+project</p>
 <p><code class="docutils literal notranslate"><span class="pre">https://build.opensuse.org/project/show/network:cluster</span></code></p>
 </section>
 <section id="configure-the-controller">
 <h2>Configure the controller<a class="headerlink" href="#configure-the-controller" title="Permalink to this heading"></a></h2>
-<p>Edit the file <code class="docutils literal notranslate"><span class="pre">/etc/warewulf/warewulf.conf</span></code> and ensure that you’ve set the appropriate
-configuration paramaters. Here are some of the defaults for reference assuming that <code class="docutils literal notranslate"><span class="pre">192.168.200.1</span></code>
-is the IP address of your cluster’s private network interface:</p>
+<p>Edit the file <code class="docutils literal notranslate"><span class="pre">/etc/warewulf/warewulf.conf</span></code> and ensure that you’ve
+set the appropriate configuration paramaters. Here are some of the
+defaults for reference assuming that <code class="docutils literal notranslate"><span class="pre">192.168.200.1</span></code> is the IP
+address of your cluster’s private network interface:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">ipaddr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.200.1</span>
 <span class="nt">netmask</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">255.255.255.0</span>
 <span class="nt">warewulf</span><span class="p">:</span>
@@ -182,8 +186,9 @@ is the IP address of your cluster’s private network interface:</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The DHCP range ends at <code class="docutils literal notranslate"><span class="pre">192.168.200.99</span></code> and as you will see below, the first node static IP
-address (post boot) is configured to <code class="docutils literal notranslate"><span class="pre">192.168.200.100</span></code>.</p>
+<p>The DHCP range ends at <code class="docutils literal notranslate"><span class="pre">192.168.200.99</span></code> and as you will see
+below, the first node static IP address (post boot) is configured
+to <code class="docutils literal notranslate"><span class="pre">192.168.200.100</span></code>.</p>
 </div>
 </section>
 <section id="start-and-enable-the-warewulf-service">
@@ -195,13 +200,15 @@ sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">en
 </section>
 <section id="configure-system-services-automatically">
 <h2>Configure system services automatically<a class="headerlink" href="#configure-system-services-automatically" title="Permalink to this heading"></a></h2>
-<p>There are a number of services and configurations that Warewulf relies on to operate.
-If you wish to configure all services, you can do so individually (omitting the <code class="docutils literal notranslate"><span class="pre">--all</span></code>)
-will print a help and usage instructions.</p>
+<p>There are a number of services and configurations that Warewulf relies
+on to operate.  If you wish to configure all services, you can do so
+individually (omitting the <code class="docutils literal notranslate"><span class="pre">--all</span></code>) will print a help and usage
+instructions.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If the <code class="docutils literal notranslate"><span class="pre">dhcpd</span></code> service was not used before you will have to add the interface on which
-the cluster network is running to the <code class="docutils literal notranslate"><span class="pre">DHCP_INTERFACE</span></code> in the file <code class="docutils literal notranslate"><span class="pre">/etc/sysconfig/dhcpd</span></code>.</p>
+<p>If the <code class="docutils literal notranslate"><span class="pre">dhcpd</span></code> service was not used before you will have to add
+the interface on which the cluster network is running to the
+<code class="docutils literal notranslate"><span class="pre">DHCP_INTERFACE</span></code> in the file <code class="docutils literal notranslate"><span class="pre">/etc/sysconfig/dhcpd</span></code>.</p>
 </div>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>configure<span class="w"> </span>--all
 </pre></div>
@@ -209,23 +216,25 @@ the cluster network is running to the <code class="docutils literal notranslate"
 </section>
 <section id="pull-and-build-the-vnfs-container-and-kernel">
 <h2>Pull and build the VNFS container and kernel<a class="headerlink" href="#pull-and-build-the-vnfs-container-and-kernel" title="Permalink to this heading"></a></h2>
-<p>This will pull a basic VNFS container from Docker Hub and import the default running
-kernel from the controller node and set both in the “default” node profile.</p>
+<p>This will pull a basic VNFS container from Docker Hub and import the
+default running kernel from the controller node and set both in the
+“default” node profile.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w"> </span>import<span class="w"> </span>docker://registry.opensuse.org/science/warewulf/leap-15.4/containers/kernel:latest<span class="w"> </span>leap15.4<span class="w"> </span>--setdefault
 </pre></div>
 </div>
 </section>
 <section id="set-up-the-default-node-profile">
 <h2>Set up the default node profile<a class="headerlink" href="#set-up-the-default-node-profile" title="Permalink to this heading"></a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">--setdefault</span></code> arguments above will automatically set those entries in the default
-profile, but if you wanted to set them by hand to something different, you can do the
-following:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">--setdefault</span></code> arguments above will automatically set those
+entries in the default profile, but if you wanted to set them by hand
+to something different, you can do the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-y<span class="w"> </span>-C<span class="w"> </span>leap15.4
 </pre></div>
 </div>
-<p>Next we set some default networking configurations for the first ethernet device. On
-modern Linux distributions, the name of the device is not critical, as it will be setup
-according to the HW address. Because all nodes will share the netmask and gateway
+<p>Next we set some default networking configurations for the first
+ethernet device. On modern Linux distributions, the name of the device
+is not critical, as it will be setup according to the HW
+address. Because all nodes will share the netmask and gateway
 configuration, we can set them in the default profile as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-y<span class="w"> </span>default<span class="w"> </span>--netname<span class="w"> </span>default<span class="w"> </span>--netmask<span class="w"> </span><span class="m">255</span>.255.255.0<span class="w"> </span>--gateway<span class="w"> </span><span class="m">192</span>.168.200.1
 sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list<span class="w"> </span>-a
@@ -234,13 +243,15 @@ sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w">
 </section>
 <section id="add-a-node">
 <h2>Add a node<a class="headerlink" href="#add-a-node" title="Permalink to this heading"></a></h2>
-<p>Adding nodes can be done while setting configurations in one command. Here we are setting
-the IP address of <code class="docutils literal notranslate"><span class="pre">eth0</span></code> and setting this node to be discoverable, which will then
-automatically have the HW address added to the configuration as the node boots.</p>
-<p>Node names must be unique. If you have node groups and/or multiple clusters, designate
-them using dot notation.</p>
-<p>Note that the full node configuration comes from both cascading profiles and node
-configurations which always supersede profile configurations.</p>
+<p>Adding nodes can be done while setting configurations in one
+command. Here we are setting the IP address of <code class="docutils literal notranslate"><span class="pre">eth0</span></code> and setting
+this node to be discoverable, which will then automatically have the
+HW address added to the configuration as the node boots.</p>
+<p>Node names must be unique. If you have node groups and/or multiple
+clusters, designate them using dot notation.</p>
+<p>Note that the full node configuration comes from both cascading
+profiles and node configurations which always supersede profile
+configurations.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>add<span class="w"> </span>n0000.cluster<span class="w"> </span>--netdev<span class="w"> </span>eth0<span class="w"> </span>-I<span class="w"> </span><span class="m">192</span>.168.200.100<span class="w"> </span>--discoverable
 sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span>n0000.cluster
 </pre></div>
@@ -249,18 +260,22 @@ sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </
 <section id="warewulf-overlays">
 <h2>Warewulf Overlays<a class="headerlink" href="#warewulf-overlays" title="Permalink to this heading"></a></h2>
 <p>There are two types of overlays: system and runtime overlays.</p>
-<p>System overlays are provisioned to the node before <code class="docutils literal notranslate"><span class="pre">/sbin/init</span></code> is called. This enables us
-to prepopulate node configurations with content that is node specific like networking and
-service configurations.</p>
-<p>Runtime overlays are provisioned after the node has booted and periodically during the
-normal runtime of the node. Because these overlays are provisioned at periodic intervals,
-they are very useful for content that changes, like users and groups.</p>
-<p>Overlays are generated from a template structure that is viewed using the <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">overlay</span></code>
-commands. Files that end in the <code class="docutils literal notranslate"><span class="pre">.ww</span></code> suffix are templates and abide by standard
-text/template rules. This supports loops, arrays, variables, and functions making overlays
-extremely flexible.</p>
-<p>All overlays are compiled before being provisioned. This accelerates the provisioning
-process because there is less to do when nodes are being managed at scale.</p>
+<p>System overlays are provisioned to the node before <code class="docutils literal notranslate"><span class="pre">/sbin/init</span></code> is
+called. This enables us to prepopulate node configurations with
+content that is node specific like networking and service
+configurations.</p>
+<p>Runtime overlays are provisioned after the node has booted and
+periodically during the normal runtime of the node. Because these
+overlays are provisioned at periodic intervals, they are very useful
+for content that changes, like users and groups.</p>
+<p>Overlays are generated from a template structure that is viewed using
+the <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">overlay</span></code> commands. Files that end in the <code class="docutils literal notranslate"><span class="pre">.ww</span></code> suffix
+are templates and abide by standard text/template rules. This supports
+loops, arrays, variables, and functions making overlays extremely
+flexible.</p>
+<p>All overlays are compiled before being provisioned. This accelerates
+the provisioning process because there is less to do when nodes are
+being managed at scale.</p>
 <p>Here are some of the common <code class="docutils literal notranslate"><span class="pre">overlay</span></code> commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>overlay<span class="w"> </span>list<span class="w"> </span>-l
 sudo<span class="w"> </span>wwctl<span class="w"> </span>overlay<span class="w"> </span>list<span class="w"> </span>-ls
