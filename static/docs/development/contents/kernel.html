@@ -115,9 +115,14 @@
 <h1>Kernel Management<a class="headerlink" href="#kernel-management" title="Permalink to this heading"></a></h1>
 <section id="node-kernels">
 <h2>Node Kernels<a class="headerlink" href="#node-kernels" title="Permalink to this heading"></a></h2>
-<p>Warewulf nodes require a Linux kernel to boot. There are multiple ways to do this, but the default, and easiest way is to install the kernel you wish to use for a particular container, into the container.</p>
-<p>Warewulf will locate the kernel automatically within the container and by default use that kernel for any node configured to use that container image.</p>
-<p>You can see what kernel is included in a container by using the <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">container</span> <span class="pre">list</span></code> command:</p>
+<p>Warewulf nodes require a Linux kernel to boot. There are multiple ways
+to do this, but the default, and easiest way is to install the kernel
+you wish to use for a particular container, into the container.</p>
+<p>Warewulf will locate the kernel automatically within the container and
+by default use that kernel for any node configured to use that
+container image.</p>
+<p>You can see what kernel is included in a container by using the
+<code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">container</span> <span class="pre">list</span></code> command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w"> </span>list
 CONTAINER<span class="w"> </span>NAME<span class="w">            </span>NODES<span class="w">  </span>KERNEL<span class="w"> </span>VERSION
 alpine<span class="w">                    </span><span class="m">0</span>
@@ -125,28 +130,41 @@ rocky<span class="w">                     </span><span class="m">0</span><span c
 rocky_updated<span class="w">             </span><span class="m">1</span><span class="w">      </span><span class="m">4</span>.18.0-348.23.1.el8_5.x86_64
 </pre></div>
 </div>
-<p>Here you will notice the alpine contianer that was imported has no kernel within it, and each of the rocky containers include a kernel.</p>
-<p>This model was introduced in Warewulf 4.3.0. Previously, Warewulf managed the kernel and the container separately, which made it hard to build and distribute containers that have custom drivers and/or configurations included (e.g. OFED, GPUs, etc.).</p>
+<p>Here you will notice the alpine contianer that was imported has no
+kernel within it, and each of the rocky containers include a kernel.</p>
+<p>This model was introduced in Warewulf 4.3.0. Previously, Warewulf
+managed the kernel and the container separately, which made it hard to
+build and distribute containers that have custom drivers and/or
+configurations included (e.g. OFED, GPUs, etc.).</p>
 </section>
 <section id="kernel-overrides">
 <h2>Kernel Overrides<a class="headerlink" href="#kernel-overrides" title="Permalink to this heading"></a></h2>
-<p>It is still possible to specify a kernel to a container if it doesn’t include it’s own kernel, or if you wish to override the default kernel by using the <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">override</span></code> capability.</p>
-<p>You can specify this option either within the <code class="docutils literal notranslate"><span class="pre">nodes.conf</span></code> directly or via the command line with the <code class="docutils literal notranslate"><span class="pre">--kerneloverride</span></code> option to <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">node</span> <span class="pre">set</span></code> or <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">profile</span> <span class="pre">set</span></code> commands.</p>
-<p>In this case you will also need to import a kernel specifically into Warewulf for this purpose using the <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">kernel</span> <span class="pre">import</span></code> command as follows:</p>
+<p>It is still possible to specify a kernel to a container if it doesn’t
+include it’s own kernel, or if you wish to override the default kernel
+by using the <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">override</span></code> capability.</p>
+<p>You can specify this option either within the <code class="docutils literal notranslate"><span class="pre">nodes.conf</span></code> directly
+or via the command line with the <code class="docutils literal notranslate"><span class="pre">--kerneloverride</span></code> option to
+<code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">node</span> <span class="pre">set</span></code> or <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">profile</span> <span class="pre">set</span></code> commands.</p>
+<p>In this case you will also need to import a kernel specifically into
+Warewulf for this purpose using the <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">kernel</span> <span class="pre">import</span></code> command as
+follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>kernel<span class="w"> </span>import<span class="w"> </span><span class="k">$(</span>uname<span class="w"> </span>-r<span class="k">)</span>
 <span class="m">4</span>.18.0-305.3.1.el8_4.x86_64:<span class="w"> </span>Done
 </pre></div>
 </div>
-<p>This process will import not only the kernel image itself, but also all of the kernel modules and firmware associated to this kernel.</p>
+<p>This process will import not only the kernel image itself, but also
+all of the kernel modules and firmware associated to this kernel.</p>
 <section id="listing-all-imported-kernels">
 <h3>Listing All Imported Kernels<a class="headerlink" href="#listing-all-imported-kernels" title="Permalink to this heading"></a></h3>
-<p>Once the kernel has been imported, you can list them all with the following command:</p>
+<p>Once the kernel has been imported, you can list them all with the
+following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>kernel<span class="w"> </span>list
 VNFS<span class="w"> </span>NAME<span class="w">                           </span>NODES
 <span class="m">4</span>.18.0-305.3.1.el8_4.x86_64<span class="w">             </span><span class="m">0</span>
 </pre></div>
 </div>
-<p>Once a kernel has been imported and showing up in this list you can configure it to boot compute nodes.</p>
+<p>Once a kernel has been imported and showing up in this list you can
+configure it to boot compute nodes.</p>
 </section>
 </section>
 </section>

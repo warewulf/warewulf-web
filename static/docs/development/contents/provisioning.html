@@ -113,24 +113,42 @@
 <p>Once the nodes are configured in Warewulf, they are ready to boot.</p>
 <section id="node-hardware-setup">
 <h2>Node Hardware Setup<a class="headerlink" href="#node-hardware-setup" title="Permalink to this heading"></a></h2>
-<p>The only thing that Warewulf requires to provision is that the node is set to PXE boot. You may need to change the boot order if there is a local disk present and bootable. This is a configuration change you will have to make in the BIOS of the cluster node.</p>
-<p>Each vendor does this differently and as a result we won’t go into the setup specifics here and if you can not find information on how to PXE boot your nodes, please contact your hardware vendor support.</p>
+<p>The only thing that Warewulf requires to provision is that the node is
+set to PXE boot. You may need to change the boot order if there is a
+local disk present and bootable. This is a configuration change you
+will have to make in the BIOS of the cluster node.</p>
+<p>Each vendor does this differently and as a result we won’t go into the
+setup specifics here and if you can not find information on how to PXE
+boot your nodes, please contact your hardware vendor support.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you find that you are going to use Warewulf, or any other cluster provisioning tool, it is very helpful to require that hardware vendors preconfigure your cluster nodes with values of your choosing, and ask them to provide a text file that includes all of the HW/MAC addresses of the compute nodes in the order they are racked (which most creditable vendors will do). You can also ask them to certify their computing stack for the operating system you wish to use and the provisioning system. This helps hardware vendors to ensure their stack works with open source projects like Warewulf, Debian, OpenSuSE, and Rocky Linux.</p>
+<p>If you find that you are going to use Warewulf, or any other
+cluster provisioning tool, it is very helpful to require that
+hardware vendors preconfigure your cluster nodes with values of
+your choosing, and ask them to provide a text file that includes
+all of the HW/MAC addresses of the compute nodes in the order they
+are racked (which most creditable vendors will do). You can also
+ask them to certify their computing stack for the operating system
+you wish to use and the provisioning system. This helps hardware
+vendors to ensure their stack works with open source projects like
+Warewulf, Debian, OpenSuSE, and Rocky Linux.</p>
 </div>
 </section>
 <section id="the-provisioning-process">
 <h2>The Provisioning Process<a class="headerlink" href="#the-provisioning-process" title="Permalink to this heading"></a></h2>
-<p>When the cluster node boots, the following order of operations will occur:</p>
-<ol class="arabic simple">
+<p>When the cluster node boots, the following order of operations will
+occur:</p>
+<ol class="arabic">
 <li><dl class="simple">
 <dt>BIOS:</dt><dd><ol class="arabic simple">
-<li><p>The system BIOS will bootstrap the initialization of the hardware</p></li>
+<li><p>The system BIOS will bootstrap the initialization of the
+hardware</p></li>
 <li><p>The network card will register its option ROM into the BIOS</p></li>
-<li><p>The BIOS will run through all of its functions and finish with boot devices</p></li>
+<li><p>The BIOS will run through all of its functions and finish with
+boot devices</p></li>
 <li><p>The boot devices are attempted in order</p></li>
-<li><p>When it gets to the network boot device, PXE is run from the firmware on the network card</p></li>
+<li><p>When it gets to the network boot device, PXE is run from the
+firmware on the network card</p></li>
 </ol>
 </dd>
 </dl>
@@ -138,26 +156,35 @@
 <li><dl class="simple">
 <dt>PXE:</dt><dd><ol class="arabic simple">
 <li><p>PXE will request a BOOTP/DHCP address on the network</p></li>
-<li><p>The Warewulf controller’s DHCP server will respond with a network configuration and filename to try and boot</p></li>
-<li><p>PXE will attempt to download the filename referred to in the DHCP response via TFTP</p></li>
-<li><p>The downloaded file will execute an iPXE stack which will reach out to the Warewulf server for it’s configuration</p></li>
+<li><p>The Warewulf controller’s DHCP server will respond with a
+network configuration and filename to try and boot</p></li>
+<li><p>PXE will attempt to download the filename referred to in the
+DHCP response via TFTP</p></li>
+<li><p>The downloaded file will execute an iPXE stack which will reach
+out to the Warewulf server for it’s configuration</p></li>
 </ol>
 </dd>
 </dl>
 </li>
-<li><dl class="simple">
-<dt>Bootstrap:</dt><dd><ol class="arabic simple">
-<li><p>The Warewulf server will generate the iPXE configuration which will include directions of what else is necessary to download and how to boot.</p></li>
-<li><p>The kernel, container image, kernel modules, and system overlay are all downloaded over REST HTTP from the Warewulf Server</p></li>
-<li><p>iPXE executes the kernel and processes the overlays to provide a unified root file system</p></li>
-<li><dl class="simple">
-<dt>Warewulf bootstraps the initialization of cluster node’s operating system</dt><dd><ol class="arabic simple">
+<li><dl>
+<dt>Bootstrap:</dt><dd><ol class="arabic">
+<li><p>The Warewulf server will generate the iPXE configuration which
+will include directions of what else is necessary to download
+and how to boot.</p></li>
+<li><p>The kernel, container image, kernel modules, and system overlay
+are all downloaded over REST HTTP from the Warewulf Server</p></li>
+<li><p>iPXE executes the kernel and processes the overlays to provide
+a unified root file system</p></li>
+<li><p>Warewulf bootstraps the initialization of cluster node’s
+operating system</p>
+<blockquote>
+<div><ol class="arabic simple">
 <li><p>File System (re)configuration</p></li>
 <li><p>SELinux</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">wwclient</span></code> is called as a background daemon and sleeps until network is ready</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">wwclient</span></code> is called as a background daemon and sleeps
+until network is ready</p></li>
 </ol>
-</dd>
-</dl>
+</div></blockquote>
 </li>
 <li><p>The Warewulf bootstrap execs the container’s <code class="docutils literal notranslate"><span class="pre">/sbin/init</span></code></p></li>
 </ol>
@@ -166,7 +193,8 @@
 </li>
 <li><dl class="simple">
 <dt>Container:</dt><dd><ol class="arabic simple">
-<li><p>The container now boots exactly as any operating system would expect</p></li>
+<li><p>The container now boots exactly as any operating system would
+expect</p></li>
 </ol>
 </dd>
 </dl>

@@ -156,11 +156,12 @@ Warewulf (4.3.0):</p>
 appropriate networking information. Specifically the following
 configurations:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ipaddr</span></code>: This is the control node’s networking interface connecting
-to the cluster’s <strong>PRIVATE</strong> network. This configuration must match
-the host’s network IP address for the cluster’s private interface.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">netmask</span></code>: Similar to the <code class="docutils literal notranslate"><span class="pre">ipaddr</span></code>, this is the subnet mask for the
-cluster’s <strong>PRIVATE</strong> network and it must also match the host’s
+<li><p><code class="docutils literal notranslate"><span class="pre">ipaddr</span></code>: This is the control node’s networking interface
+connecting to the cluster’s <strong>PRIVATE</strong> network. This configuration
+must match the host’s network IP address for the cluster’s private
+interface.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">netmask</span></code>: Similar to the <code class="docutils literal notranslate"><span class="pre">ipaddr</span></code>, this is the subnet mask for
+the cluster’s <strong>PRIVATE</strong> network and it must also match the host’s
 subnet mask for the cluster’s private interface.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">dhcp:range</span> <span class="pre">start</span></code> and <code class="docutils literal notranslate"><span class="pre">dhcp:range</span> <span class="pre">end</span></code>: This address range must
 exist in the network defined above. If it is outside of this
@@ -169,38 +170,38 @@ you want DHCP to use.</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The network configuration listed above assumes the network
-layout in the [Background](background.md) portion of the
-documentation.</p>
+<p>The network configuration listed above assumes the network layout
+in the [Background](background.md) portion of the documentation.</p>
 </div>
 <p>The other configuration options are usually not touched, but they are
 explained as follows:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">*:enabled</span></code>: This disables Warewulf’s control of an external
 service. This is useful if you want to manage that service directly.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">*:systemd</span> <span class="pre">name</span></code>: This is so Warewulf can control some of the host’s
-services. For the distributions that we’ve built and tested this on,
-these will require no changes.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">warewulf:port</span></code>: This is the port that the Warewulf web server will
-be listening on. It is recommended not to change this so there is no
-misalignment with node’s expectations of how to contact the Warewulf
-service.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">warewulf:secure</span></code>: When <code class="docutils literal notranslate"><span class="pre">true</span></code>, this limits the Warewulf server to
-only respond to runtime overlay requests originating from a
+<li><p><code class="docutils literal notranslate"><span class="pre">*:systemd</span> <span class="pre">name</span></code>: This is so Warewulf can control some of the
+host’s services. For the distributions that we’ve built and tested
+this on, these will require no changes.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">warewulf:port</span></code>: This is the port that the Warewulf web server
+will be listening on. It is recommended not to change this so there
+is no misalignment with node’s expectations of how to contact the
+Warewulf service.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">warewulf:secure</span></code>: When <code class="docutils literal notranslate"><span class="pre">true</span></code>, this limits the Warewulf server
+to only respond to runtime overlay requests originating from a
 privileged report port. This makes it so that only the <code class="docutils literal notranslate"><span class="pre">root</span></code> user
 on a compute node can request the runtime overlay. While generally
 there is nothing super “secure” in these overlays, this adds the
 necessary protection that the user’s can not obtain this
 information.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">warewulf:update</span> <span class="pre">interval</span></code>: This defines the frequency (in seconds)
-with which the Warewulf client on the compute node fetches overlay
-updates.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">warewulf:update</span> <span class="pre">interval</span></code>: This defines the frequency (in
+seconds) with which the Warewulf client on the compute node fetches
+overlay updates.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">warewulf:autobuild</span> <span class="pre">overlays</span></code>: This determines whether per-node
 overlays will automatically be rebuilt, e.g., when an underlying
 overlay is changed.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">warewulf:host</span> <span class="pre">overlay</span></code>: This determines whether the special <code class="docutils literal notranslate"><span class="pre">host</span></code>
-overlay is applied to the Warewulf server during configuration. (The
-host overlay is used to configure the dependent services.)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">warewulf:host</span> <span class="pre">overlay</span></code>: This determines whether the special
+<code class="docutils literal notranslate"><span class="pre">host</span></code> overlay is applied to the Warewulf server during
+configuration. (The host overlay is used to configure the dependent
+services.)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">warewulf:syslog</span></code>: This determines whether Warewulf server logs go
 to syslog or are written directly to a log file. (e.g.,
 <code class="docutils literal notranslate"><span class="pre">/var/log/warewulfd.log</span></code>)</p></li>

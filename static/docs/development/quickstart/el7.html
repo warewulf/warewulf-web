@@ -129,7 +129,8 @@ sudo<span class="w"> </span>make<span class="w"> </span>install
 </section>
 <section id="configure-firewalld">
 <h2>Configure firewalld<a class="headerlink" href="#configure-firewalld" title="Permalink to this heading"></a></h2>
-<p>Restart firewalld to register the added service file, add the service to the default zone, and reload.</p>
+<p>Restart firewalld to register the added service file, add the service
+to the default zone, and reload.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>firewalld
 sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--add-service<span class="w"> </span>warewulf
 sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--add-service<span class="w"> </span>nfs
@@ -140,9 +141,10 @@ sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--reload
 </section>
 <section id="configure-the-controller">
 <h2>Configure the controller<a class="headerlink" href="#configure-the-controller" title="Permalink to this heading"></a></h2>
-<p>Edit the file <code class="docutils literal notranslate"><span class="pre">/etc/warewulf/warewulf.conf</span></code> and ensure that you’ve set the appropriate
-configuration parameters. Here are some of the defaults for reference assuming that <code class="docutils literal notranslate"><span class="pre">192.168.200.1</span></code>
-is the IP address of your cluster’s private network interface:</p>
+<p>Edit the file <code class="docutils literal notranslate"><span class="pre">/etc/warewulf/warewulf.conf</span></code> and ensure that you’ve
+set the appropriate configuration parameters. Here are some of the
+defaults for reference assuming that <code class="docutils literal notranslate"><span class="pre">192.168.200.1</span></code> is the IP
+address of your cluster’s private network interface:</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">ipaddr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.200.1</span>
 <span class="nt">netmask</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">255.255.255.0</span>
 <span class="nt">warewulf</span><span class="p">:</span>
@@ -168,8 +170,9 @@ is the IP address of your cluster’s private network interface:</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The DHCP range ends at <cite>192.168.200.99</cite> and as you will see below, the first node static IP
-address (post boot) is configured to <cite>192.168.200.100</cite>.</p>
+<p>The DHCP range ends at <cite>192.168.200.99</cite> and as you will see below,
+the first node static IP address (post boot) is configured to
+<cite>192.168.200.100</cite>.</p>
 </div>
 </section>
 <section id="start-and-enable-the-warewulf-service">
@@ -181,20 +184,27 @@ sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">en
 </section>
 <section id="configure-system-services-automatically">
 <h2>Configure system services automatically<a class="headerlink" href="#configure-system-services-automatically" title="Permalink to this heading"></a></h2>
-<p>There are a number of services and configurations that Warewulf relies on to operate.
-If you wish to configure all services, you can do so individually (omitting the <code class="docutils literal notranslate"><span class="pre">--all</span></code>)
-will print a help and usage instructions.</p>
+<p>There are a number of services and configurations that Warewulf relies
+on to operate.  If you wish to configure all services, you can do so
+individually (omitting the <code class="docutils literal notranslate"><span class="pre">--all</span></code>) will print a help and usage
+instructions.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>configure<span class="w"> </span>--all
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you just installed the system fresh and have SELinux enforcing, you may need to reboot the system at this stage to properly set the contexts of the TFTP contents. After rebooting, you might also need to run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">restorecon</span> <span class="pre">-Rv</span> <span class="pre">/var/lib/tftpboot/</span></code> if there are errors with TFTP still.</p>
+<p>If you just installed the system fresh and have SELinux enforcing,
+you may need to reboot the system at this stage to properly set the
+contexts of the TFTP contents. After rebooting, you might also need
+to run <code class="docutils literal notranslate"><span class="pre">$</span> <span class="pre">sudo</span> <span class="pre">restorecon</span> <span class="pre">-Rv</span> <span class="pre">/var/lib/tftpboot/</span></code> if there are
+errors with TFTP still.</p>
 </div>
 </section>
 <section id="pull-and-build-the-vnfs-container-and-kernel">
 <h2>Pull and build the VNFS container and kernel<a class="headerlink" href="#pull-and-build-the-vnfs-container-and-kernel" title="Permalink to this heading"></a></h2>
-<p>This will pull a basic VNFS container from Docker Hub and import the default running kernel from the controller node and set both in the “default” node profile.</p>
+<p>This will pull a basic VNFS container from Docker Hub and import the
+default running kernel from the controller node and set both in the
+“default” node profile.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w"> </span>import<span class="w"> </span>docker://warewulf/centos-7<span class="w"> </span>centos-7<span class="w"> </span>--setdefault
 sudo<span class="w"> </span>wwctl<span class="w"> </span>kernel<span class="w"> </span>import<span class="w"> </span><span class="k">$(</span>uname<span class="w"> </span>-r<span class="k">)</span><span class="w"> </span>--setdefault
 </pre></div>
@@ -202,11 +212,17 @@ sudo<span class="w"> </span>wwctl<span class="w"> </span>kernel<span class="w"> 
 </section>
 <section id="set-up-the-default-node-profile">
 <h2>Set up the default node profile<a class="headerlink" href="#set-up-the-default-node-profile" title="Permalink to this heading"></a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">--setdefault</span></code> arguments above will automatically set those entries in the default profile, but if you wanted to set them by hand to something different, you can do the following:</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">--setdefault</span></code> arguments above will automatically set those
+entries in the default profile, but if you wanted to set them by hand
+to something different, you can do the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-y<span class="w"> </span>default<span class="w"> </span>-K<span class="w"> </span><span class="k">$(</span>uname<span class="w"> </span>-r<span class="k">)</span><span class="w"> </span>-C<span class="w"> </span>centos-7
 </pre></div>
 </div>
-<p>Next we set some default networking configurations for the first ethernet device. On modern Linux distributions, the name of the device is not critical, as it will be setup according to the HW address. Because all nodes will share the netmask and gateway configuration, we can set them in the default profile as follows:</p>
+<p>Next we set some default networking configurations for the first
+ethernet device. On modern Linux distributions, the name of the device
+is not critical, as it will be setup according to the HW
+address. Because all nodes will share the netmask and gateway
+configuration, we can set them in the default profile as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>-y<span class="w"> </span>default<span class="w"> </span>--netname<span class="w"> </span>default<span class="w"> </span>--netmask<span class="w"> </span><span class="m">255</span>.255.255.0<span class="w"> </span>--gateway<span class="w"> </span><span class="m">192</span>.168.200.1
 sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list
 </pre></div>
@@ -214,9 +230,15 @@ sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w">
 </section>
 <section id="add-a-node">
 <h2>Add a node<a class="headerlink" href="#add-a-node" title="Permalink to this heading"></a></h2>
-<p>Adding nodes can be done while setting configurations in one command. Here we are setting the IP address of <code class="docutils literal notranslate"><span class="pre">eth0</span></code> and setting this node to be discoverable, which will then automatically have the HW address added to the configuration as the node boots.</p>
-<p>Node names must be unique. If you have node groups and/or multiple clusters, designate them using dot notation.</p>
-<p>Note that the full node configuration comes from both cascading profiles and node configurations which always supersede profile configurations.</p>
+<p>Adding nodes can be done while setting configurations in one
+command. Here we are setting the IP address of <code class="docutils literal notranslate"><span class="pre">eth0</span></code> and setting
+this node to be discoverable, which will then automatically have the
+HW address added to the configuration as the node boots.</p>
+<p>Node names must be unique. If you have node groups and/or multiple
+clusters, designate them using dot notation.</p>
+<p>Note that the full node configuration comes from both cascading
+profiles and node configurations which always supersede profile
+configurations.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>add<span class="w"> </span>n0000.cluster<span class="w"> </span>--netname<span class="w"> </span>default<span class="w"> </span>-I<span class="w"> </span><span class="m">192</span>.168.200.100<span class="w"> </span>--discoverable
 sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span>n0000
 </pre></div>

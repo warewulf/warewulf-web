@@ -122,17 +122,41 @@
              
   <section id="container-management">
 <h1>Container Management<a class="headerlink" href="#container-management" title="Permalink to this heading"></a></h1>
-<p>Since the inception of Warewulf over 20 years ago, Warewulf has used the model of the “Virtual Node File System” (VNFS) as a template image for the compute nodes. This is similar to a golden master image, except that the node file system exists within a directory on the Warewulf control node (e.g. a <cite>chroot()</cite>).</p>
-<p>In hindsight, we’ve been using containers all along, but the buzzword just didn’t exist. Over the last 5-6 years, the enterprise has created a lot of tooling and standards around defining, building, distributing, securing, and managing containers, so Warewulf (as of v4.0) now integrates directly within the container ecosystem to facilitate the process of VNFS image management.</p>
-<p>If you are not currently leveraging the container ecosystem in any other way, you can still build your own chroot directories and use Warewulf as you always have.</p>
-<p>It is important to understand that Warewulf is not running a container runtime on the nodes. While that is absolutely possible to run containers from the booted hosts, Warewulf is provisioning the container image to the bare metal and booting it. This container will be used as the base operating system and by default it will run stateless in memory. This means when you reboot the node, the node persists no information about Warewulf or how it booted.</p>
+<p>Since the inception of Warewulf over 20 years ago, Warewulf has used
+the model of the “Virtual Node File System” (VNFS) as a template image
+for the compute nodes. This is similar to a golden master image,
+except that the node file system exists within a directory on the
+Warewulf control node (e.g. a <cite>chroot()</cite>).</p>
+<p>In hindsight, we’ve been using containers all along, but the buzzword
+just didn’t exist. Over the last 5-6 years, the enterprise has created
+a lot of tooling and standards around defining, building,
+distributing, securing, and managing containers, so Warewulf (as of
+v4.0) now integrates directly within the container ecosystem to
+facilitate the process of VNFS image management.</p>
+<p>If you are not currently leveraging the container ecosystem in any
+other way, you can still build your own chroot directories and use
+Warewulf as you always have.</p>
+<p>It is important to understand that Warewulf is not running a container
+runtime on the nodes. While that is absolutely possible to run
+containers from the booted hosts, Warewulf is provisioning the
+container image to the bare metal and booting it. This container will
+be used as the base operating system and by default it will run
+stateless in memory. This means when you reboot the node, the node
+persists no information about Warewulf or how it booted.</p>
 <section id="container-tools">
 <h2>Container Tools<a class="headerlink" href="#container-tools" title="Permalink to this heading"></a></h2>
-<p>There are different container managment tools available. Docker is probably the most recognizable one in the enterprise. Podman is another one that is gaining traction on the RHEL platforms. In HPC, Apptainer is the most utilized container management tool. You can use any of these to create and manage the containers to be later imported into Warewulf.</p>
+<p>There are different container managment tools available. Docker is
+probably the most recognizable one in the enterprise. Podman is
+another one that is gaining traction on the RHEL platforms. In HPC,
+Apptainer is the most utilized container management tool. You can use
+any of these to create and manage the containers to be later imported
+into Warewulf.</p>
 </section>
 <section id="importing-from-a-registry">
 <h2>Importing From A Registry<a class="headerlink" href="#importing-from-a-registry" title="Permalink to this heading"></a></h2>
-<p>Warewulf supports importing an image from any OCI compliant registry. This means you can import from a public registry or from a private registry.</p>
+<p>Warewulf supports importing an image from any OCI compliant
+registry. This means you can import from a public registry or from a
+private registry.</p>
 <p>Here is an example of importing from Docker Hub.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$ sudo wwctl container import docker://warewulf/rocky rocky-8
 Getting image source signatures
@@ -147,16 +171,26 @@ Building container: rocky-8
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Most containers in Docker Hub are not “bootable”, in that, they have a limited version of Systemd to make them lighter weight for container purposes. For this reason, don’t expect any base Docker container (e.g. <code class="docutils literal notranslate"><span class="pre">docker://rockylinux</span></code> or <code class="docutils literal notranslate"><span class="pre">docker://debian</span></code>) to boot properly. They will not, as they will get stuck into a single user mode. The containers in <a class="reference external" href="https://hub.docker.com/u/warewulf">https://hub.docker.com/u/warewulf</a> are not limited and thus they boot as you would expect.</p>
+<p>Most containers in Docker Hub are not “bootable”, in that, they
+have a limited version of Systemd to make them lighter weight for
+container purposes. For this reason, don’t expect any base Docker
+container (e.g. <code class="docutils literal notranslate"><span class="pre">docker://rockylinux</span></code> or <code class="docutils literal notranslate"><span class="pre">docker://debian</span></code>) to
+boot properly. They will not, as they will get stuck into a single
+user mode. The containers in <a class="reference external" href="https://hub.docker.com/u/warewulf">https://hub.docker.com/u/warewulf</a> are not limited and thus
+they boot as you would expect.</p>
 </div>
 <section id="private-registry">
 <h3>Private Registry<a class="headerlink" href="#private-registry" title="Permalink to this heading"></a></h3>
-<p>It is possible to use a private registry that is password protected or does not have the requirement for TLS. In order to do so, you have two choices for handling the credentials.</p>
+<p>It is possible to use a private registry that is password protected or
+does not have the requirement for TLS. In order to do so, you have two
+choices for handling the credentials.</p>
 <ul class="simple">
 <li><p>Set environmental variables</p></li>
-<li><p>Use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">login</span></code> or <code class="docutils literal notranslate"><span class="pre">podman</span> <span class="pre">login</span></code> which will store the credentials locally</p></li>
+<li><p>Use <code class="docutils literal notranslate"><span class="pre">docker</span> <span class="pre">login</span></code> or <code class="docutils literal notranslate"><span class="pre">podman</span> <span class="pre">login</span></code> which will store the
+credentials locally</p></li>
 </ul>
-<p>Please note, there is no requirement to install and use docker or podman on your control node just for importing images into Warewulf.</p>
+<p>Please note, there is no requirement to install and use docker or
+podman on your control node just for importing images into Warewulf.</p>
 <p>Here are the environmental variables that can be used.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>WAREWULF_OCI_USERNAME
 WAREWULF_OCI_PASSWORD
@@ -169,17 +203,27 @@ WAREWULF_OCI_NOHTTPS
 sudo<span class="w"> </span>-E<span class="w"> </span>wwctl<span class="w"> </span>import<span class="w"> </span>docker://ghcr.io/privatereg/rocky:8
 </pre></div>
 </div>
-<p>The above is just an example. Consideration should be done before doing it this way if you are in a security sensitive environment or shared environments. You would not want these showing up in bash history or logs.</p>
+<p>The above is just an example. Consideration should be done before
+doing it this way if you are in a security sensitive environment or
+shared environments. You would not want these showing up in bash
+history or logs.</p>
 </section>
 <section id="syncuser">
 <h3>Syncuser<a class="headerlink" href="#syncuser" title="Permalink to this heading"></a></h3>
-<p>At import time Warewulf checks if the names of the users on the host match the users and UIDs/GIDs in the imported container. If there is mismatch, the import command will print out a warning.
-By setting the <code class="docutils literal notranslate"><span class="pre">--syncuser</span></code> flag you advise Warewulf to try to syncronize the users from the host to the container, which means that <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> and <code class="docutils literal notranslate"><span class="pre">/etc/group</span></code> of the imported container are updated and all the files belonning to these UIDs and GIDs will also be updated.</p>
-<p>A check if the users of the host and container matches can be triggered with the <code class="docutils literal notranslate"><span class="pre">syncuser</span></code> command.</p>
+<p>At import time Warewulf checks if the names of the users on the host
+match the users and UIDs/GIDs in the imported container. If there is
+mismatch, the import command will print out a warning.  By setting the
+<code class="docutils literal notranslate"><span class="pre">--syncuser</span></code> flag you advise Warewulf to try to syncronize the users
+from the host to the container, which means that <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> and
+<code class="docutils literal notranslate"><span class="pre">/etc/group</span></code> of the imported container are updated and all the files
+belonning to these UIDs and GIDs will also be updated.</p>
+<p>A check if the users of the host and container matches can be
+triggered with the <code class="docutils literal notranslate"><span class="pre">syncuser</span></code> command.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wwctl<span class="w"> </span>container<span class="w"> </span>syncuser<span class="w"> </span>container-name
 </pre></div>
 </div>
-<p>With the <code class="docutils literal notranslate"><span class="pre">--write</span></code> flag it will update the container to match the user database of the host as described above.</p>
+<p>With the <code class="docutils literal notranslate"><span class="pre">--write</span></code> flag it will update the container to match the
+user database of the host as described above.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wwctl<span class="w"> </span>container<span class="w"> </span>syncuser<span class="w"> </span>--write<span class="w"> </span>container-name
 </pre></div>
 </div>
@@ -187,17 +231,21 @@ By setting the <code class="docutils literal notranslate"><span class="pre">--sy
 </section>
 <section id="listing-all-imported-containers">
 <h2>Listing All Imported Containers<a class="headerlink" href="#listing-all-imported-containers" title="Permalink to this heading"></a></h2>
-<p>Once the container has been imported, you can list them all with the following command:</p>
+<p>Once the container has been imported, you can list them all with the
+following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w"> </span>list
 CONTAINER<span class="w"> </span>NAME<span class="w">                      </span>BUILT<span class="w">  </span>NODES
 rocky-8<span class="w">                             </span><span class="nb">true</span><span class="w">   </span><span class="m">0</span>
 </pre></div>
 </div>
-<p>Once a container has been imported and showing up in this list you can configure it to boot compute nodes.</p>
+<p>Once a container has been imported and showing up in this list you can
+configure it to boot compute nodes.</p>
 </section>
 <section id="making-changes-to-containers">
 <h2>Making Changes To Containers<a class="headerlink" href="#making-changes-to-containers" title="Permalink to this heading"></a></h2>
-<p>Warewulf has a minimal container runtime built into it. This means you can run commands inside of any of the containers and make changes to them as follows:</p>
+<p>Warewulf has a minimal container runtime built into it. This means you
+can run commands inside of any of the containers and make changes to
+them as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>rocky-8<span class="w"> </span>/bin/sh
 <span class="o">[</span>rocky-8<span class="o">]</span><span class="w"> </span>Warewulf&gt;<span class="w"> </span>cat<span class="w"> </span>/etc/rocky-release
 Rocky<span class="w"> </span>Linux<span class="w"> </span>release<span class="w"> </span><span class="m">8</span>.4<span class="w"> </span><span class="o">(</span>Green<span class="w"> </span>Obsidian<span class="o">)</span>
@@ -206,25 +254,37 @@ Rebuilding<span class="w"> </span>container...
 <span class="o">[</span>INFO<span class="o">]</span><span class="w">     </span>Skipping<span class="w"> </span><span class="o">(</span>VNFS<span class="w"> </span>is<span class="w"> </span>current<span class="o">)</span>
 </pre></div>
 </div>
-<p>You can also <code class="docutils literal notranslate"><span class="pre">--bind</span></code> directories from your host into the container when using the exec command. This works as follows:</p>
+<p>You can also <code class="docutils literal notranslate"><span class="pre">--bind</span></code> directories from your host into the container
+when using the exec command. This works as follows:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w"> </span><span class="nb">exec</span><span class="w"> </span>--bind<span class="w"> </span>/tmp:/mnt<span class="w"> </span>rocky-8<span class="w"> </span>/bin/sh
 <span class="o">[</span>rocky-8<span class="o">]</span><span class="w"> </span>Warewulf&gt;
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>As with any mount command, both the source and the target must exist. This is why the example uses the <code class="docutils literal notranslate"><span class="pre">/mnt/</span></code> directory location, as it is almost always present and empty in every Linux distribution (as prescribed by the LSB file hierarchy standard).</p>
+<p>As with any mount command, both the source and the target must
+exist. This is why the example uses the <code class="docutils literal notranslate"><span class="pre">/mnt/</span></code> directory
+location, as it is almost always present and empty in every Linux
+distribution (as prescribed by the LSB file hierarchy standard).</p>
 </div>
-<p>When the command completes, if anything within the container changed, the container will be rebuilt into a bootable static object automatically.</p>
-<p>If the files <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> or <code class="docutils literal notranslate"><span class="pre">/etc/group</span></code> were updated, there will be an additional check to confirm if the users are in sync as described in <a class="reference internal" href="#syncuser">Syncuser</a> section.</p>
+<p>When the command completes, if anything within the container changed,
+the container will be rebuilt into a bootable static object
+automatically.</p>
+<p>If the files <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> or <code class="docutils literal notranslate"><span class="pre">/etc/group</span></code> were updated, there
+will be an additional check to confirm if the users are in sync as
+described in <a class="reference internal" href="#syncuser">Syncuser</a> section.</p>
 </section>
 <section id="creating-containers-from-scratch">
 <h2>Creating Containers From Scratch<a class="headerlink" href="#creating-containers-from-scratch" title="Permalink to this heading"></a></h2>
-<p>You can also create containers from scratch and import those containers into Warewulf as previous versions of Warewulf did.</p>
+<p>You can also create containers from scratch and import those
+containers into Warewulf as previous versions of Warewulf did.</p>
 <section id="building-a-container-from-your-host">
 <h3>Building A Container From Your Host<a class="headerlink" href="#building-a-container-from-your-host" title="Permalink to this heading"></a></h3>
-<p>RPM based distributions, as well as Debian variants can all bootstrap mini <code class="docutils literal notranslate"><span class="pre">chroot()</span></code> directories which can then be used to bootstrap your node’s container.</p>
-<p>For example, on an RPM based Linux distribution with YUM or DNF, you can do something like the following:</p>
+<p>RPM based distributions, as well as Debian variants can all bootstrap
+mini <code class="docutils literal notranslate"><span class="pre">chroot()</span></code> directories which can then be used to bootstrap your
+node’s container.</p>
+<p>For example, on an RPM based Linux distribution with YUM or DNF, you
+can do something like the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>--installroot<span class="w"> </span>/tmp/newroot<span class="w"> </span>basesystem<span class="w"> </span>bash<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>chkconfig<span class="w"> </span>coreutils<span class="w"> </span>e2fsprogs<span class="w"> </span>ethtool<span class="w"> </span>filesystem<span class="w"> </span>findutils<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>gawk<span class="w"> </span>grep<span class="w"> </span>initscripts<span class="w"> </span>iproute<span class="w"> </span>iputils<span class="w"> </span>net-tools<span class="w"> </span>nfs-utils<span class="w"> </span>pam<span class="w"> </span><span class="se">\</span>
@@ -240,15 +300,23 @@ Rebuilding<span class="w"> </span>container...
 sudo<span class="w"> </span>debootstrap<span class="w"> </span>stable<span class="w"> </span>/tmp/newroot<span class="w"> </span>http://ftp.us.debian.org/debian
 </pre></div>
 </div>
-<p>Once you have created and modified your new <code class="docutils literal notranslate"><span class="pre">chroot()</span></code>, you can import it into Warewulf with the following command:</p>
+<p>Once you have created and modified your new <code class="docutils literal notranslate"><span class="pre">chroot()</span></code>, you can
+import it into Warewulf with the following command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w"> </span>import<span class="w"> </span>/tmp/newroot<span class="w"> </span>containername
 </pre></div>
 </div>
 </section>
 <section id="building-a-container-using-apptainer">
 <h3>Building A Container Using Apptainer<a class="headerlink" href="#building-a-container-using-apptainer" title="Permalink to this heading"></a></h3>
-<p>Apptainer, a container platform for HPC and performance intensive applications, can also be used to create node containers for Warewulf. There are several Apptainer container recipes in the <code class="docutils literal notranslate"><span class="pre">containers/Apptainer/</span></code> directory and can be found on GitHub at <a class="reference external" href="https://github.com/hpcng/warewulf/tree/main/containers/Apptainer">https://github.com/hpcng/warewulf/tree/main/containers/Apptainer</a>.</p>
-<p>You can use these as starting points and adding any additional steps you want in the <code class="docutils literal notranslate"><span class="pre">%post</span></code> section of the recipe file. Once you’ve done that, installing Apptainer, building a container sandbox and importing into Warewulf can be done with the following steps:</p>
+<p>Apptainer, a container platform for HPC and performance intensive
+applications, can also be used to create node containers for
+Warewulf. There are several Apptainer container recipes in the
+<code class="docutils literal notranslate"><span class="pre">containers/Apptainer/</span></code> directory and can be found on GitHub at
+<a class="reference external" href="https://github.com/hpcng/warewulf/tree/main/containers/Apptainer">https://github.com/hpcng/warewulf/tree/main/containers/Apptainer</a>.</p>
+<p>You can use these as starting points and adding any additional steps
+you want in the <code class="docutils literal notranslate"><span class="pre">%post</span></code> section of the recipe file. Once you’ve done
+that, installing Apptainer, building a container sandbox and importing
+into Warewulf can be done with the following steps:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>epel-release
 sudo<span class="w"> </span>yum<span class="w"> </span>install<span class="w"> </span>Apptainer
 sudo<span class="w"> </span>Apptainer<span class="w"> </span>build<span class="w"> </span>--sandbox<span class="w"> </span>/tmp/newroot<span class="w"> </span>/path/to/Apptainer/recipe.def
@@ -258,7 +326,10 @@ sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w
 </section>
 <section id="building-a-container-using-podman">
 <h3>Building A Container Using Podman<a class="headerlink" href="#building-a-container-using-podman" title="Permalink to this heading"></a></h3>
-<p>You can also build a container using podman via a <cite>Dockerfile</cite>. For this step the container must be exported to a tar archive, which then can be imported to Warewulf. The following steps will create an openSUSE Leap container and import it to Warewulf:</p>
+<p>You can also build a container using podman via a <cite>Dockerfile</cite>. For
+this step the container must be exported to a tar archive, which then
+can be imported to Warewulf. The following steps will create an
+openSUSE Leap container and import it to Warewulf:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>podman<span class="w"> </span>build<span class="w"> </span>-f<span class="w"> </span>containers/Docker/openSUSE/Containerfile<span class="w"> </span>--tag<span class="w"> </span>leap-ww
 $<span class="w"> </span>sudo<span class="w"> </span>podman<span class="w"> </span>save<span class="w"> </span>localhost/leap-ww:latest<span class="w">  </span>-o<span class="w"> </span>~/leap-ww.tar
 $<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w"> </span>import<span class="w"> </span>file://root/leap-ww.tar<span class="w"> </span>leap-ww

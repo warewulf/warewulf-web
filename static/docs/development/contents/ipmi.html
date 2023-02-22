@@ -117,13 +117,23 @@
              
   <section id="ipmi">
 <h1>IPMI<a class="headerlink" href="#ipmi" title="Permalink to this heading"></a></h1>
-<p>It is possible to control the power or connect a console to your nodes being managed by Warewulf by connecting to the BMC through the use of IPMI. We will discuss how to set this up below.</p>
+<p>It is possible to control the power or connect a console to your nodes
+being managed by Warewulf by connecting to the BMC through the use of
+IPMI. We will discuss how to set this up below.</p>
 <section id="ipmi-settings">
 <h2>IPMI Settings<a class="headerlink" href="#ipmi-settings" title="Permalink to this heading"></a></h2>
-<p>The common settings for the IPMI interfaces on all nodes can be set on a Profile level.  The only field that would need to be assigned to each individual node would be the IP address.</p>
-<p>The settings are only written to the IPMI interface if <code class="docutils literal notranslate"><span class="pre">--ipmiwrite</span></code> is set to <cite>true</cite>. The write process happens at every boot of the node through the script <code class="docutils literal notranslate"><span class="pre">/warewulf/init.d/50-ipmi</span></code> in the <strong>system</strong> overlay.</p>
-<p>If an individual node has different settings, you can set the IPMI settings for that specific node, overriding the default settings.</p>
-<p>Here is a table outlining the fields on a Profile and Node which is the same as the parameter that can be used when running <cite>wwctl profile set</cite> or <cite>wwctl node set</cite>.</p>
+<p>The common settings for the IPMI interfaces on all nodes can be set on
+a Profile level.  The only field that would need to be assigned to
+each individual node would be the IP address.</p>
+<p>The settings are only written to the IPMI interface if <code class="docutils literal notranslate"><span class="pre">--ipmiwrite</span></code>
+is set to <cite>true</cite>. The write process happens at every boot of the node
+through the script <code class="docutils literal notranslate"><span class="pre">/warewulf/init.d/50-ipmi</span></code> in the <strong>system</strong>
+overlay.</p>
+<p>If an individual node has different settings, you can set the IPMI
+settings for that specific node, overriding the default settings.</p>
+<p>Here is a table outlining the fields on a Profile and Node which is
+the same as the parameter that can be used when running <cite>wwctl profile
+set</cite> or <cite>wwctl node set</cite>.</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter</p></th>
@@ -187,7 +197,8 @@
 </section>
 <section id="reviewing-settings">
 <h2>Reviewing Settings<a class="headerlink" href="#reviewing-settings" title="Permalink to this heading"></a></h2>
-<p>There are multiple ways to review the IPMI settings. They can be reviewed from a Profile level, all the way down to a specific Node.</p>
+<p>There are multiple ways to review the IPMI settings. They can be
+reviewed from a Profile level, all the way down to a specific Node.</p>
 <section id="profile-view">
 <h3>Profile View<a class="headerlink" href="#profile-view" title="Permalink to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list<span class="w"> </span>-a
@@ -260,7 +271,9 @@ n001<span class="w">                 </span>default:primary<span class="w">    <
 </section>
 <section id="review-only-ipmi-settings">
 <h3>Review Only IPMI Settings<a class="headerlink" href="#review-only-ipmi-settings" title="Permalink to this heading"></a></h3>
-<p>The above views show you everything that is set on a Profile or Node level. That is a lot of detail. If you want to view key IPMI connecton details for a node or all nodes, you can do the following.</p>
+<p>The above views show you everything that is set on a Profile or Node
+level. That is a lot of detail. If you want to view key IPMI connecton
+details for a node or all nodes, you can do the following.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">  </span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-i
 NODE<span class="w"> </span>NAME<span class="w">              </span>IPMI<span class="w"> </span>IPADDR<span class="w">      </span>IPMI<span class="w"> </span>PORT<span class="w">  </span>IPMI<span class="w"> </span>USERNAME<span class="w">        </span>IPMI<span class="w"> </span><span class="nv">INTERFACE</span>
 <span class="o">==================================================================================================</span>
@@ -274,7 +287,8 @@ n004<span class="w">                   </span><span class="m">192</span>.168.1.1
 </section>
 <section id="power-commands">
 <h2>Power Commands<a class="headerlink" href="#power-commands" title="Permalink to this heading"></a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">power</span></code> command can be used to manage the current power state of your nodes through IPMI.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">power</span></code> command can be used to manage the current power state of
+your nodes through IPMI.</p>
 <p><code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">power</span> <span class="pre">[command]</span></code> where <code class="docutils literal notranslate"><span class="pre">[command]</span></code> is one of:</p>
 <dl class="simple">
 <dt>cycle</dt><dd><p>Turns the power off and then on</p>
@@ -293,7 +307,8 @@ n004<span class="w">                   </span><span class="m">192</span>.168.1.1
 </section>
 <section id="console">
 <h2>Console<a class="headerlink" href="#console" title="Permalink to this heading"></a></h2>
-<p>If your node is setup to use serial over lan (SOL), Warewulf can connect a console to the node.</p>
+<p>If your node is setup to use serial over lan (SOL), Warewulf can
+connect a console to the node.</p>
 <p><code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">wwctl</span> <span class="pre">node</span> <span class="pre">console</span> <span class="pre">n001</span></code></p>
 </section>
 </section>
