@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>EL8 Quickstart (Rocky Linux and RHEL) &mdash; Warewulf User Guide development documentation</title>
@@ -12,10 +12,8 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/underscore.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../_static/doctools.js"></script>
         <script src="../_static/sphinx_highlight.js"></script>
     <script src="../_static/js/theme.js"></script>
@@ -30,12 +28,16 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="../index.html" class="icon icon-home"> Warewulf User Guide
-            <img src="../_static/logo.png" class="logo" alt="Logo"/>
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            Warewulf User Guide
+              <img src="../_static/logo.png" class="logo" alt="Logo"/>
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -101,8 +103,8 @@
         <div class="rst-content style-external-links">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="../index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>EL8 Quickstart (Rocky Linux and RHEL)</li>
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">EL8 Quickstart (Rocky Linux and RHEL)</li>
       <li class="wy-breadcrumbs-aside">
               <a href="https://github.com/hpcng/warewulf/blob/development/userdocs/quickstart/el8.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
@@ -116,25 +118,25 @@
 <h1>EL8 Quickstart (Rocky Linux and RHEL)<a class="headerlink" href="#el8-quickstart-rocky-linux-and-rhel" title="Permalink to this heading"></a></h1>
 <section id="install-warewulf-and-dependencies">
 <h2>Install Warewulf and dependencies<a class="headerlink" href="#install-warewulf-and-dependencies" title="Permalink to this heading"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf groupinstall <span class="s2">&quot;Development Tools&quot;</span>
-sudo dnf install epel-release
-sudo dnf install golang tftp-server dhcp-server nfs-utils
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>groupinstall<span class="w"> </span><span class="s2">&quot;Development Tools&quot;</span>
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>epel-release
+sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>golang<span class="w"> </span>tftp-server<span class="w"> </span>dhcp-server<span class="w"> </span>nfs-utils
 
-git clone https://github.com/hpcng/warewulf.git
-<span class="nb">cd</span> warewulf
-make all
-sudo make install
+git<span class="w"> </span>clone<span class="w"> </span>https://github.com/hpcng/warewulf.git
+<span class="nb">cd</span><span class="w"> </span>warewulf
+make<span class="w"> </span>all
+sudo<span class="w"> </span>make<span class="w"> </span>install
 </pre></div>
 </div>
 </section>
 <section id="configure-firewalld">
 <h2>Configure firewalld<a class="headerlink" href="#configure-firewalld" title="Permalink to this heading"></a></h2>
 <p>Restart firewalld to register the added service file, add the service to the default zone, and reload.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo systemctl restart firewalld
-sudo firewall-cmd --permanent --add-service warewulf
-sudo firewall-cmd --permanent --add-service nfs
-sudo firewall-cmd --permanent --add-service tftp
-sudo firewall-cmd --reload
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>firewalld
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--add-service<span class="w"> </span>warewulf
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--add-service<span class="w"> </span>nfs
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--permanent<span class="w"> </span>--add-service<span class="w"> </span>tftp
+sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--reload
 </pre></div>
 </div>
 </section>
@@ -143,27 +145,27 @@ sudo firewall-cmd --reload
 <p>Edit the file <code class="docutils literal notranslate"><span class="pre">/etc/warewulf/warewulf.conf</span></code> and ensure that you’ve set the appropriate
 configuration parameters. Here are some of the defaults for reference assuming that <code class="docutils literal notranslate"><span class="pre">192.168.200.1</span></code>
 is the IP address of your cluster’s private network interface:</p>
-<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">ipaddr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.200.1</span><span class="w"></span>
-<span class="nt">netmask</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">255.255.255.0</span><span class="w"></span>
-<span class="nt">warewulf</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9873</span><span class="w"></span>
-<span class="w">  </span><span class="nt">secure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span><span class="w"></span>
-<span class="w">  </span><span class="nt">update interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span><span class="w"></span>
-<span class="nt">dhcp</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
-<span class="w">  </span><span class="nt">range start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.200.10</span><span class="w"></span>
-<span class="w">  </span><span class="nt">range end</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.200.99</span><span class="w"></span>
-<span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span><span class="w"></span>
-<span class="w">  </span><span class="nt">systemd name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dhcpd</span><span class="w"></span>
-<span class="nt">tftp</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span><span class="w"></span>
-<span class="w">  </span><span class="nt">tftproot</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/tftpboot</span><span class="w"></span>
-<span class="w">  </span><span class="nt">systemd name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tftp</span><span class="w"></span>
-<span class="nt">nfs</span><span class="p">:</span><span class="w"></span>
-<span class="w">  </span><span class="nt">systemd name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nfs-server</span><span class="w"></span>
-<span class="w">  </span><span class="nt">exports</span><span class="p">:</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home</span><span class="w"></span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/warewulf</span><span class="w"></span>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">ipaddr</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.200.1</span>
+<span class="nt">netmask</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">255.255.255.0</span>
+<span class="nt">warewulf</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">port</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">9873</span>
+<span class="w">  </span><span class="nt">secure</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">  </span><span class="nt">update interval</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">60</span>
+<span class="nt">dhcp</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">range start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.200.10</span>
+<span class="w">  </span><span class="nt">range end</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.200.99</span>
+<span class="w">  </span><span class="nt">template</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">default</span>
+<span class="w">  </span><span class="nt">systemd name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dhcpd</span>
+<span class="nt">tftp</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">  </span><span class="nt">tftproot</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/lib/tftpboot</span>
+<span class="w">  </span><span class="nt">systemd name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tftp</span>
+<span class="nt">nfs</span><span class="p">:</span>
+<span class="w">  </span><span class="nt">systemd name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nfs-server</span>
+<span class="w">  </span><span class="nt">exports</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/var/warewulf</span>
 </pre></div>
 </div>
 <p>The DHCP range ends at <code class="docutils literal notranslate"><span class="pre">192.168.200.99</span></code> and as you will see below, the first node static IP
@@ -172,7 +174,7 @@ address (post boot) is configured to <code class="docutils literal notranslate">
 <section id="start-and-enable-the-warewulf-service">
 <h2>Start and enable the Warewulf service<a class="headerlink" href="#start-and-enable-the-warewulf-service" title="Permalink to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start and enable the warewulfd service</span>
-sudo systemctl <span class="nb">enable</span> --now warewulfd
+sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>warewulfd
 </pre></div>
 </div>
 </section>
@@ -181,7 +183,7 @@ sudo systemctl <span class="nb">enable</span> --now warewulfd
 <p>There are a number of services and configurations that Warewulf relies on to operate.
 If you wish to configure all services, you can do so individually (omitting the <code class="docutils literal notranslate"><span class="pre">--all</span></code>)
 will print a help and usage instructions.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo wwctl configure --all
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>configure<span class="w"> </span>--all
 </pre></div>
 </div>
 <div class="admonition note">
@@ -193,7 +195,7 @@ will print a help and usage instructions.</p>
 <h2>Pull and build the VNFS container (including the kernel)<a class="headerlink" href="#pull-and-build-the-vnfs-container-including-the-kernel" title="Permalink to this heading"></a></h2>
 <p>This will pull a basic VNFS container from Docker Hub and import the default running
 kernel from the controller node and set both in the “default” node profile.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo wwctl container import docker://warewulf/rocky:8 rocky-8
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w"> </span>import<span class="w"> </span>docker://warewulf/rocky:8<span class="w"> </span>rocky-8
 </pre></div>
 </div>
 </section>
@@ -203,18 +205,18 @@ kernel from the controller node and set both in the “default” node profile.<
 be part of the <code class="docutils literal notranslate"><span class="pre">default</span></code> node profile, so any changes you make to that profile will
 affect all nodes.</p>
 <p>The following command will set the container we just imported above to the <code class="docutils literal notranslate"><span class="pre">default</span></code> node profile:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo wwctl profile <span class="nb">set</span> --yes --container rocky-8 <span class="s2">&quot;default&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--yes<span class="w"> </span>--container<span class="w"> </span>rocky-8<span class="w"> </span><span class="s2">&quot;default&quot;</span>
 </pre></div>
 </div>
 <p>Next we set some default networking configurations for the first ethernet device. On
 modern Linux distributions, the name of the device is not critical, as it will be setup
 according to the HW address. Because all nodes will share the netmask and gateway
 configuration, we can set them in the default profile as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo wwctl profile <span class="nb">set</span> --yes --netdev eth0 --netmask <span class="m">255</span>.255.255.0 --gateway <span class="m">192</span>.168.200.1 <span class="s2">&quot;default&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--yes<span class="w"> </span>--netdev<span class="w"> </span>eth0<span class="w"> </span>--netmask<span class="w"> </span><span class="m">255</span>.255.255.0<span class="w"> </span>--gateway<span class="w"> </span><span class="m">192</span>.168.200.1<span class="w"> </span><span class="s2">&quot;default&quot;</span>
 </pre></div>
 </div>
 <p>Once those configurations have been set, you can view the changes by listing the profiles as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo wwctl profile list -a
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list<span class="w"> </span>-a
 </pre></div>
 </div>
 </section>
@@ -227,11 +229,11 @@ automatically have the HW address added to the configuration as the node boots.<
 them using dot notation.</p>
 <p>Note that the full node configuration comes from both cascading profiles and node
 configurations which always supersede profile configurations.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo wwctl node add n0000.cluster --ipaddr <span class="m">192</span>.168.200.100 --discoverable
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>add<span class="w"> </span>n0000.cluster<span class="w"> </span>--ipaddr<span class="w"> </span><span class="m">192</span>.168.200.100<span class="w"> </span>--discoverable
 </pre></div>
 </div>
 <p>At this point you can view the basic configuration of this node by typing the following:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo wwctl node list -a n0000.cluster
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span>n0000.cluster
 </pre></div>
 </div>
 <p>Turn on your compute node and watch it boot!</p>
