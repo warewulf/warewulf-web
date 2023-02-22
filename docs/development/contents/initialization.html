@@ -119,7 +119,7 @@
 initialized and have the associated system services started. To do
 this, start by configuring the system services that Warewulf depends
 on for operation. To do that, run the following command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>configure<span class="w"> </span>--all
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>configure<span class="w"> </span>--all
 </pre></div>
 </div>
 <p>This command will configure the system for Warewulf to run
@@ -151,12 +151,12 @@ in the configuration portion of this manual.</p>
 <p>The Warewulf installation attempts to register the Warewulf service
 with Systemd, so it should be as easy to start/stop/check as any other
 Systemd service:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>warewulfd
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>warewulfd
 </pre></div>
 </div>
 <p>You can also check and control the Warewulf service using the <cite>wwctl</cite>
 command line program as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>server<span class="w"> </span>status
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>server<span class="w"> </span>status
 </pre></div>
 </div>
 <div class="admonition note">

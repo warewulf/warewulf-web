@@ -131,33 +131,33 @@ by using the <code class="docutils literal notranslate"><span class="pre">wwctl<
 <span class="pre">list</span></code> command, this will provide a summary, but you can see <strong>all</strong>
 configuration attributes by using the <code class="docutils literal notranslate"><span class="pre">--all</span></code> or <code class="docutils literal notranslate"><span class="pre">-a</span></code> flag as
 follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list
-PROFILE<span class="w"> </span>NAME<span class="w">         </span>COMMENT/DESCRIPTION
-<span class="o">================================================================================</span>
-default<span class="w">              </span>This<span class="w"> </span>profile<span class="w"> </span>is<span class="w"> </span>automatically<span class="w"> </span>included<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>node
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list
+<span class="go">PROFILE NAME         COMMENT/DESCRIPTION</span>
+<span class="go">================================================================================</span>
+<span class="go">default              This profile is automatically included for each node</span>
 </pre></div>
 </div>
 <p>And with the <code class="docutils literal notranslate"><span class="pre">-a</span></code> flag:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list<span class="w"> </span>-a
-<span class="c1">################################################################################</span>
-PROFILE<span class="w"> </span>NAME<span class="w">         </span>FIELD<span class="w">              </span>VALUE
-default<span class="w">              </span>Id<span class="w">                 </span>default
-default<span class="w">              </span>Comment<span class="w">            </span>This<span class="w"> </span>profile<span class="w"> </span>is<span class="w"> </span>automatically<span class="w"> </span>included<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>node
-default<span class="w">              </span>Cluster<span class="w">            </span>--
-default<span class="w">              </span>Container<span class="w">          </span>--
-default<span class="w">              </span>Kernel<span class="w">             </span>--
-default<span class="w">              </span>KernelArgs<span class="w">         </span>--
-default<span class="w">              </span>Init<span class="w">               </span>--
-default<span class="w">              </span>Root<span class="w">               </span>--
-default<span class="w">              </span>RuntimeOverlay<span class="w">     </span>--
-default<span class="w">              </span>SystemOverlay<span class="w">      </span>--
-default<span class="w">              </span>Ipxe<span class="w">               </span>--
-default<span class="w">              </span>IpmiIpaddr<span class="w">         </span>--
-default<span class="w">              </span>IpmiNetmask<span class="w">        </span>--
-default<span class="w">              </span>IpmiPort<span class="w">           </span>--
-default<span class="w">              </span>IpmiGateway<span class="w">        </span>--
-default<span class="w">              </span>IpmiUserName<span class="w">       </span>--
-default<span class="w">              </span>IpmiInterface<span class="w">      </span>--
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list<span class="w"> </span>-a
+<span class="gp">#</span><span class="c1">###############################################################################</span>
+<span class="go">PROFILE NAME         FIELD              VALUE</span>
+<span class="go">default              Id                 default</span>
+<span class="go">default              Comment            This profile is automatically included for each node</span>
+<span class="go">default              Cluster            --</span>
+<span class="go">default              Container          --</span>
+<span class="go">default              Kernel             --</span>
+<span class="go">default              KernelArgs         --</span>
+<span class="go">default              Init               --</span>
+<span class="go">default              Root               --</span>
+<span class="go">default              RuntimeOverlay     --</span>
+<span class="go">default              SystemOverlay      --</span>
+<span class="go">default              Ipxe               --</span>
+<span class="go">default              IpmiIpaddr         --</span>
+<span class="go">default              IpmiNetmask        --</span>
+<span class="go">default              IpmiPort           --</span>
+<span class="go">default              IpmiGateway        --</span>
+<span class="go">default              IpmiUserName       --</span>
+<span class="go">default              IpmiInterface      --</span>
 </pre></div>
 </div>
 <p>As you can see here, there is only one attribute set by default in
@@ -165,12 +165,12 @@ this profile, and that is the “Comment” field. That Comment is
 inherited by any nodes that are configured to use this profile. So if
 we look at the node we configured in the last section, we can see that
 configuration attribute there:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
-<span class="c1">################################################################################</span>
-NODE<span class="w">                 </span>FIELD<span class="w">              </span>PROFILE<span class="w">      </span>VALUE
-n0000<span class="w">                </span>Id<span class="w">                 </span>--<span class="w">           </span>n0000
-n0000<span class="w">                </span>Comment<span class="w">            </span>default<span class="w">      </span>This<span class="w"> </span>profile<span class="w"> </span>is<span class="w"> </span>automatically<span class="w"> </span>included<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>node
-n0000<span class="w">                </span>Cluster<span class="w">            </span>--<span class="w">           </span>--
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">5</span>
+<span class="gp">#</span><span class="c1">###############################################################################</span>
+<span class="go">NODE                 FIELD              PROFILE      VALUE</span>
+<span class="go">n0000                Id                 --           n0000</span>
+<span class="go">n0000                Comment            default      This profile is automatically included for each node</span>
+<span class="go">n0000                Cluster            --           --</span>
 </pre></div>
 </div>
 <p>Here you can see that the “Comment” attribute was inherited by this
@@ -183,36 +183,36 @@ cascading.</p>
 <h2>Multiple Profiles<a class="headerlink" href="#multiple-profiles" title="Permalink to this heading"></a></h2>
 <p>For demonstration purposes, let’s create another profile and
 demonstrate how to use this second profile.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span>add<span class="w"> </span>test_profile
-$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list
-PROFILE<span class="w"> </span>NAME<span class="w">         </span>COMMENT/DESCRIPTION
-<span class="o">================================================================================</span>
-default<span class="w">              </span>This<span class="w"> </span>profile<span class="w"> </span>is<span class="w"> </span>automatically<span class="w"> </span>included<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>node
-test_profile<span class="w">         </span>--
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>profile<span class="w"> </span>add<span class="w"> </span>test_profile
+<span class="gp"># </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list
+<span class="go">PROFILE NAME         COMMENT/DESCRIPTION</span>
+<span class="go">================================================================================</span>
+<span class="go">default              This profile is automatically included for each node</span>
+<span class="go">test_profile         --</span>
 </pre></div>
 </div>
 <p>Now that we’ve created a new profile, let’s create a configuration
 attribute in this profile:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--cluster<span class="w"> </span>cluster01<span class="w"> </span>test_profile
-?<span class="w"> </span>Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>modify<span class="w"> </span><span class="m">1</span><span class="w"> </span>profile<span class="o">(</span>s<span class="o">)</span>?<span class="w"> </span><span class="o">[</span>y/N<span class="o">]</span><span class="w"> </span>y
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--cluster<span class="w"> </span>cluster01<span class="w"> </span>test_profile
+<span class="go">? Are you sure you want to modify 1 profile(s)? [y/N] y</span>
 
-$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span>test_profile<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Cluster
-test_profile<span class="w">         </span>Cluster<span class="w">            </span>cluster01
+<span class="gp"># </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span>test_profile<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Cluster
+<span class="go">test_profile         Cluster            cluster01</span>
 </pre></div>
 </div>
 <p>Lastly we just need to configure this profile to our node(s):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--addprofile<span class="w"> </span>test_profile<span class="w"> </span>n0000
-Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>modify<span class="w"> </span><span class="m">1</span><span class="w"> </span>nodes<span class="o">(</span>s<span class="o">)</span>:<span class="w"> </span>y
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--addprofile<span class="w"> </span>test_profile<span class="w"> </span>n0000
+<span class="go">Are you sure you want to modify 1 nodes(s): y</span>
 </pre></div>
 </div>
 <p>And you can now verify that the node has both profile configurations:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">6</span>
-<span class="c1">################################################################################</span>
-NODE<span class="w">                 </span>FIELD<span class="w">              </span>PROFILE<span class="w">      </span>VALUE
-n0000<span class="w">                </span>Id<span class="w">                 </span>--<span class="w">           </span>n0000
-n0000<span class="w">                </span>Comment<span class="w">            </span>default<span class="w">      </span>This<span class="w"> </span>profile<span class="w"> </span>is<span class="w"> </span>automatically<span class="w"> </span>included<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>node
-n0000<span class="w">                </span>Cluster<span class="w">            </span>test_profile<span class="w"> </span>cluster01
-n0000<span class="w">                </span>Profiles<span class="w">           </span>--<span class="w">           </span>default,test_profile
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">6</span>
+<span class="gp">#</span><span class="c1">###############################################################################</span>
+<span class="go">NODE                 FIELD              PROFILE      VALUE</span>
+<span class="go">n0000                Id                 --           n0000</span>
+<span class="go">n0000                Comment            default      This profile is automatically included for each node</span>
+<span class="go">n0000                Cluster            test_profile cluster01</span>
+<span class="go">n0000                Profiles           --           default,test_profile</span>
 </pre></div>
 </div>
 </section>
@@ -220,30 +220,30 @@ n0000<span class="w">                </span>Profiles<span class="w">           <
 <h2>Cascading Profiles<a class="headerlink" href="#cascading-profiles" title="Permalink to this heading"></a></h2>
 <p>In the previous example, we set a single node to have two profile
 configurations. We can also overwrite configurations as follows:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--comment<span class="w"> </span><span class="s2">&quot;test comment&quot;</span><span class="w"> </span>test_profile
-Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>modify<span class="w"> </span><span class="m">1</span><span class="w"> </span>profile<span class="o">(</span>s<span class="o">)</span>:<span class="w"> </span>y
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--comment<span class="w"> </span><span class="s2">&quot;test comment&quot;</span><span class="w"> </span>test_profile
+<span class="go">Are you sure you want to modify 1 profile(s): y</span>
 
-$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">6</span>
-<span class="c1">################################################################################</span>
-NODE<span class="w">                 </span>FIELD<span class="w">              </span>PROFILE<span class="w">      </span>VALUE
-n0000<span class="w">                </span>Id<span class="w">                 </span>--<span class="w">           </span>n0000
-n0000<span class="w">                </span>Comment<span class="w">            </span>test_profile<span class="w"> </span><span class="nb">test</span><span class="w"> </span>comment
-n0000<span class="w">                </span>Cluster<span class="w">            </span>test_profile<span class="w"> </span>cluster01
-n0000<span class="w">                </span>Profiles<span class="w">           </span>--<span class="w">           </span>default,test_profile
+<span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">6</span>
+<span class="gp">#</span><span class="c1">###############################################################################</span>
+<span class="go">NODE                 FIELD              PROFILE      VALUE</span>
+<span class="go">n0000                Id                 --           n0000</span>
+<span class="go">n0000                Comment            test_profile test comment</span>
+<span class="go">n0000                Cluster            test_profile cluster01</span>
+<span class="go">n0000                Profiles           --           default,test_profile</span>
 </pre></div>
 </div>
 <p>And if we delete the superseded profile attribute from
 <code class="docutils literal notranslate"><span class="pre">test_profile</span></code> we can now see the previous configuration:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--comment<span class="w"> </span>UNDEF<span class="w"> </span>test_profile
-Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>modify<span class="w"> </span><span class="m">1</span><span class="w"> </span>profile<span class="o">(</span>s<span class="o">)</span>:<span class="w"> </span>y
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--comment<span class="w"> </span>UNDEF<span class="w"> </span>test_profile
+<span class="go">Are you sure you want to modify 1 profile(s): y</span>
 
-$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">6</span>
-<span class="c1">################################################################################</span>
-NODE<span class="w">                 </span>FIELD<span class="w">              </span>PROFILE<span class="w">      </span>VALUE
-n0000<span class="w">                </span>Id<span class="w">                 </span>--<span class="w">           </span>n0000
-n0000<span class="w">                </span>Comment<span class="w">            </span>default<span class="w">      </span>This<span class="w"> </span>profile<span class="w"> </span>is<span class="w"> </span>automatically<span class="w"> </span>included<span class="w"> </span><span class="k">for</span><span class="w"> </span>each<span class="w"> </span>node
-n0000<span class="w">                </span>Cluster<span class="w">            </span>test_profile<span class="w"> </span>cluster01
-n0000<span class="w">                </span>Profiles<span class="w">           </span>--<span class="w">           </span>default,test_profile
+<span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">6</span>
+<span class="gp">#</span><span class="c1">###############################################################################</span>
+<span class="go">NODE                 FIELD              PROFILE      VALUE</span>
+<span class="go">n0000                Id                 --           n0000</span>
+<span class="go">n0000                Comment            default      This profile is automatically included for each node</span>
+<span class="go">n0000                Cluster            test_profile cluster01</span>
+<span class="go">n0000                Profiles           --           default,test_profile</span>
 </pre></div>
 </div>
 <p>This is a very useful feature for dealing with many groups of cluster
@@ -256,16 +256,16 @@ node attributes.</p>
 <h2>Overriding Profiles<a class="headerlink" href="#overriding-profiles" title="Permalink to this heading"></a></h2>
 <p>All profile configurations can be overwritten by a node configuration
 as can be seen here:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--comment<span class="w"> </span><span class="s2">&quot;This value takes precedent&quot;</span><span class="w"> </span>n0000
-Are<span class="w"> </span>you<span class="w"> </span>sure<span class="w"> </span>you<span class="w"> </span>want<span class="w"> </span>to<span class="w"> </span>modify<span class="w"> </span><span class="m">1</span><span class="w"> </span>nodes<span class="o">(</span>s<span class="o">)</span>:<span class="w"> </span>y
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--comment<span class="w"> </span><span class="s2">&quot;This value takes precedent&quot;</span><span class="w"> </span>n0000
+<span class="go">Are you sure you want to modify 1 nodes(s): y</span>
 
-$<span class="w"> </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">6</span>
-<span class="c1">################################################################################</span>
-NODE<span class="w">                 </span>FIELD<span class="w">              </span>PROFILE<span class="w">      </span>VALUE
-n0000<span class="w">                </span>Id<span class="w">                 </span>--<span class="w">           </span>n0000
-n0000<span class="w">                </span>Comment<span class="w">            </span>SUPERSEDED<span class="w">   </span>This<span class="w"> </span>value<span class="w"> </span>takes<span class="w"> </span>precedent
-n0000<span class="w">                </span>Cluster<span class="w">            </span>test_profile<span class="w"> </span>cluster01
-n0000<span class="w">                </span>Profiles<span class="w">           </span>--<span class="w">           </span>default,test_profile
+<span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span><span class="p">|</span><span class="w"> </span>head<span class="w"> </span>-n<span class="w"> </span><span class="m">6</span>
+<span class="gp">#</span><span class="c1">###############################################################################</span>
+<span class="go">NODE                 FIELD              PROFILE      VALUE</span>
+<span class="go">n0000                Id                 --           n0000</span>
+<span class="go">n0000                Comment            SUPERSEDED   This value takes precedent</span>
+<span class="go">n0000                Cluster            test_profile cluster01</span>
+<span class="go">n0000                Profiles           --           default,test_profile</span>
 </pre></div>
 </div>
 </section>
