@@ -102,28 +102,11 @@ function Header({ siteTitle }) {
                   <div>
                     <a
                       href="/"
-                      aria-label="Company"
-                      title="Company"
+                      aria-label="Warewulf"
+                      title="Warewulf"
                       className="inline-flex items-center"
                     >
-                      <svg
-                        className="w-8 text-green-500"
-                        viewBox="0 0 24 24"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeMiterlimit="10"
-                        stroke="currentColor"
-                        fill="none"
-                      >
-                        <rect x="3" y="1" width="7" height="12" />
-                        <rect x="3" y="17" width="7" height="6" />
-                        <rect x="14" y="1" width="7" height="6" />
-                        <rect x="14" y="11" width="7" height="12" />
-                      </svg>
-                      <span className="ml-2 text-xl font-bold tracking-wide text-gray-800 uppercase">
-                        Company
-                      </span>
+                      <img className="w-36" src={Logo} />
                     </a>
                   </div>
                   <div>
@@ -146,62 +129,42 @@ function Header({ siteTitle }) {
                   <ul className="space-y-4">
                     <li>
                       <a
-                        href="/"
-                        aria-label="Our product"
-                        title="Our product"
+                        href="/news"
+                        aria-label="News"
+                        title="News"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-500"
                       >
-                        Product
+                        News
                       </a>
                     </li>
                     <li>
                       <a
-                        href="/"
-                        aria-label="Our product"
-                        title="Our product"
+                        href="/docs"
+                        aria-label="Documentation"
+                        title="Documentation"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-500"
                       >
-                        Features
+                        Documentation
                       </a>
                     </li>
                     <li>
                       <a
-                        href="/"
-                        aria-label="Product pricing"
-                        title="Product pricing"
+                        href="/help"
+                        aria-label="Getting Help"
+                        title="Getting Help"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-500"
                       >
-                        Pricing
+                        Getting Help
                       </a>
                     </li>
                     <li>
                       <a
-                        href="/"
-                        aria-label="About us"
-                        title="About us"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-500"
+                        href="/getting-started"
+                        className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-green-900 hover:bg-green-800 focus:shadow-outline focus:outline-none"
+                        aria-label="GettingStarted"
+                        title="Getting Started"
                       >
-                        About us
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/"
-                        aria-label="Sign in"
-                        title="Sign in"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-500"
-                      >
-                        Sign in
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/"
-                        className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-green-500 hover:bg-green-600 focus:shadow-outline focus:outline-none"
-                        aria-label="Sign up"
-                        title="Sign up"
-                      >
-                        Sign up
+                        Get Started
                       </a>
                     </li>
                   </ul>
