@@ -50,7 +50,10 @@
 <li class="toctree-l1"><a class="reference internal" href="stateless.html">Stateless Provisioning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="setup.html">Control Server Setup</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Warewulf Installation</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#binary-rpms">Binary RPMs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#binary-rpms">Binary RPMs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#rocky-linux-8">Rocky Linux 8</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#compiled-source-code">Compiled Source code</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#release-tarball">Release Tarball</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#git">Git</a></li>
@@ -119,19 +122,18 @@
 the installation process of multiple methods:</p>
 <section id="binary-rpms">
 <h2>Binary RPMs<a class="headerlink" href="#binary-rpms" title="Permalink to this heading"></a></h2>
-<p>While the Warewulf project does not build binary RPMs, you can obtain
-them from <a class="reference external" href="https://www.ctrliq.com/">CIQ</a> and use them for
-non-production use from their public YUM and DNF repositories at:
-<a class="reference external" href="https://repo.ctrliq.com/">https://repo.ctrliq.com</a></p>
-<p>This is the easiest method to install Warewulf and can be done as follows:</p>
-<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>https://repo.ctrliq.com/rhel/8/ciq-release.rpm
-<span class="gp"># </span>yum<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>warewulf
+<p>The Warewulf project builds binary RPMs as part of its CI/CD
+process. You can obtain them from the <a class="reference external" href="https://github.com/hpcng/warewulf/releases">GitHub releases</a> page.</p>
+<section id="rocky-linux-8">
+<h3>Rocky Linux 8<a class="headerlink" href="#rocky-linux-8" title="Permalink to this heading"></a></h3>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>dnf<span class="w"> </span>install<span class="w"> </span>https://github.com/hpcng/warewulf/releases/download/v4.4.0/warewulf-4.4.0-1.git_afcdb21.el8.x86_64.rpm
 </pre></div>
 </div>
-<p>&gt; note: as mentioned, these binaries are part of CIQ’s commercial
-support offering but they can be used for non-production and testing
-uses. If you are interested in using these binaries for production,
-please contact CIQ at: <a class="reference external" href="mailto:info&#37;&#52;&#48;ctrliq&#46;com">info<span>&#64;</span>ctrliq<span>&#46;</span>com</a>.</p>
+<p>openSuse Leap</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>zypper<span class="w"> </span>install<span class="w"> </span>https://github.com/hpcng/warewulf/releases/download/v4.4.0/warewulf-4.4.0-1.git_afcdb21.suse.lp153.x86_64.rpm
+</pre></div>
+</div>
+</section>
 </section>
 <section id="compiled-source-code">
 <h2>Compiled Source code<a class="headerlink" href="#compiled-source-code" title="Permalink to this heading"></a></h2>
