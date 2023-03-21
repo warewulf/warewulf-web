@@ -204,7 +204,7 @@ errors with TFTP still.</p>
 <p>This will pull a basic VNFS container from Docker Hub and import the
 default running kernel from the controller node and set both in the
 “default” node profile.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w"> </span>import<span class="w"> </span>docker://warewulf/centos-7<span class="w"> </span>centos-7<span class="w"> </span>--setdefault
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w"> </span>import<span class="w"> </span>docker://ghcr.io/hpcng/warewulf-centos:7<span class="w"> </span>centos-7<span class="w"> </span>--setdefault
 sudo<span class="w"> </span>wwctl<span class="w"> </span>kernel<span class="w"> </span>import<span class="w"> </span><span class="k">$(</span>uname<span class="w"> </span>-r<span class="k">)</span><span class="w"> </span>--setdefault
 </pre></div>
 </div>
