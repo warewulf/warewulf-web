@@ -172,7 +172,7 @@ in the [Background](background.md) portion of the documentation.</p>
 </div>
 <p>The other configuration options are usually not touched, but they are
 explained as follows:</p>
-<ul class="simple">
+<ul>
 <li><p><code class="docutils literal notranslate"><span class="pre">*:enabled</span></code>: This disables Warewulf’s control of an external
 service. This is useful if you want to manage that service directly.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">*:systemd</span> <span class="pre">name</span></code>: This is so Warewulf can control some of the
@@ -184,11 +184,12 @@ is no misalignment with node’s expectations of how to contact the
 Warewulf service.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">warewulf:secure</span></code>: When <code class="docutils literal notranslate"><span class="pre">true</span></code>, this limits the Warewulf server
 to only respond to runtime overlay requests originating from a
-privileged report port. This makes it so that only the <code class="docutils literal notranslate"><span class="pre">root</span></code> user
-on a compute node can request the runtime overlay. While generally
-there is nothing super “secure” in these overlays, this adds the
-necessary protection that the user’s can not obtain this
-information.</p></li>
+privileged port. This prevents non-root users from requesting the
+runtime overlay, which may contain sensitive information.</p>
+<p>When <code class="docutils literal notranslate"><span class="pre">true</span></code>, <code class="docutils literal notranslate"><span class="pre">wwclient</span></code> uses TCP port 987.</p>
+<p>Changing this option requires rebuilding node overlays and rebooting
+compute nodes, to configure them to use a privileged port.</p>
+</li>
 <li><p><code class="docutils literal notranslate"><span class="pre">warewulf:update</span> <span class="pre">interval</span></code>: This defines the frequency (in
 seconds) with which the Warewulf client on the compute node fetches
 overlay updates.</p></li>
