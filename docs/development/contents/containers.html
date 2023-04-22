@@ -53,11 +53,12 @@
 <li class="toctree-l1"><a class="reference internal" href="initialization.html">Warewulf Initialization</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Container Management</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#container-tools">Container Tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#importing-from-a-registry">Importing From A Registry</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#importing-containers">Importing Containers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#private-registry">Private Registry</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#syncuser">Syncuser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#local-files">Local Files</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#syncuser">Syncuser</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#listing-all-imported-containers">Listing All Imported Containers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#making-changes-to-containers">Making Changes To Containers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#creating-containers-from-scratch">Creating Containers From Scratch</a><ul>
@@ -66,6 +67,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#building-a-container-using-podman">Building A Container Using Podman</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#container-size-considerations">Container Size Considerations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="kernel.html">Kernel Management</a></li>
@@ -149,8 +151,8 @@ Apptainer is the most utilized container management tool. You can use
 any of these to create and manage the containers to be later imported
 into Warewulf.</p>
 </section>
-<section id="importing-from-a-registry">
-<h2>Importing From A Registry<a class="headerlink" href="#importing-from-a-registry" title="Permalink to this heading"></a></h2>
+<section id="importing-containers">
+<h2>Importing Containers<a class="headerlink" href="#importing-containers" title="Permalink to this heading"></a></h2>
 <p>Warewulf supports importing an image from any OCI compliant
 registry. This means you can import from a public registry or from a
 private registry.</p>
@@ -205,8 +207,26 @@ doing it this way if you are in a security sensitive environment or
 shared environments. You would not want these showing up in bash
 history or logs.</p>
 </section>
+<section id="local-files">
+<h3>Local Files<a class="headerlink" href="#local-files" title="Permalink to this heading"></a></h3>
+<p>It is also possible to import a container from a local file or
+directory. For example, Podman can save a <cite>.tar</cite> archive of an OCI
+image. This archive can be directly imported into Warewulf, no
+registry required.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>podman<span class="w"> </span>save<span class="w"> </span>alpine:latest<span class="w"> </span>&gt;alpine.tar
+<span class="gp"># </span>wwctl<span class="w"> </span>container<span class="w"> </span>import<span class="w"> </span>alpine.tar<span class="w"> </span>alpine
+</pre></div>
+</div>
+<p>Chroot directories and Apptainer sandbox images can also be imported
+directly.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>apptainer<span class="w"> </span>build<span class="w"> </span>--sandbox<span class="w"> </span>./rockylinux-8/<span class="w"> </span>docker://ghcr.io/hpcng/warewulf-rockylinux:8
+<span class="gp">$ </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w"> </span>import<span class="w"> </span>./rockylinux-8/<span class="w"> </span>rockylinux-8
+</pre></div>
+</div>
+</section>
+</section>
 <section id="syncuser">
-<h3>Syncuser<a class="headerlink" href="#syncuser" title="Permalink to this heading"></a></h3>
+<h2>Syncuser<a class="headerlink" href="#syncuser" title="Permalink to this heading"></a></h2>
 <p>At import time Warewulf checks if the names of the users on the host
 match the users and UIDs/GIDs in the imported container. If there is
 mismatch, the import command will print out a warning.  By setting the
@@ -224,7 +244,6 @@ user database of the host as described above.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wwctl container syncuser --write container-name</span>
 </pre></div>
 </div>
-</section>
 </section>
 <section id="listing-all-imported-containers">
 <h2>Listing All Imported Containers<a class="headerlink" href="#listing-all-imported-containers" title="Permalink to this heading"></a></h2>
@@ -333,6 +352,42 @@ openSUSE Leap container and import it to Warewulf:</p>
 </pre></div>
 </div>
 </section>
+</section>
+<section id="container-size-considerations">
+<h2>Container Size Considerations<a class="headerlink" href="#container-size-considerations" title="Permalink to this heading"></a></h2>
+<p>Base compute node container images start quite small (a few hundred
+megabytes), but can grow quickly as packages and other files are added
+to them. Even these larger images are typically not an issue in modern
+environments; but some architectural limits exist that can impede the
+use of images larger than a few gigabytes. Workarounds exist for these
+issues in most circumstances:</p>
+<ul>
+<li><p>Systems booting in legacy / BIOS mode, being a 32-bit environment,
+cannot boot an image that requires more than 4GB to decompress. This
+means that the compressed image and the decompressed image together
+must be &lt; 4GB. This is typically reported by the system as “No space
+left on device (<a class="reference external" href="https://ipxe.org/34182006">https://ipxe.org/34182006</a>).”</p>
+<p>The best work-around for this limitation is to switch to UEFI. UEFI
+is 64-bit and should support booting significantly larger images,
+though sometimes system-specific implementation details have led to
+artificial limitations on image size.</p>
+</li>
+<li><p>The Linux kernel itself can only decompress an image up to 4GB due
+to the use of 32-bit integers in critical sections of the kernel
+initrd decompression code.</p>
+<p>The best work-around for this limitation is to use an iPXE with
+support for <a class="reference external" href="https://ipxe.org/cmd/imgextract">imgextract</a>. This
+allows iPXE to decompress the image rather than the kernel.</p>
+</li>
+<li><p>Some BIOS / firmware retain a “memory hole” feature for legacy
+devices, e.g., reserving a 1MB block of memory at the 15MB-16MB
+address range. this feature can interfere with booting stateless
+node images.</p>
+<p>If you are still getting “Not enough memory” or “No space left on
+device” errors, try disabling any “memory hole” features or updating
+your system BIOS or firmware.</p>
+</li>
+</ul>
 </section>
 </section>
 
