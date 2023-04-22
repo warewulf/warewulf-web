@@ -66,6 +66,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#building-a-container-using-podman">Building A Container Using Podman</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#container-size-considerations">Container Size Considerations</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="kernel.html">Kernel Management</a></li>
@@ -333,6 +334,42 @@ openSUSE Leap container and import it to Warewulf:</p>
 </pre></div>
 </div>
 </section>
+</section>
+<section id="container-size-considerations">
+<h2>Container Size Considerations<a class="headerlink" href="#container-size-considerations" title="Permalink to this heading"></a></h2>
+<p>Base compute node container images start quite small (a few hundred
+megabytes), but can grow quickly as packages and other files are added
+to them. Even these larger images are typically not an issue in modern
+environments; but some architectural limits exist that can impede the
+use of images larger than a few gigabytes. Workarounds exist for these
+issues in most circumstances:</p>
+<ul>
+<li><p>Systems booting in legacy / BIOS mode, being a 32-bit environment,
+cannot boot an image that requires more than 4GB to decompress. This
+means that the compressed image and the decompressed image together
+must be &lt; 4GB. This is typically reported by the system as “No space
+left on device (<a class="reference external" href="https://ipxe.org/34182006">https://ipxe.org/34182006</a>).”</p>
+<p>The best work-around for this limitation is to switch to UEFI. UEFI
+is 64-bit and should support booting significantly larger images,
+though sometimes system-specific implementation details have led to
+artificial limitations on image size.</p>
+</li>
+<li><p>The Linux kernel itself can only decompress an image up to 4GB due
+to the use of 32-bit integers in critical sections of the kernel
+initrd decompression code.</p>
+<p>The best work-around for this limitation is to use an iPXE with
+support for <a class="reference external" href="https://ipxe.org/cmd/imgextract">imgextract</a>. This
+allows iPXE to decompress the image rather than the kernel.</p>
+</li>
+<li><p>Some BIOS / firmware retain a “memory hole” feature for legacy
+devices, e.g., reserving a 1MB block of memory at the 15MB-16MB
+address range. this feature can interfere with booting stateless
+node images.</p>
+<p>If you are still getting “Not enough memory” or “No space left on
+device” errors, try disabling any “memory hole” features or updating
+your system BIOS or firmware.</p>
+</li>
+</ul>
 </section>
 </section>
 
