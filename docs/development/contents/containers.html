@@ -53,13 +53,18 @@
 <li class="toctree-l1"><a class="reference internal" href="initialization.html">Warewulf Initialization</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Container Management</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#container-tools">Container Tools</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#importing-from-a-registry">Importing From A Registry</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#importing-containers">Importing Containers</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#private-registry">Private Registry</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#syncuser">Syncuser</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#local-files">Local Files</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#syncuser">Syncuser</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#listing-all-imported-containers">Listing All Imported Containers</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#making-changes-to-containers">Making Changes To Containers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#making-changes-to-containers">Making Changes To Containers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#excluding-files-from-a-container">Excluding Files from a Container</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#preparing-a-container-for-build">Preparing a container for build</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#creating-containers-from-scratch">Creating Containers From Scratch</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#building-a-container-from-your-host">Building A Container From Your Host</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#building-a-container-using-apptainer">Building A Container Using Apptainer</a></li>
@@ -150,8 +155,8 @@ Apptainer is the most utilized container management tool. You can use
 any of these to create and manage the containers to be later imported
 into Warewulf.</p>
 </section>
-<section id="importing-from-a-registry">
-<h2>Importing From A Registry<a class="headerlink" href="#importing-from-a-registry" title="Permalink to this heading"></a></h2>
+<section id="importing-containers">
+<h2>Importing Containers<a class="headerlink" href="#importing-containers" title="Permalink to this heading"></a></h2>
 <p>Warewulf supports importing an image from any OCI compliant
 registry. This means you can import from a public registry or from a
 private registry.</p>
@@ -206,8 +211,26 @@ doing it this way if you are in a security sensitive environment or
 shared environments. You would not want these showing up in bash
 history or logs.</p>
 </section>
+<section id="local-files">
+<h3>Local Files<a class="headerlink" href="#local-files" title="Permalink to this heading"></a></h3>
+<p>It is also possible to import a container from a local file or
+directory. For example, Podman can save a <cite>.tar</cite> archive of an OCI
+image. This archive can be directly imported into Warewulf, no
+registry required.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>podman<span class="w"> </span>save<span class="w"> </span>alpine:latest<span class="w"> </span>&gt;alpine.tar
+<span class="gp"># </span>wwctl<span class="w"> </span>container<span class="w"> </span>import<span class="w"> </span>alpine.tar<span class="w"> </span>alpine
+</pre></div>
+</div>
+<p>Chroot directories and Apptainer sandbox images can also be imported
+directly.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>apptainer<span class="w"> </span>build<span class="w"> </span>--sandbox<span class="w"> </span>./rockylinux-8/<span class="w"> </span>docker://ghcr.io/hpcng/warewulf-rockylinux:8
+<span class="gp">$ </span>sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w"> </span>import<span class="w"> </span>./rockylinux-8/<span class="w"> </span>rockylinux-8
+</pre></div>
+</div>
+</section>
+</section>
 <section id="syncuser">
-<h3>Syncuser<a class="headerlink" href="#syncuser" title="Permalink to this heading"></a></h3>
+<h2>Syncuser<a class="headerlink" href="#syncuser" title="Permalink to this heading"></a></h2>
 <p>At import time Warewulf checks if the names of the users on the host
 match the users and UIDs/GIDs in the imported container. If there is
 mismatch, the import command will print out a warning.  By setting the
@@ -225,7 +248,6 @@ user database of the host as described above.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">wwctl container syncuser --write container-name</span>
 </pre></div>
 </div>
-</section>
 </section>
 <section id="listing-all-imported-containers">
 <h2>Listing All Imported Containers<a class="headerlink" href="#listing-all-imported-containers" title="Permalink to this heading"></a></h2>
@@ -271,6 +293,31 @@ automatically.</p>
 <p>If the files <code class="docutils literal notranslate"><span class="pre">/etc/passwd</span></code> or <code class="docutils literal notranslate"><span class="pre">/etc/group</span></code> were updated, there
 will be an additional check to confirm if the users are in sync as
 described in <a class="reference internal" href="#syncuser">Syncuser</a> section.</p>
+<section id="excluding-files-from-a-container">
+<h3>Excluding Files from a Container<a class="headerlink" href="#excluding-files-from-a-container" title="Permalink to this heading"></a></h3>
+<p>Warewulf can exclude files from a source container to prevent them
+from being delivered to the compute node. This is typically used to
+reduce the size of the image when some files are unnecessary.</p>
+<p>Patterns for excluded files are read from the file
+<code class="docutils literal notranslate"><span class="pre">/etc/warewulf/excludes</span></code> in the container image itself. For example,
+the default Rocky Linux images exclude these paths:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">/</span><span class="n">boot</span><span class="o">/</span>
+<span class="o">/</span><span class="n">usr</span><span class="o">/</span><span class="n">share</span><span class="o">/</span><span class="n">GeoIP</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">/etc/warewulf/excludes</span></code> supports the patterns implemented by
+<a class="reference external" href="https://pkg.go.dev/path/filepath#Match">filepath.Match</a>.</p>
+</section>
+<section id="preparing-a-container-for-build">
+<h3>Preparing a container for build<a class="headerlink" href="#preparing-a-container-for-build" title="Permalink to this heading"></a></h3>
+<p>Warewulf executes the script <code class="docutils literal notranslate"><span class="pre">/etc/warewulf/container_exit.sh</span></code> after
+a <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">container</span> <span class="pre">shell</span></code> or <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">container</span> <span class="pre">exec</span></code> and prior to
+(re)building the final node image for delivery. This is typically used
+to remove cache or log files that may have been generated by the
+executed command or interactive session.</p>
+<p>For example, the default Rocky Linux images runs <code class="docutils literal notranslate"><span class="pre">dnf</span> <span class="pre">clean</span> <span class="pre">all</span></code> to
+remove any package repository caches that may have been generated.</p>
+</section>
 </section>
 <section id="creating-containers-from-scratch">
 <h2>Creating Containers From Scratch<a class="headerlink" href="#creating-containers-from-scratch" title="Permalink to this heading"></a></h2>
