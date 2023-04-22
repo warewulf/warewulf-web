@@ -65,6 +65,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#configuring-the-node-s-container-image">Configuring the Node’s Container Image</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#configuring-the-node-s-kernel">Configuring the Node’s Kernel</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#configuring-the-node-s-network">Configuring the Node’s Network</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#node-discovery">Node Discovery</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#un-setting-node-attributes">Un-setting Node Attributes</a></li>
@@ -321,6 +322,16 @@ container, kernel, and network:</p>
 <span class="go">n001                 cluster            --           cluster01</span>
 </pre></div>
 </div>
+</section>
+<section id="node-discovery">
+<h3>Node Discovery<a class="headerlink" href="#node-discovery" title="Permalink to this heading"></a></h3>
+<p>The hwaddr of a node can be automatically discovered by setting
+<cite>–discoverable</cite> on a node. If a node attempts to provision against
+Warewulf using an interface that is unknown to Warewulf, that address
+is associated with the first discoverable node. (Multiple discoverable
+nodes are sorted lexically, first by cluster, then by ID.)</p>
+<p>Once a node has been discovered its “discoverable” flag is
+automatically cleared.</p>
 </section>
 </section>
 <section id="un-setting-node-attributes">
