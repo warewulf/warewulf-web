@@ -12,11 +12,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=249f3023"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -66,6 +66,7 @@
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="ipmi.html">IPMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disks.html">Disk Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="templating.html">Templating</a></li>
 </ul>
@@ -112,10 +113,10 @@
            <div itemprop="articleBody">
              
   <section id="node-provisioning">
-<h1>Node Provisioning<a class="headerlink" href="#node-provisioning" title="Permalink to this heading"></a></h1>
+<h1>Node Provisioning<a class="headerlink" href="#node-provisioning" title="Link to this heading"></a></h1>
 <p>Once the nodes are configured in Warewulf, they are ready to boot.</p>
 <section id="node-hardware-setup">
-<h2>Node Hardware Setup<a class="headerlink" href="#node-hardware-setup" title="Permalink to this heading"></a></h2>
+<h2>Node Hardware Setup<a class="headerlink" href="#node-hardware-setup" title="Link to this heading"></a></h2>
 <p>The only thing that Warewulf requires to provision is that the node is
 set to PXE boot. You may need to change the boot order if there is a
 local disk present and bootable. This is a configuration change you
@@ -138,7 +139,7 @@ Warewulf, Debian, OpenSuSE, and Rocky Linux.</p>
 </div>
 </section>
 <section id="the-provisioning-process">
-<h2>The Provisioning Process<a class="headerlink" href="#the-provisioning-process" title="Permalink to this heading"></a></h2>
+<h2>The Provisioning Process<a class="headerlink" href="#the-provisioning-process" title="Link to this heading"></a></h2>
 <p>When the cluster node boots, the following order of operations will
 occur:</p>
 <ol class="arabic">
@@ -205,7 +206,7 @@ expect</p></li>
 </ol>
 </section>
 <section id="node-status">
-<h2>Node status<a class="headerlink" href="#node-status" title="Permalink to this heading"></a></h2>
+<h2>Node status<a class="headerlink" href="#node-status" title="Link to this heading"></a></h2>
 <p>During the whole provisioning process of your nodes, you can check their status
 through the following command :
 .. code-block:: console</p>

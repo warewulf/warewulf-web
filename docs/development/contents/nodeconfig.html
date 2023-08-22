@@ -12,11 +12,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=249f3023"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -78,6 +78,7 @@
 <li class="toctree-l1"><a class="reference internal" href="overlays.html">Warewulf Overlays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="provisioning.html">Node Provisioning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipmi.html">IPMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disks.html">Disk Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="templating.html">Templating</a></li>
 </ul>
@@ -124,9 +125,9 @@
            <div itemprop="articleBody">
              
   <section id="node-configuration">
-<h1>Node Configuration<a class="headerlink" href="#node-configuration" title="Permalink to this heading"></a></h1>
+<h1>Node Configuration<a class="headerlink" href="#node-configuration" title="Link to this heading"></a></h1>
 <section id="the-node-configuration-db">
-<h2>The Node Configuration DB<a class="headerlink" href="#the-node-configuration-db" title="Permalink to this heading"></a></h2>
+<h2>The Node Configuration DB<a class="headerlink" href="#the-node-configuration-db" title="Link to this heading"></a></h2>
 <p>As mentioned in the <a class="reference internal" href="configuration.html"><span class="doc">Warewulf Configuration</span></a>
 section, node configs are persisted to the <code class="docutils literal notranslate"><span class="pre">nodes.conf</span></code> YAML file,
 but generally it is best not to edit this file directly (however that
@@ -137,14 +138,14 @@ is both scalable and very lightweight. We’ve tested this out to over
 which we felt was both tolerable and advantageous.</p>
 </section>
 <section id="adding-a-new-node">
-<h2>Adding a New Node<a class="headerlink" href="#adding-a-new-node" title="Permalink to this heading"></a></h2>
+<h2>Adding a New Node<a class="headerlink" href="#adding-a-new-node" title="Link to this heading"></a></h2>
 <p>Creating a new node is as simple as running the following command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span>add<span class="w"> </span>n001<span class="w"> </span>-I<span class="w"> </span><span class="m">172</span>.16.1.11
 <span class="go">Added node: n001</span>
 </pre></div>
 </div>
 <section id="adding-several-nodes">
-<h3>Adding several nodes<a class="headerlink" href="#adding-several-nodes" title="Permalink to this heading"></a></h3>
+<h3>Adding several nodes<a class="headerlink" href="#adding-several-nodes" title="Link to this heading"></a></h3>
 <p>Several nodes can be added with a single command if a node range is
 given. An additional IP address will incremented. So the command</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span>add<span class="w"> </span>n00<span class="o">[</span><span class="m">2</span>-4<span class="o">]</span><span class="w"> </span>-I<span class="w"> </span><span class="m">172</span>.16.1.12
@@ -164,7 +165,7 @@ given. An additional IP address will incremented. So the command</p>
 <p>has added 4 nodes with the incremented IP addresses.</p>
 </section>
 <section id="node-names">
-<h3>Node Names<a class="headerlink" href="#node-names" title="Permalink to this heading"></a></h3>
+<h3>Node Names<a class="headerlink" href="#node-names" title="Link to this heading"></a></h3>
 <p>For small clusters, you can use simple names (e.g. <code class="docutils literal notranslate"><span class="pre">n0000</span></code>); but for
 larger, more complicated clusters that are comprised of multiple
 clusters and roles it is highly recommended to use node names that
@@ -179,7 +180,7 @@ valuable for other <code class="docutils literal notranslate"><span class="pre">
 </section>
 </section>
 <section id="listing-nodes">
-<h2>Listing Nodes<a class="headerlink" href="#listing-nodes" title="Permalink to this heading"></a></h2>
+<h2>Listing Nodes<a class="headerlink" href="#listing-nodes" title="Link to this heading"></a></h2>
 <p>Once you have configured one or more nodes, you can list them and
 their attributes as follows:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span>list
@@ -235,7 +236,7 @@ generally usable.</p>
 </div>
 </section>
 <section id="setting-node-attributes">
-<h2>Setting Node Attributes<a class="headerlink" href="#setting-node-attributes" title="Permalink to this heading"></a></h2>
+<h2>Setting Node Attributes<a class="headerlink" href="#setting-node-attributes" title="Link to this heading"></a></h2>
 <p>In the above output we can see that there is no kernel or container
 defined for this node. To provision a node, the minimum requirements
 are a kernel and container, and for that node to be useful, we will
@@ -246,7 +247,7 @@ see a list of all configuration attributes, use the command <code class="docutil
 <span class="pre">node</span> <span class="pre">set</span> <span class="pre">--help</span></code>.</p>
 </section>
 <section id="configuring-the-node-s-container-image">
-<h2>Configuring the Node’s Container Image<a class="headerlink" href="#configuring-the-node-s-container-image" title="Permalink to this heading"></a></h2>
+<h2>Configuring the Node’s Container Image<a class="headerlink" href="#configuring-the-node-s-container-image" title="Link to this heading"></a></h2>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--container<span class="w"> </span>rocky-8<span class="w"> </span>n001
 <span class="go">Are you sure you want to modify 1 nodes(s): y</span>
 </pre></div>
@@ -257,7 +258,7 @@ see a list of all configuration attributes, use the command <code class="docutil
 </pre></div>
 </div>
 <section id="configuring-the-node-s-kernel">
-<h3>Configuring the Node’s Kernel<a class="headerlink" href="#configuring-the-node-s-kernel" title="Permalink to this heading"></a></h3>
+<h3>Configuring the Node’s Kernel<a class="headerlink" href="#configuring-the-node-s-kernel" title="Link to this heading"></a></h3>
 <p>While the recommended method for assigning a kernel in 4.3 and beyond
 is to include it in the container / node image, a kernel can still be
 specified as an override at the node or profile.  To illustrate this,
@@ -276,7 +277,7 @@ we import the most recent kernel from a openSUSE Tumbleweed release.</p>
 </div>
 </section>
 <section id="configuring-the-node-s-network">
-<h3>Configuring the Node’s Network<a class="headerlink" href="#configuring-the-node-s-network" title="Permalink to this heading"></a></h3>
+<h3>Configuring the Node’s Network<a class="headerlink" href="#configuring-the-node-s-network" title="Link to this heading"></a></h3>
 <p>To configure the network, we have to pick a network device name and
 provide the network information as follows:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--netdev<span class="w"> </span>eth0<span class="w"> </span>--hwaddr<span class="w"> </span><span class="m">11</span>:22:33:44:55:66<span class="w"> </span>--ipaddr<span class="w"> </span><span class="m">10</span>.0.2.1<span class="w"> </span>--netmask<span class="w"> </span><span class="m">255</span>.255.252.0<span class="w"> </span>n001
@@ -329,7 +330,7 @@ container, kernel, and network:</p>
 </div>
 </section>
 <section id="node-discovery">
-<h3>Node Discovery<a class="headerlink" href="#node-discovery" title="Permalink to this heading"></a></h3>
+<h3>Node Discovery<a class="headerlink" href="#node-discovery" title="Link to this heading"></a></h3>
 <p>The hwaddr of a node can be automatically discovered by setting
 <cite>–discoverable</cite> on a node. If a node attempts to provision against
 Warewulf using an interface that is unknown to Warewulf, that address
@@ -340,7 +341,7 @@ automatically cleared.</p>
 </section>
 </section>
 <section id="un-setting-node-attributes">
-<h2>Un-setting Node Attributes<a class="headerlink" href="#un-setting-node-attributes" title="Permalink to this heading"></a></h2>
+<h2>Un-setting Node Attributes<a class="headerlink" href="#un-setting-node-attributes" title="Link to this heading"></a></h2>
 <p>If you wish to <code class="docutils literal notranslate"><span class="pre">unset</span></code> a particular value, set the value to
 <code class="docutils literal notranslate"><span class="pre">UNDEF</span></code>. For example:</p>
 <p>And to unset this configuration attribute:</p>

@@ -12,11 +12,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=249f3023"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -61,6 +61,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contents/overlays.html">Warewulf Overlays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contents/provisioning.html">Node Provisioning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contents/ipmi.html">IPMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/disks.html">Disk Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contents/security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contents/templating.html">Templating</a></li>
 </ul>
@@ -123,39 +124,39 @@
            <div itemprop="articleBody">
              
   <section id="contributing">
-<h1>Contributing<a class="headerlink" href="#contributing" title="Permalink to this heading"></a></h1>
+<h1>Contributing<a class="headerlink" href="#contributing" title="Link to this heading"></a></h1>
 <p>Warewulf is an open source project, meaning we have the challenge of
 limited resources. We are grateful for any support that you can
 offer. Helping other users, raising issues, helping write
 documentation, or contributing code are all ways to help!</p>
 <section id="join-the-community">
-<h2>Join the community<a class="headerlink" href="#join-the-community" title="Permalink to this heading"></a></h2>
+<h2>Join the community<a class="headerlink" href="#join-the-community" title="Link to this heading"></a></h2>
 <p>This is a huge endeavor, and your help would be greatly appreciated!
 Post to online communities about Warewulf, and request that your
 distribution vendor, service provider, and system administrators
 include Warewulf for you!</p>
 <section id="warewulf-on-slack">
-<h3>Warewulf on Slack<a class="headerlink" href="#warewulf-on-slack" title="Permalink to this heading"></a></h3>
+<h3>Warewulf on Slack<a class="headerlink" href="#warewulf-on-slack" title="Link to this heading"></a></h3>
 <p>Many of our users come to Slack for quick help with an issue. You can
 find us at <a class="reference external" href="https://join.slack.com/t/hpcng/shared_invite/zt-k9atb2dj-rnlPjSh5Os3Ks6vlDEOyAA">HPCng</a>.</p>
 </section>
 </section>
 <section id="raise-an-issue">
-<h2>Raise an Issue<a class="headerlink" href="#raise-an-issue" title="Permalink to this heading"></a></h2>
+<h2>Raise an Issue<a class="headerlink" href="#raise-an-issue" title="Link to this heading"></a></h2>
 <p>For general bugs/issues, you can open an issue <a class="reference external" href="https://github.com/hpcng/warewulf/issues/new">at the GitHub repo</a>. However, if you find
 a security related issue/problem, please email HPCng directly at
 <a class="reference external" href="mailto:security&#37;&#52;&#48;hpcng&#46;org">security<span>&#64;</span>hpcng<span>&#46;</span>org</a>. More information
 about the HPCng security policies and procedures can be found <a class="reference external" href="https://hpcng.org/security-policy">here</a>.</p>
 </section>
 <section id="contribute-to-the-code">
-<h2>Contribute to the code<a class="headerlink" href="#contribute-to-the-code" title="Permalink to this heading"></a></h2>
+<h2>Contribute to the code<a class="headerlink" href="#contribute-to-the-code" title="Link to this heading"></a></h2>
 <p>We use the traditional <a class="reference external" href="https://guides.github.com/introduction/flow">GitHub Flow</a> to develop. This means
 that you fork the main repo, create a new branch to make changes, and
 submit a pull request (PR) to the master branch.</p>
 <p>Check out our official <a class="reference external" href="https://github.com/hpcng/warewulf/blob/master/CONTRIBUTING.md">CONTRIBUTING.md</a>
 document, which also includes a <a class="reference external" href="https://github.com/hpcng/warewulf/blob/master/CONTRIBUTING.md#code-of-conduct">code of conduct</a>.</p>
 <section id="step-1-fork-the-repo">
-<h3>Step 1. Fork the repo<a class="headerlink" href="#step-1-fork-the-repo" title="Permalink to this heading"></a></h3>
+<h3>Step 1. Fork the repo<a class="headerlink" href="#step-1-fork-the-repo" title="Link to this heading"></a></h3>
 <p>To contribute to Warewulf, you should obtain a GitHub account and fork
 the <a class="reference external" href="https://github.com/hpcng/warewulf">Warewulf</a> repository. Once
 forked, clone your fork of the repo to your computer. (Obviously, you
@@ -166,7 +167,7 @@ should replace <code class="docutils literal notranslate"><span class="pre">your
 </div>
 </section>
 <section id="step-2-checkout-a-new-branch">
-<h3>Step 2. Checkout a new branch<a class="headerlink" href="#step-2-checkout-a-new-branch" title="Permalink to this heading"></a></h3>
+<h3>Step 2. Checkout a new branch<a class="headerlink" href="#step-2-checkout-a-new-branch" title="Link to this heading"></a></h3>
 <p><a class="reference external" href="https://guides.github.com/introduction/flow">Branches</a> are a way
 of isolating your features from the main branch. Given that we’ve just
 cloned the repo, we will probably want to make a new branch from
@@ -183,7 +184,7 @@ git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </
 </div>
 </section>
 <section id="step-3-make-your-changes">
-<h3>Step 3. Make your changes<a class="headerlink" href="#step-3-make-your-changes" title="Permalink to this heading"></a></h3>
+<h3>Step 3. Make your changes<a class="headerlink" href="#step-3-make-your-changes" title="Link to this heading"></a></h3>
 <p>On your new branch, go nuts! Make changes, test them, and when you are
 happy commit the changes to the branch:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>file-changed1<span class="w"> </span>file-changed2...
@@ -205,7 +206,7 @@ future maintainers understand your contribution, or (hopefully not)
 revert the code back to a previous version if necessary.</p>
 </section>
 <section id="step-4-push-your-branch-to-your-fork">
-<h3>Step 4. Push your branch to your fork<a class="headerlink" href="#step-4-push-your-branch-to-your-fork" title="Permalink to this heading"></a></h3>
+<h3>Step 4. Push your branch to your fork<a class="headerlink" href="#step-4-push-your-branch-to-your-fork" title="Link to this heading"></a></h3>
 <p>When you are done with your commits, you should push your branch to
 your fork (and you can also continuously push commits here as you
 work):</p>
@@ -219,7 +220,7 @@ what has been pushed (or not):</p>
 </div>
 </section>
 <section id="step-5-submit-a-pull-request">
-<h3>Step 5. Submit a Pull Request<a class="headerlink" href="#step-5-submit-a-pull-request" title="Permalink to this heading"></a></h3>
+<h3>Step 5. Submit a Pull Request<a class="headerlink" href="#step-5-submit-a-pull-request" title="Link to this heading"></a></h3>
 <p>Once you have pushed your branch, then you can go to your fork (in the
 web GUI on GitHub) and <a class="reference external" href="https://help.github.com/articles/creating-a-pull-request">submit a Pull Request</a>. Regardless
 of the name of your branch, your PR should be submitted to the
@@ -231,7 +232,7 @@ suggest changes, you can continue to push commits to your branch and
 they will update the Pull Request.</p>
 </section>
 <section id="step-6-keep-your-branch-in-sync">
-<h3>Step 6. Keep your branch in sync<a class="headerlink" href="#step-6-keep-your-branch-in-sync" title="Permalink to this heading"></a></h3>
+<h3>Step 6. Keep your branch in sync<a class="headerlink" href="#step-6-keep-your-branch-in-sync" title="Link to this heading"></a></h3>
 <p>Cloning the repo will create an exact copy of the Warewulf repository
 at that moment. As you work, your branch may become out of date as
 others merge changesinto the upstream master. In the event that you
