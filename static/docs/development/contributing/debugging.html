@@ -12,11 +12,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=249f3023"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -61,6 +61,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contents/overlays.html">Warewulf Overlays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contents/provisioning.html">Node Provisioning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contents/ipmi.html">IPMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/disks.html">Disk Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contents/security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contents/templating.html">Templating</a></li>
 </ul>
@@ -117,13 +118,13 @@
            <div itemprop="articleBody">
              
   <section id="debugging">
-<h1>Debugging<a class="headerlink" href="#debugging" title="Permalink to this heading"></a></h1>
+<h1>Debugging<a class="headerlink" href="#debugging" title="Link to this heading"></a></h1>
 <p>Whether developing a new feature or fixing a bug, using the automated
 test suite together with a debugger is a potent combination. This
 guide here can’t substitute for full documentation on a given
 debugger; but it might help you get started debugging Warewulf.</p>
 <section id="validating-the-code-with-vet">
-<h2>Validating the code with vet<a class="headerlink" href="#validating-the-code-with-vet" title="Permalink to this heading"></a></h2>
+<h2>Validating the code with vet<a class="headerlink" href="#validating-the-code-with-vet" title="Link to this heading"></a></h2>
 <p>The Warewulf <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> includes a <code class="docutils literal notranslate"><span class="pre">vet</span></code> target which runs <code class="docutils literal notranslate"><span class="pre">go</span>
 <span class="pre">vet</span></code> on the full codebase.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>make<span class="w"> </span>vet
@@ -131,7 +132,7 @@ debugger; but it might help you get started debugging Warewulf.</p>
 </div>
 </section>
 <section id="running-the-full-test-suite">
-<h2>Running the full test suite<a class="headerlink" href="#running-the-full-test-suite" title="Permalink to this heading"></a></h2>
+<h2>Running the full test suite<a class="headerlink" href="#running-the-full-test-suite" title="Link to this heading"></a></h2>
 <p>The Warewulf <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> includes a <code class="docutils literal notranslate"><span class="pre">test</span></code> target which runs the
 full test suite.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>make<span class="w"> </span><span class="nb">test</span>
@@ -139,12 +140,12 @@ full test suite.</p>
 </div>
 </section>
 <section id="using-delve">
-<h2>Using delve<a class="headerlink" href="#using-delve" title="Permalink to this heading"></a></h2>
+<h2>Using delve<a class="headerlink" href="#using-delve" title="Link to this heading"></a></h2>
 <p>If you have a failing test but you’re having trouble tracking down
 why, try using a debugger to step through the test. These instructions
 use delve.</p>
 <section id="installing-delve">
-<h3>Installing delve<a class="headerlink" href="#installing-delve" title="Permalink to this heading"></a></h3>
+<h3>Installing delve<a class="headerlink" href="#installing-delve" title="Link to this heading"></a></h3>
 <p>You can install delve as a regular user directly with Go.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>go<span class="w"> </span>install<span class="w"> </span>github.com/go-delve/delve/cmd/dlv@latest
 </pre></div>
@@ -157,7 +158,7 @@ path if you prefer.</p>
 </div>
 </section>
 <section id="running-delve-against-a-specific-test">
-<h3>Running delve against a specific test<a class="headerlink" href="#running-delve-against-a-specific-test" title="Permalink to this heading"></a></h3>
+<h3>Running delve against a specific test<a class="headerlink" href="#running-delve-against-a-specific-test" title="Link to this heading"></a></h3>
 <p>You can use delve to specifically run the test suite and, even more
 specifically, a single failing test. In this example delve is
 instructed to run the tests for Warewulf’s <code class="docutils literal notranslate"><span class="pre">node</span></code> package, and
@@ -215,7 +216,7 @@ scope.</p>
 command.</p>
 </section>
 <section id="example">
-<h3>Example<a class="headerlink" href="#example" title="Permalink to this heading"></a></h3>
+<h3>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>~/go/bin/dlv<span class="w"> </span><span class="nb">test</span><span class="w"> </span>github.com/hpcng/warewulf/internal/pkg/node<span class="w"> </span>--<span class="w"> </span>-test.v<span class="w"> </span>-test.run<span class="w"> </span>Test_GetAllNodeInfoDefaults
 <span class="go">Type &#39;help&#39; for list of commands.</span>
 

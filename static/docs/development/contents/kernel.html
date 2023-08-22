@@ -12,11 +12,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=249f3023"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -68,6 +68,7 @@
 <li class="toctree-l1"><a class="reference internal" href="overlays.html">Warewulf Overlays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="provisioning.html">Node Provisioning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipmi.html">IPMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disks.html">Disk Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="templating.html">Templating</a></li>
 </ul>
@@ -114,9 +115,9 @@
            <div itemprop="articleBody">
              
   <section id="kernel-management">
-<h1>Kernel Management<a class="headerlink" href="#kernel-management" title="Permalink to this heading"></a></h1>
+<h1>Kernel Management<a class="headerlink" href="#kernel-management" title="Link to this heading"></a></h1>
 <section id="node-kernels">
-<h2>Node Kernels<a class="headerlink" href="#node-kernels" title="Permalink to this heading"></a></h2>
+<h2>Node Kernels<a class="headerlink" href="#node-kernels" title="Link to this heading"></a></h2>
 <p>Warewulf nodes require a Linux kernel to boot. There are multiple ways
 to do this, but the default, and easiest way is to install the kernel
 you wish to use for a particular container, into the container.</p>
@@ -140,7 +141,7 @@ build and distribute containers that have custom drivers and/or
 configurations included (e.g. OFED, GPUs, etc.).</p>
 </section>
 <section id="kernel-overrides">
-<h2>Kernel Overrides<a class="headerlink" href="#kernel-overrides" title="Permalink to this heading"></a></h2>
+<h2>Kernel Overrides<a class="headerlink" href="#kernel-overrides" title="Link to this heading"></a></h2>
 <p>It is still possible to specify a kernel to a container if it doesn’t
 include it’s own kernel, or if you wish to override the default kernel
 by using the <code class="docutils literal notranslate"><span class="pre">kernel</span> <span class="pre">override</span></code> capability.</p>
@@ -157,7 +158,7 @@ follows:</p>
 <p>This process will import not only the kernel image itself, but also
 all of the kernel modules and firmware associated to this kernel.</p>
 <section id="listing-all-imported-kernels">
-<h3>Listing All Imported Kernels<a class="headerlink" href="#listing-all-imported-kernels" title="Permalink to this heading"></a></h3>
+<h3>Listing All Imported Kernels<a class="headerlink" href="#listing-all-imported-kernels" title="Link to this heading"></a></h3>
 <p>Once the kernel has been imported, you can list them all with the
 following command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>kernel<span class="w"> </span>list

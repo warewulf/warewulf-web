@@ -12,11 +12,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=249f3023"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -61,6 +61,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contents/overlays.html">Warewulf Overlays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contents/provisioning.html">Node Provisioning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contents/ipmi.html">IPMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/disks.html">Disk Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contents/security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contents/templating.html">Templating</a></li>
 </ul>
@@ -117,9 +118,9 @@
            <div itemprop="articleBody">
              
   <section id="el8-quickstart-rocky-linux-and-rhel">
-<h1>EL8 Quickstart (Rocky Linux and RHEL)<a class="headerlink" href="#el8-quickstart-rocky-linux-and-rhel" title="Permalink to this heading"></a></h1>
+<h1>EL8 Quickstart (Rocky Linux and RHEL)<a class="headerlink" href="#el8-quickstart-rocky-linux-and-rhel" title="Link to this heading"></a></h1>
 <section id="install-warewulf-and-dependencies">
-<h2>Install Warewulf and dependencies<a class="headerlink" href="#install-warewulf-and-dependencies" title="Permalink to this heading"></a></h2>
+<h2>Install Warewulf and dependencies<a class="headerlink" href="#install-warewulf-and-dependencies" title="Link to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>groupinstall<span class="w"> </span><span class="s2">&quot;Development Tools&quot;</span>
 sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>epel-release
 sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>golang<span class="w"> </span>tftp-server<span class="w"> </span>dhcp-server<span class="w"> </span>nfs-utils<span class="w"> </span>gpgme-devel<span class="w"> </span>libassuan-devel
@@ -148,7 +149,7 @@ sudo<span class="w"> </span>make<span class="w"> </span>install
 </div>
 </section>
 <section id="configure-firewalld">
-<h2>Configure firewalld<a class="headerlink" href="#configure-firewalld" title="Permalink to this heading"></a></h2>
+<h2>Configure firewalld<a class="headerlink" href="#configure-firewalld" title="Link to this heading"></a></h2>
 <p>Restart firewalld to register the added service file, add the service
 to the default zone, and reload.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>firewalld
@@ -160,7 +161,7 @@ sudo<span class="w"> </span>firewall-cmd<span class="w"> </span>--reload
 </div>
 </section>
 <section id="configure-the-controller">
-<h2>Configure the controller<a class="headerlink" href="#configure-the-controller" title="Permalink to this heading"></a></h2>
+<h2>Configure the controller<a class="headerlink" href="#configure-the-controller" title="Link to this heading"></a></h2>
 <p>Edit the file <code class="docutils literal notranslate"><span class="pre">/etc/warewulf/warewulf.conf</span></code> and ensure that you’ve
 set the appropriate configuration parameters. Here are some of the
 defaults for reference assuming that <code class="docutils literal notranslate"><span class="pre">192.168.200.1</span></code> is the IP
@@ -196,14 +197,14 @@ to <code class="docutils literal notranslate"><span class="pre">192.168.200.100<
 </div>
 </section>
 <section id="start-and-enable-the-warewulf-service">
-<h2>Start and enable the Warewulf service<a class="headerlink" href="#start-and-enable-the-warewulf-service" title="Permalink to this heading"></a></h2>
+<h2>Start and enable the Warewulf service<a class="headerlink" href="#start-and-enable-the-warewulf-service" title="Link to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Start and enable the warewulfd service</span>
 sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">enable</span><span class="w"> </span>--now<span class="w"> </span>warewulfd
 </pre></div>
 </div>
 </section>
 <section id="configure-system-services-automatically">
-<h2>Configure system services automatically<a class="headerlink" href="#configure-system-services-automatically" title="Permalink to this heading"></a></h2>
+<h2>Configure system services automatically<a class="headerlink" href="#configure-system-services-automatically" title="Link to this heading"></a></h2>
 <p>There are a number of services and configurations that Warewulf relies
 on to operate.  If you wish to configure all services, you can do so
 individually (omitting the <code class="docutils literal notranslate"><span class="pre">--all</span></code>) will print a help and usage
@@ -221,7 +222,7 @@ errors with TFTP still.</p>
 </div>
 </section>
 <section id="pull-and-build-the-vnfs-container-including-the-kernel">
-<h2>Pull and build the VNFS container (including the kernel)<a class="headerlink" href="#pull-and-build-the-vnfs-container-including-the-kernel" title="Permalink to this heading"></a></h2>
+<h2>Pull and build the VNFS container (including the kernel)<a class="headerlink" href="#pull-and-build-the-vnfs-container-including-the-kernel" title="Link to this heading"></a></h2>
 <p>This will pull a basic VNFS container from Docker Hub and import the
 default running kernel from the controller node and set both in the
 “default” node profile.</p>
@@ -230,7 +231,7 @@ default running kernel from the controller node and set both in the
 </div>
 </section>
 <section id="set-up-the-default-node-profile">
-<h2>Set up the default node profile<a class="headerlink" href="#set-up-the-default-node-profile" title="Permalink to this heading"></a></h2>
+<h2>Set up the default node profile<a class="headerlink" href="#set-up-the-default-node-profile" title="Link to this heading"></a></h2>
 <p>Node configurations can be set via node profiles. Each node by default
 is configured to be part of the <code class="docutils literal notranslate"><span class="pre">default</span></code> node profile, so any
 changes you make to that profile will affect all nodes.</p>
@@ -254,7 +255,7 @@ listing the profiles as follows:</p>
 </div>
 </section>
 <section id="add-a-node">
-<h2>Add a node<a class="headerlink" href="#add-a-node" title="Permalink to this heading"></a></h2>
+<h2>Add a node<a class="headerlink" href="#add-a-node" title="Link to this heading"></a></h2>
 <p>Adding nodes can be done while setting configurations in one
 command. Here we are setting the IP address of <code class="docutils literal notranslate"><span class="pre">eth0</span></code> and setting
 this node to be discoverable, which will then automatically have the

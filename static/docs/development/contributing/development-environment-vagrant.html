@@ -12,11 +12,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=249f3023"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -61,6 +61,7 @@
 <li class="toctree-l1"><a class="reference internal" href="../contents/overlays.html">Warewulf Overlays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contents/provisioning.html">Node Provisioning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contents/ipmi.html">IPMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../contents/disks.html">Disk Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contents/security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../contents/templating.html">Templating</a></li>
 </ul>
@@ -127,16 +128,16 @@
            <div itemprop="articleBody">
              
   <section id="development-environment-vagrant">
-<h1>Development Environment (Vagrant)<a class="headerlink" href="#development-environment-vagrant" title="Permalink to this heading"></a></h1>
+<h1>Development Environment (Vagrant)<a class="headerlink" href="#development-environment-vagrant" title="Link to this heading"></a></h1>
 <p>Create Rocky Linux 9 virtual machine for Warewulf testbed using Vagrant</p>
 <section id="host-system-requirements">
-<h2>Host system requirements<a class="headerlink" href="#host-system-requirements" title="Permalink to this heading"></a></h2>
+<h2>Host system requirements<a class="headerlink" href="#host-system-requirements" title="Link to this heading"></a></h2>
 <ol class="arabic simple">
 <li><p>CPU supports H/W virtualization.</p></li>
 <li><p>KVM kernel module available and loaded.</p></li>
 </ol>
 <section id="cpu-h-w-virtualization-support">
-<h3>CPU H/W Virtualization support<a class="headerlink" href="#cpu-h-w-virtualization-support" title="Permalink to this heading"></a></h3>
+<h3>CPU H/W Virtualization support<a class="headerlink" href="#cpu-h-w-virtualization-support" title="Link to this heading"></a></h3>
 <p>Check CPU virtualization capability using following command. If your system has Intel CPU, you will see <code class="code docutils literal notranslate"><span class="pre">Intel</span> <span class="pre">VT</span></code> here, and if your system has AMD CPU, you will see <code class="code docutils literal notranslate"><span class="pre">AMD-V</span></code> here.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lscpu<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>Virtualization
 Virtualization:<span class="w">                  </span>AMD-V
@@ -145,7 +146,7 @@ Virtualization<span class="w"> </span>type:<span class="w">             </span>f
 </div>
 </section>
 <section id="kvm-kernel-module">
-<h3>KVM kernel module<a class="headerlink" href="#kvm-kernel-module" title="Permalink to this heading"></a></h3>
+<h3>KVM kernel module<a class="headerlink" href="#kvm-kernel-module" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>lsmod<span class="w"> </span><span class="p">|</span><span class="w"> </span>grep<span class="w"> </span>kvm
 ccp<span class="w">                   </span><span class="m">118784</span><span class="w">  </span><span class="m">1</span><span class="w"> </span>kvm_amd
 kvm<span class="w">                  </span><span class="m">1105920</span><span class="w">  </span><span class="m">1</span><span class="w"> </span>kvm_amd
@@ -155,9 +156,9 @@ irqbypass<span class="w">              </span><span class="m">16384</span><span 
 </section>
 </section>
 <section id="setup-development-environment-on-rocky-linux-9">
-<h2>Setup development environment on Rocky Linux 9<a class="headerlink" href="#setup-development-environment-on-rocky-linux-9" title="Permalink to this heading"></a></h2>
+<h2>Setup development environment on Rocky Linux 9<a class="headerlink" href="#setup-development-environment-on-rocky-linux-9" title="Link to this heading"></a></h2>
 <section id="install-qemu-libvirt">
-<h3>Install QEMU, libvirt<a class="headerlink" href="#install-qemu-libvirt" title="Permalink to this heading"></a></h3>
+<h3>Install QEMU, libvirt<a class="headerlink" href="#install-qemu-libvirt" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages</span>
 sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>libvirt<span class="w"> </span>qemu-kvm<span class="w"> </span><span class="se">\</span>
 <span class="w">    </span>libguestfs<span class="w"> </span>virtio-win<span class="w"> </span>guestfs-tools<span class="w"> </span>libguestfs-inspect-icons<span class="w"> </span>virt-win-reg<span class="w"> </span><span class="se">\</span>
@@ -172,7 +173,7 @@ sudo<span class="w"> </span>usermod<span class="w"> </span>-aG<span class="w"> <
 </div>
 </section>
 <section id="install-cockpit-optional">
-<h3>Install Cockpit (Optional)<a class="headerlink" href="#install-cockpit-optional" title="Permalink to this heading"></a></h3>
+<h3>Install Cockpit (Optional)<a class="headerlink" href="#install-cockpit-optional" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># Install packages</span>
 sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>cockpit<span class="w"> </span>cockpit-machines
 
@@ -182,7 +183,7 @@ sudo<span class="w"> </span>systemctl<span class="w"> </span><span class="nb">en
 </div>
 </section>
 <section id="install-vagrant-vagrant-libvirt-plug-in-and-vagrant-reload-plug-in">
-<h3>Install Vagrant, vagrant-libvirt plug-in and vagrant-reload plug-in<a class="headerlink" href="#install-vagrant-vagrant-libvirt-plug-in-and-vagrant-reload-plug-in" title="Permalink to this heading"></a></h3>
+<h3>Install Vagrant, vagrant-libvirt plug-in and vagrant-reload plug-in<a class="headerlink" href="#install-vagrant-vagrant-libvirt-plug-in-and-vagrant-reload-plug-in" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>config-manager<span class="w"> </span>--add-repo<span class="w"> </span>https://rpm.releases.hashicorp.com/RHEL/hashicorp.repo
 sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>-y<span class="w"> </span>vagrant
 
@@ -197,9 +198,9 @@ vagrant<span class="w"> </span>plugin<span class="w"> </span>install<span class=
 </section>
 </section>
 <section id="vagrant-box-and-vagrantfile-for-warewulf-sandbox">
-<h2>Vagrant box and Vagrantfile for Warewulf sandbox<a class="headerlink" href="#vagrant-box-and-vagrantfile-for-warewulf-sandbox" title="Permalink to this heading"></a></h2>
+<h2>Vagrant box and Vagrantfile for Warewulf sandbox<a class="headerlink" href="#vagrant-box-and-vagrantfile-for-warewulf-sandbox" title="Link to this heading"></a></h2>
 <section id="create-rocky-linux-9-2-vagrant-box">
-<h3>Create Rocky Linux 9.2 vagrant box<a class="headerlink" href="#create-rocky-linux-9-2-vagrant-box" title="Permalink to this heading"></a></h3>
+<h3>Create Rocky Linux 9.2 vagrant box<a class="headerlink" href="#create-rocky-linux-9-2-vagrant-box" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; box-metadata.json</span>
 <span class="s">{</span>
 <span class="s">&quot;name&quot; : &quot;rockylinux/9&quot;,</span>
@@ -223,7 +224,7 @@ vagrant<span class="w"> </span>box<span class="w"> </span>add<span class="w"> </
 </div>
 </section>
 <section id="vagrantfile">
-<h3>Vagrantfile<a class="headerlink" href="#vagrantfile" title="Permalink to this heading"></a></h3>
+<h3>Vagrantfile<a class="headerlink" href="#vagrantfile" title="Link to this heading"></a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>mkdir<span class="w"> </span>-p<span class="w"> </span>~/warewulf-sandbox
 <span class="nb">cd</span><span class="w"> </span>~/warewulf-sandbox
 
@@ -365,13 +366,13 @@ cat<span class="w"> </span><span class="s">&lt;&lt; &#39;EOF&#39; &gt; Vagrantfi
 </section>
 </section>
 <section id="spin-up-head-node">
-<h2>Spin up head node<a class="headerlink" href="#spin-up-head-node" title="Permalink to this heading"></a></h2>
+<h2>Spin up head node<a class="headerlink" href="#spin-up-head-node" title="Link to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vagrant<span class="w"> </span>up
 </pre></div>
 </div>
 </section>
 <section id="spin-up-compute-nodes">
-<h2>Spin up compute nodes<a class="headerlink" href="#spin-up-compute-nodes" title="Permalink to this heading"></a></h2>
+<h2>Spin up compute nodes<a class="headerlink" href="#spin-up-compute-nodes" title="Link to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>vagrant<span class="w"> </span>up<span class="w"> </span>n0001
 
 <span class="c1"># Wait until n0001 becomes ready</span>

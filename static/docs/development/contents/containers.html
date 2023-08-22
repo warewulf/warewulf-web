@@ -12,11 +12,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=249f3023"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -83,6 +83,7 @@
 <li class="toctree-l1"><a class="reference internal" href="overlays.html">Warewulf Overlays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="provisioning.html">Node Provisioning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipmi.html">IPMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disks.html">Disk Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="templating.html">Templating</a></li>
 </ul>
@@ -129,7 +130,7 @@
            <div itemprop="articleBody">
              
   <section id="container-management">
-<h1>Container Management<a class="headerlink" href="#container-management" title="Permalink to this heading"></a></h1>
+<h1>Container Management<a class="headerlink" href="#container-management" title="Link to this heading"></a></h1>
 <p>Since the inception of Warewulf over 20 years ago, Warewulf has used
 the model of the “Virtual Node File System” (VNFS) as a template image
 for the compute nodes. This is similar to a golden master image,
@@ -152,7 +153,7 @@ be used as the base operating system and by default it will run
 stateless in memory. This means when you reboot the node, the node
 persists no information about Warewulf or how it booted.</p>
 <section id="container-tools">
-<h2>Container Tools<a class="headerlink" href="#container-tools" title="Permalink to this heading"></a></h2>
+<h2>Container Tools<a class="headerlink" href="#container-tools" title="Link to this heading"></a></h2>
 <p>There are different container managment tools available. Docker is
 probably the most recognizable one in the enterprise. Podman is
 another one that is gaining traction on the RHEL platforms. In HPC,
@@ -161,7 +162,7 @@ any of these to create and manage the containers to be later imported
 into Warewulf.</p>
 </section>
 <section id="importing-containers">
-<h2>Importing Containers<a class="headerlink" href="#importing-containers" title="Permalink to this heading"></a></h2>
+<h2>Importing Containers<a class="headerlink" href="#importing-containers" title="Link to this heading"></a></h2>
 <p>Warewulf supports importing an image from any OCI compliant
 registry. This means you can import from a public registry or from a
 private registry.</p>
@@ -188,7 +189,7 @@ user mode. The containers in <a class="reference external" href="https://hub.doc
 they boot as you would expect.</p>
 </div>
 <section id="private-registry">
-<h3>Private Registry<a class="headerlink" href="#private-registry" title="Permalink to this heading"></a></h3>
+<h3>Private Registry<a class="headerlink" href="#private-registry" title="Link to this heading"></a></h3>
 <p>It is possible to use a private registry that is password protected or
 does not have the requirement for TLS. In order to do so, you have two
 choices for handling the credentials.</p>
@@ -217,7 +218,7 @@ shared environments. You would not want these showing up in bash
 history or logs.</p>
 </section>
 <section id="local-files">
-<h3>Local Files<a class="headerlink" href="#local-files" title="Permalink to this heading"></a></h3>
+<h3>Local Files<a class="headerlink" href="#local-files" title="Link to this heading"></a></h3>
 <p>It is also possible to import a container from a local file or
 directory. For example, Podman can save a <cite>.tar</cite> archive of an OCI
 image. This archive can be directly imported into Warewulf, no
@@ -235,7 +236,7 @@ directly.</p>
 </section>
 </section>
 <section id="syncuser">
-<h2>Syncuser<a class="headerlink" href="#syncuser" title="Permalink to this heading"></a></h2>
+<h2>Syncuser<a class="headerlink" href="#syncuser" title="Link to this heading"></a></h2>
 <p>At import time Warewulf checks if the names of the users on the host
 match the users and UIDs/GIDs in the imported container. If there is
 mismatch, the import command will print out a warning.  By setting the
@@ -255,7 +256,7 @@ user database of the host as described above.</p>
 </div>
 </section>
 <section id="listing-all-imported-containers">
-<h2>Listing All Imported Containers<a class="headerlink" href="#listing-all-imported-containers" title="Permalink to this heading"></a></h2>
+<h2>Listing All Imported Containers<a class="headerlink" href="#listing-all-imported-containers" title="Link to this heading"></a></h2>
 <p>Once the container has been imported, you can list them all with the
 following command:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>container<span class="w"> </span>list
@@ -267,7 +268,7 @@ following command:</p>
 configure it to boot compute nodes.</p>
 </section>
 <section id="making-changes-to-containers">
-<h2>Making Changes To Containers<a class="headerlink" href="#making-changes-to-containers" title="Permalink to this heading"></a></h2>
+<h2>Making Changes To Containers<a class="headerlink" href="#making-changes-to-containers" title="Link to this heading"></a></h2>
 <p>Warewulf has a minimal container runtime built into it. This means you
 can run commands inside of any of the containers and make changes to
 them as follows:</p>
@@ -299,7 +300,7 @@ automatically.</p>
 will be an additional check to confirm if the users are in sync as
 described in <a class="reference internal" href="#syncuser">Syncuser</a> section.</p>
 <section id="excluding-files-from-a-container">
-<h3>Excluding Files from a Container<a class="headerlink" href="#excluding-files-from-a-container" title="Permalink to this heading"></a></h3>
+<h3>Excluding Files from a Container<a class="headerlink" href="#excluding-files-from-a-container" title="Link to this heading"></a></h3>
 <p>Warewulf can exclude files from a source container to prevent them
 from being delivered to the compute node. This is typically used to
 reduce the size of the image when some files are unnecessary.</p>
@@ -314,7 +315,7 @@ the default Rocky Linux images exclude these paths:</p>
 <a class="reference external" href="https://pkg.go.dev/path/filepath#Match">filepath.Match</a>.</p>
 </section>
 <section id="preparing-a-container-for-build">
-<h3>Preparing a container for build<a class="headerlink" href="#preparing-a-container-for-build" title="Permalink to this heading"></a></h3>
+<h3>Preparing a container for build<a class="headerlink" href="#preparing-a-container-for-build" title="Link to this heading"></a></h3>
 <p>Warewulf executes the script <code class="docutils literal notranslate"><span class="pre">/etc/warewulf/container_exit.sh</span></code> after
 a <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">container</span> <span class="pre">shell</span></code> or <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">container</span> <span class="pre">exec</span></code> and prior to
 (re)building the final node image for delivery. This is typically used
@@ -325,11 +326,11 @@ remove any package repository caches that may have been generated.</p>
 </section>
 </section>
 <section id="creating-containers-from-scratch">
-<h2>Creating Containers From Scratch<a class="headerlink" href="#creating-containers-from-scratch" title="Permalink to this heading"></a></h2>
+<h2>Creating Containers From Scratch<a class="headerlink" href="#creating-containers-from-scratch" title="Link to this heading"></a></h2>
 <p>You can also create containers from scratch and import those
 containers into Warewulf as previous versions of Warewulf did.</p>
 <section id="building-a-container-from-your-host">
-<h3>Building A Container From Your Host<a class="headerlink" href="#building-a-container-from-your-host" title="Permalink to this heading"></a></h3>
+<h3>Building A Container From Your Host<a class="headerlink" href="#building-a-container-from-your-host" title="Link to this heading"></a></h3>
 <p>RPM based distributions, as well as Debian variants can all bootstrap
 mini <code class="docutils literal notranslate"><span class="pre">chroot()</span></code> directories which can then be used to bootstrap your
 node’s container.</p>
@@ -357,7 +358,7 @@ import it into Warewulf with the following command:</p>
 </div>
 </section>
 <section id="building-a-container-using-apptainer">
-<h3>Building A Container Using Apptainer<a class="headerlink" href="#building-a-container-using-apptainer" title="Permalink to this heading"></a></h3>
+<h3>Building A Container Using Apptainer<a class="headerlink" href="#building-a-container-using-apptainer" title="Link to this heading"></a></h3>
 <p>Apptainer, a container platform for HPC and performance intensive
 applications, can also be used to create node containers for
 Warewulf. There are several Apptainer container recipes in the
@@ -375,7 +376,7 @@ into Warewulf can be done with the following steps:</p>
 </div>
 </section>
 <section id="building-a-container-using-podman">
-<h3>Building A Container Using Podman<a class="headerlink" href="#building-a-container-using-podman" title="Permalink to this heading"></a></h3>
+<h3>Building A Container Using Podman<a class="headerlink" href="#building-a-container-using-podman" title="Link to this heading"></a></h3>
 <p>You can also build a container using podman via a <code class="docutils literal notranslate"><span class="pre">Dockerfile</span></code>. For
 this step the container must be exported to a tar archive, which then
 can be imported to Warewulf. The following steps will create an
@@ -388,7 +389,7 @@ openSUSE Leap container and import it to Warewulf:</p>
 </section>
 </section>
 <section id="container-size-considerations">
-<h2>Container Size Considerations<a class="headerlink" href="#container-size-considerations" title="Permalink to this heading"></a></h2>
+<h2>Container Size Considerations<a class="headerlink" href="#container-size-considerations" title="Link to this heading"></a></h2>
 <p>Base compute node container images start quite small (a few hundred
 megabytes), but can grow quickly as packages and other files are added
 to them. Even these larger images are typically not an issue in modern

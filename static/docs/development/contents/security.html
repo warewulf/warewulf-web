@@ -12,16 +12,16 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=249f3023"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Templating" href="templating.html" />
-    <link rel="prev" title="IPMI" href="ipmi.html" /> 
+    <link rel="prev" title="Disk Management" href="disks.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -61,6 +61,7 @@
 <li class="toctree-l1"><a class="reference internal" href="overlays.html">Warewulf Overlays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="provisioning.html">Node Provisioning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipmi.html">IPMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disks.html">Disk Management</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Security</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#selinux">SELinux</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#provisioning-security">Provisioning Security</a></li>
@@ -112,7 +113,7 @@
            <div itemprop="articleBody">
              
   <section id="security">
-<h1>Security<a class="headerlink" href="#security" title="Permalink to this heading"></a></h1>
+<h1>Security<a class="headerlink" href="#security" title="Link to this heading"></a></h1>
 <p>Historically, most HPC clusters utilize a security model that is “hard
 on the exterior and soft and gushy on the interior”. It is not that a
 user has free roam once logged in, but rather we tend to rely on just
@@ -131,7 +132,7 @@ further. And while certain parallelization and high performance
 library capabilities still require lowering the security threshold,
 Warewulf strives to not be a blocker here.</p>
 <section id="selinux">
-<h2>SELinux<a class="headerlink" href="#selinux" title="Permalink to this heading"></a></h2>
+<h2>SELinux<a class="headerlink" href="#selinux" title="Link to this heading"></a></h2>
 <p>The Warewulf server itself was developed with SELinux enabled in
 “targeted” and “enforcing” mode and with the firewall active.</p>
 <p>Additionally, the provisioning process fully supports SELinux by
@@ -154,7 +155,7 @@ into the container.</p></li>
 </ol>
 </section>
 <section id="provisioning-security">
-<h2>Provisioning Security<a class="headerlink" href="#provisioning-security" title="Permalink to this heading"></a></h2>
+<h2>Provisioning Security<a class="headerlink" href="#provisioning-security" title="Link to this heading"></a></h2>
 <p>Provisioning in generally is known to be rather “insecure” because
 when a user lands on a compute node, there is generally nothing
 stopping them from spoofing a provision request and downloading the
@@ -182,7 +183,7 @@ that asset tag.</p></li>
 </ol>
 </section>
 <section id="summary">
-<h2>Summary<a class="headerlink" href="#summary" title="Permalink to this heading"></a></h2>
+<h2>Summary<a class="headerlink" href="#summary" title="Link to this heading"></a></h2>
 <p>Warewulf does not limit the security posture of a cluster at all, and
 perhaps it increases it as not all provisioners work with firewalls
 and SELinux enabled and enforcing. But even with that, cluster
@@ -196,7 +197,7 @@ in any way.</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="ipmi.html" class="btn btn-neutral float-left" title="IPMI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="disks.html" class="btn btn-neutral float-left" title="Disk Management" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
         <a href="templating.html" class="btn btn-neutral float-right" title="Templating" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 

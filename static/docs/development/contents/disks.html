@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Control Server Setup &mdash; Warewulf User Guide development documentation</title>
+  <title>Disk Management &mdash; Warewulf User Guide development documentation</title>
       <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
     <link rel="shortcut icon" href="../_static/favicon.png"/>
@@ -20,8 +20,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Warewulf Installation" href="installation.html" />
-    <link rel="prev" title="Stateless Provisioning" href="stateless.html" /> 
+    <link rel="next" title="Security" href="security.html" />
+    <link rel="prev" title="IPMI" href="ipmi.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -49,12 +49,7 @@
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="background.html">Background</a></li>
 <li class="toctree-l1"><a class="reference internal" href="stateless.html">Stateless Provisioning</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Control Server Setup</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#operating-system-installation">Operating System Installation</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#network">Network</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#addressing">Addressing</a></li>
-</ul>
-</li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Control Server Setup</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Warewulf Installation</a></li>
 <li class="toctree-l1"><a class="reference internal" href="configuration.html">Warewulf Configuration</a></li>
 <li class="toctree-l1"><a class="reference internal" href="wwctl.html">Controlling Warewulf (wwctl)</a></li>
@@ -66,7 +61,12 @@
 <li class="toctree-l1"><a class="reference internal" href="overlays.html">Warewulf Overlays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="provisioning.html">Node Provisioning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipmi.html">IPMI</a></li>
-<li class="toctree-l1"><a class="reference internal" href="disks.html">Disk Management</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Disk Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#storage-objects">Storage objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#ignition-implementation">Ignition Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example">Example</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="templating.html">Templating</a></li>
 </ul>
@@ -102,9 +102,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">Control Server Setup</li>
+      <li class="breadcrumb-item active">Disk Management</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/hpcng/warewulf/blob/development/userdocs/contents/setup.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/hpcng/warewulf/blob/development/userdocs/contents/disks.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -112,71 +112,80 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="control-server-setup">
-<h1>Control Server Setup<a class="headerlink" href="#control-server-setup" title="Link to this heading"></a></h1>
-<section id="operating-system-installation">
-<h2>Operating System Installation<a class="headerlink" href="#operating-system-installation" title="Link to this heading"></a></h2>
-<p>Warewulf has almost no predetermined or required configurations aside
-from a base architecture networking layout. Install your Linux
-distribution of choice as you would like, but do pay attention to the
-cluster’s private network configuration.</p>
-</section>
-<section id="network">
-<h2>Network<a class="headerlink" href="#network" title="Link to this heading"></a></h2>
-<p>A clustered resource depends on a private management network. This
-network can be either persistent (it is always “up” even after
-provisioning) to temporary which might only be used for provisioning
-and/or out of band system control and management e.g. IPMI).</p>
-<p>It is important for this management network to be private to the
-compute resource because Warewulf requires network services on that
-network which may conflict with services on the production/public
-network (e.g. DHCP). It is also important from a security perspective
-as the management network for typical HPC systems have an implied
-trust level associated with it and generally there is no firewalling
-or network monitoring occurring on these networks.</p>
-<p>Usually, the control node is “dual homed” which means it has at least
-two interface cards, one connected to the private cluster network and
-one dedicated to the public network (as the figure above
-demonstrates).</p>
+  <section id="disk-management">
+<h1>Disk Management<a class="headerlink" href="#disk-management" title="Link to this heading"></a></h1>
+<p>Warewulf itself does not manage disks, partitions, or file systems
+directly, but provides structures in the configuration for these
+objects. At the moment warewulf supports <cite>ignition</cite> to create the
+partitions and file systems.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>It is possible to omit the public network interface with a reverse
-NAT. Warewulf can operate in this configuration but it extends
-beyond the scope of this documentation.</p>
+<p>It is not currently possible to manage the root file system with
+Warewulf.</p>
 </div>
-<p>Many clusters have more then one private network. This is common for
-performance critical HPC clusters that implement a high speed and low
-latency network like InfiniBand. In this case, this network is used
-for high speed data transfers for inter-process communication between
-compute nodes and file system IO.</p>
-<p>Warewulf will need to be configured to use the private cluster
-management network. Warewulf will use this network for booting the
-nodes over PXE. There are three network protocols used to accomplish
-this DHCP/BOOT, TFTP, and HTTP on port <code class="docutils literal notranslate"><span class="pre">9873</span></code>. Warewulf will use the
-operating system’s provided version of DHCP (ISC-DHCP) and TFTP for
-the PXE bootstrap to iPXE, and then iPXE will use Warewulf’s internal
-HTTP services to transfer the larger files for provisioning.</p>
+<p>Warewulf can be used, for example, to create <cite>swap</cite> partitions or
+<cite>/scratch</cite> file systems.</p>
+<section id="storage-objects">
+<h2>Storage objects<a class="headerlink" href="#storage-objects" title="Link to this heading"></a></h2>
+<p>The format of the storage objects is inspired by <cite>butane/ignition</cite>;
+but, where <cite>butane/ignition</cite> uses lists for holding disks, partitions
+and file systems, Warewulf uses maps instead.</p>
+<p>A node or profile can have several disks, where each disk is
+identified by the path to its block device. Every disks holds a map to
+its partitions and a <cite>bool</cite> switch to indicate if an existing
+partition table should be overwritten if it does not matched the
+desired configuration.</p>
+<p>Each partition is identified by its label. The partition number can be
+omitted, but specifying it is recommended as <cite>ignition</cite> may fail
+without it. Partition sizes should also be set (specified in MiB),
+except of the last partition: if no size is given, the maximum
+available size is used. Each partition has the switches <cite>should_exist</cite>
+and <cite>wipe_partition_entry</cite> which control the partition creation
+process.</p>
+<p>File systems are identified by their underlying block device,
+preferably using the <cite>/dev/by-partlabel</cite> format. Except for a <cite>swap</cite>
+partition, an absolute path for the mount point must be specified for
+each file system. Depending on the container used, valid formats are
+<cite>btrfs</cite>, <cite>ext3</cite>, <cite>ext4</cite>, and <cite>xfs</cite>. Each file system has the switch
+<cite>wipe_filesystem</cite> to control whether an existing file system is wiped.</p>
 </section>
-<section id="addressing">
-<h2>Addressing<a class="headerlink" href="#addressing" title="Link to this heading"></a></h2>
-<p>The addressing scheme of your private cluster network is 100% up to
-the system integrator, but for large clusters, many organizations like
-to organize the address allocations. Below is a recommended IP
-addressing scheme which we will use for the rest of this document.</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">10.0.0.1</span></code>: Private network address IP</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">255.255.252.0</span></code>: Private network subnet mask</p></li>
-</ul>
-<p>Here is an example of how the cluster’s address can be divided for a
-255 node cluster:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">10.0.0.1</span> <span class="pre">-</span> <span class="pre">10.0.0.255</span></code>: Cluster infrastructure including this
-host, schedulers, file systems, routers, switches, etc.</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">10.0.1.1</span> <span class="pre">-</span> <span class="pre">10.0.1.255</span></code>: DHCP range for booting nodes</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">10.0.2.1</span> <span class="pre">-</span> <span class="pre">10.0.2.255</span></code>: Static node addresses</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">10.0.3.1</span> <span class="pre">-</span> <span class="pre">10.0.3.255</span></code>: IPMI and/or out of band addresses for the
-compute nodes</p></li>
-</ul>
+<section id="ignition-implementation">
+<h2>Ignition Implementation<a class="headerlink" href="#ignition-implementation" title="Link to this heading"></a></h2>
+<p>The ignition implementation uses systemd services, as the underlying
+<cite>sgdisk</cite> command relies on dbus notifications. All necessary services
+are distributed by the <cite>wwinit</cite> overlay and depends on the existence
+of the file <cite>/warewulf/ignition.json</cite>. This file is created by the
+template function <cite>{{ createIgnitionJson }}</cite> only if the configuration
+contains necessary specifications for disks, partitions, and file
+systems.  If the file <cite>/warewulf/ignition.json</cite> exists, the service
+<cite>ignition-disks-ww4.service</cite> calls the ignition binary which takes
+creates partitions and file systems. A systemd <cite>.mount</cite> unit is
+created for each configured file system, which also creates the
+necessary mount points in the root file system. These mount units are
+required by the enabled <cite>ww4-disks.target</cite>. Entries in <cite>/etc/fstab</cite>
+are created with the <cite>no_auto</cite> option so that file systems can be
+easily mounted.</p>
+</section>
+<section id="example">
+<h2>Example<a class="headerlink" href="#example" title="Link to this heading"></a></h2>
+<p>The following command will create a <cite>/scratch</cite> file system on the node
+<cite>n01</cite></p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>wwctl<span class="w"> </span>node<span class="w"> </span><span class="nb">set</span><span class="w"> </span>n01<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--diskname<span class="w"> </span>/dev/vda<span class="w"> </span>--diskwipe<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--partname<span class="w"> </span>scratch<span class="w"> </span>--partcreate<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--fsname<span class="w"> </span>scratch<span class="w"> </span>--fsformat<span class="w"> </span>btrfs<span class="w"> </span>--fspath<span class="w"> </span>/scratch<span class="w"> </span>--fswipe
+</pre></div>
+</div>
+<p>As this is a single file system, the partition number can be omitted.</p>
+<p>A swap partition with 1Gig can be added with</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>wwctl<span class="w"> </span>node<span class="w"> </span><span class="nb">set</span><span class="w"> </span>n01<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--diskname<span class="w"> </span>/dev/vda<span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--partname<span class="w"> </span>swap<span class="w"> </span>--partsize<span class="o">=</span><span class="m">1024</span><span class="w"> </span>--partnumber<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="se">\</span>
+<span class="w">  </span>--fsname<span class="w"> </span>swap<span class="w"> </span>--fsformat<span class="w"> </span>swap<span class="w"> </span>--fspath<span class="w"> </span>swap
+</pre></div>
+</div>
+<p>which has the partition number <cite>1</cite> so that it will be added before the
+<cite>/scratch</cite> partition.</p>
 </section>
 </section>
 
@@ -184,8 +193,8 @@ compute nodes</p></li>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="stateless.html" class="btn btn-neutral float-left" title="Stateless Provisioning" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="installation.html" class="btn btn-neutral float-right" title="Warewulf Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="ipmi.html" class="btn btn-neutral float-left" title="IPMI" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="security.html" class="btn btn-neutral float-right" title="Security" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

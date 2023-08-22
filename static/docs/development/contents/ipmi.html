@@ -12,15 +12,15 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=249f3023"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="Security" href="security.html" />
+    <link rel="next" title="Disk Management" href="disks.html" />
     <link rel="prev" title="Node Provisioning" href="provisioning.html" /> 
 </head>
 
@@ -72,6 +72,7 @@
 <li class="toctree-l2"><a class="reference internal" href="#console">Console</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="disks.html">Disk Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="templating.html">Templating</a></li>
 </ul>
@@ -118,12 +119,12 @@
            <div itemprop="articleBody">
              
   <section id="ipmi">
-<h1>IPMI<a class="headerlink" href="#ipmi" title="Permalink to this heading"></a></h1>
+<h1>IPMI<a class="headerlink" href="#ipmi" title="Link to this heading"></a></h1>
 <p>It is possible to control the power or connect a console to your nodes
 being managed by Warewulf by connecting to the BMC through the use of
 IPMI. We will discuss how to set this up below.</p>
 <section id="ipmi-settings">
-<h2>IPMI Settings<a class="headerlink" href="#ipmi-settings" title="Permalink to this heading"></a></h2>
+<h2>IPMI Settings<a class="headerlink" href="#ipmi-settings" title="Link to this heading"></a></h2>
 <p>The common settings for the IPMI interfaces on all nodes can be set on
 a Profile level. The only field that would need to be assigned to each
 individual node would be the IP address.</p>
@@ -198,11 +199,11 @@ the same as the parameter that can be used when running <code class="docutils li
 </table>
 </section>
 <section id="reviewing-settings">
-<h2>Reviewing Settings<a class="headerlink" href="#reviewing-settings" title="Permalink to this heading"></a></h2>
+<h2>Reviewing Settings<a class="headerlink" href="#reviewing-settings" title="Link to this heading"></a></h2>
 <p>There are multiple ways to review the IPMI settings. They can be
 reviewed from a Profile level, all the way down to a specific Node.</p>
 <section id="profile-view">
-<h3>Profile View<a class="headerlink" href="#profile-view" title="Permalink to this heading"></a></h3>
+<h3>Profile View<a class="headerlink" href="#profile-view" title="Link to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>profile<span class="w"> </span>list<span class="w"> </span>-a
 <span class="go">PROFILE              FIELD              PROFILE      VALUE</span>
 <span class="go">=====================================================================================</span>
@@ -232,7 +233,7 @@ reviewed from a Profile level, all the way down to a specific Node.</p>
 </div>
 </section>
 <section id="node-view">
-<h3>Node View<a class="headerlink" href="#node-view" title="Permalink to this heading"></a></h3>
+<h3>Node View<a class="headerlink" href="#node-view" title="Link to this heading"></a></h3>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span>n001
 <span class="go">NODE                 FIELD              PROFILE      VALUE</span>
 <span class="go">=====================================================================================</span>
@@ -272,7 +273,7 @@ reviewed from a Profile level, all the way down to a specific Node.</p>
 </div>
 </section>
 <section id="review-only-ipmi-settings">
-<h3>Review Only IPMI Settings<a class="headerlink" href="#review-only-ipmi-settings" title="Permalink to this heading"></a></h3>
+<h3>Review Only IPMI Settings<a class="headerlink" href="#review-only-ipmi-settings" title="Link to this heading"></a></h3>
 <p>The above views show you everything that is set on a Profile or Node
 level. That is a lot of detail. If you want to view key IPMI connecton
 details for a node or all nodes, you can do the following.</p>
@@ -288,7 +289,7 @@ details for a node or all nodes, you can do the following.</p>
 </section>
 </section>
 <section id="power-commands">
-<h2>Power Commands<a class="headerlink" href="#power-commands" title="Permalink to this heading"></a></h2>
+<h2>Power Commands<a class="headerlink" href="#power-commands" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">power</span></code> command can be used to manage the current power state of
 your nodes through IPMI.</p>
 <p><code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">power</span> <span class="pre">[command]</span></code> where <code class="docutils literal notranslate"><span class="pre">[command]</span></code> is one of:</p>
@@ -308,7 +309,7 @@ your nodes through IPMI.</p>
 </dl>
 </section>
 <section id="console">
-<h2>Console<a class="headerlink" href="#console" title="Permalink to this heading"></a></h2>
+<h2>Console<a class="headerlink" href="#console" title="Link to this heading"></a></h2>
 <p>If your node is setup to use serial over lan (SOL), Warewulf can
 connect a console to the node.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span>console<span class="w"> </span>n001
@@ -322,7 +323,7 @@ connect a console to the node.</p>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
         <a href="provisioning.html" class="btn btn-neutral float-left" title="Node Provisioning" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="security.html" class="btn btn-neutral float-right" title="Security" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="disks.html" class="btn btn-neutral float-right" title="Disk Management" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>

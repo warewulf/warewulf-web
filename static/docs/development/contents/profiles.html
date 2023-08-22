@@ -12,11 +12,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=249f3023"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -68,6 +68,7 @@
 <li class="toctree-l1"><a class="reference internal" href="overlays.html">Warewulf Overlays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="provisioning.html">Node Provisioning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipmi.html">IPMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disks.html">Disk Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="templating.html">Templating</a></li>
 </ul>
@@ -114,7 +115,7 @@
            <div itemprop="articleBody">
              
   <section id="node-profiles">
-<h1>Node Profiles<a class="headerlink" href="#node-profiles" title="Permalink to this heading"></a></h1>
+<h1>Node Profiles<a class="headerlink" href="#node-profiles" title="Link to this heading"></a></h1>
 <p>Profiles provide a way to scalably group node configurations
 together. Instead of redundant configurations for each node, you can
 put that into a profile and the nodes will inherit these
@@ -126,7 +127,7 @@ running a different kernel or container.</p>
 there are always going to be some node configurations which must be
 specific to a node, like a network HW/MAC address or an IP address.</p>
 <section id="an-introduction-to-profiles">
-<h2>An Introduction To Profiles<a class="headerlink" href="#an-introduction-to-profiles" title="Permalink to this heading"></a></h2>
+<h2>An Introduction To Profiles<a class="headerlink" href="#an-introduction-to-profiles" title="Link to this heading"></a></h2>
 <p>Every new node is automatically added to a profile called
 <code class="docutils literal notranslate"><span class="pre">default</span></code>. You can view the configuration attributes of this profile
 by using the <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">profile</span> <span class="pre">list</span></code> command. Like the <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">node</span>
@@ -182,7 +183,7 @@ nodes can be part of multiple profiles with inheritance being
 cascading.</p>
 </section>
 <section id="multiple-profiles">
-<h2>Multiple Profiles<a class="headerlink" href="#multiple-profiles" title="Permalink to this heading"></a></h2>
+<h2>Multiple Profiles<a class="headerlink" href="#multiple-profiles" title="Link to this heading"></a></h2>
 <p>For demonstration purposes, let’s create another profile and
 demonstrate how to use this second profile.</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>profile<span class="w"> </span>add<span class="w"> </span>test_profile
@@ -219,7 +220,7 @@ attribute in this profile:</p>
 </div>
 </section>
 <section id="cascading-profiles">
-<h2>Cascading Profiles<a class="headerlink" href="#cascading-profiles" title="Permalink to this heading"></a></h2>
+<h2>Cascading Profiles<a class="headerlink" href="#cascading-profiles" title="Link to this heading"></a></h2>
 <p>In the previous example, we set a single node to have two profile
 configurations. We can also overwrite configurations as follows:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--comment<span class="w"> </span><span class="s2">&quot;test comment&quot;</span><span class="w"> </span>test_profile
@@ -255,7 +256,7 @@ on only a subset or group of cluster nodes without changing any other
 node attributes.</p>
 </section>
 <section id="overriding-profiles">
-<h2>Overriding Profiles<a class="headerlink" href="#overriding-profiles" title="Permalink to this heading"></a></h2>
+<h2>Overriding Profiles<a class="headerlink" href="#overriding-profiles" title="Link to this heading"></a></h2>
 <p>All profile configurations can be overwritten by a node configuration
 as can be seen here:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--comment<span class="w"> </span><span class="s2">&quot;This value takes precedent&quot;</span><span class="w"> </span>n0000
@@ -272,7 +273,7 @@ as can be seen here:</p>
 </div>
 </section>
 <section id="how-to-use-profiles-effectively">
-<h2>How To Use Profiles Effectively<a class="headerlink" href="#how-to-use-profiles-effectively" title="Permalink to this heading"></a></h2>
+<h2>How To Use Profiles Effectively<a class="headerlink" href="#how-to-use-profiles-effectively" title="Link to this heading"></a></h2>
 <p>There are a lot of ways to use profiles to facilitate the management
 of large cluster node attributes, but there is nothing inherent in the
 design of Warewulf that requires use of them for anything. It is

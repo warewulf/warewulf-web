@@ -12,11 +12,11 @@
     <script src="../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script src="../_static/jquery.js"></script>
-        <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
-        <script src="../_static/doctools.js"></script>
-        <script src="../_static/sphinx_highlight.js"></script>
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=249f3023"></script>
+        <script src="../_static/doctools.js?v=888ff710"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
@@ -67,6 +67,7 @@
 <li class="toctree-l1"><a class="reference internal" href="overlays.html">Warewulf Overlays</a></li>
 <li class="toctree-l1"><a class="reference internal" href="provisioning.html">Node Provisioning</a></li>
 <li class="toctree-l1"><a class="reference internal" href="ipmi.html">IPMI</a></li>
+<li class="toctree-l1"><a class="reference internal" href="disks.html">Disk Management</a></li>
 <li class="toctree-l1"><a class="reference internal" href="security.html">Security</a></li>
 <li class="toctree-l1"><a class="reference internal" href="templating.html">Templating</a></li>
 </ul>
@@ -113,12 +114,12 @@
            <div itemprop="articleBody">
              
   <section id="warewulf-configuration">
-<h1>Warewulf Configuration<a class="headerlink" href="#warewulf-configuration" title="Permalink to this heading"></a></h1>
+<h1>Warewulf Configuration<a class="headerlink" href="#warewulf-configuration" title="Link to this heading"></a></h1>
 <p>The default installation of Warewulf will put all of the configuration
 files into <code class="docutils literal notranslate"><span class="pre">/etc/warewulf/</span></code>. In that directory, you will find the
 primary configuration files needed by Warewulf.</p>
 <section id="warewulf-conf">
-<h2>warewulf.conf<a class="headerlink" href="#warewulf-conf" title="Permalink to this heading"></a></h2>
+<h2>warewulf.conf<a class="headerlink" href="#warewulf-conf" title="Link to this heading"></a></h2>
 <p>The Warewulf configuration exists as follows in the current version of
 Warewulf (4.3.0):</p>
 <div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="nt">WW_INTERNAL</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">43</span>
@@ -213,7 +214,7 @@ exports if you wish for it to do this.</p></li>
 </ul>
 </section>
 <section id="nodes-conf">
-<h2>nodes.conf<a class="headerlink" href="#nodes-conf" title="Permalink to this heading"></a></h2>
+<h2>nodes.conf<a class="headerlink" href="#nodes-conf" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">nodes.conf</span></code> file is the primary database file for all compute
 nodes. It is a flat text YAML configuration file that is managed by
 the <code class="docutils literal notranslate"><span class="pre">wwctl</span></code> command, but some sites manage the compute nodes and
@@ -231,7 +232,7 @@ if it does not exist already.</p>
 </div>
 </section>
 <section id="defaults-conf">
-<h2>defaults.conf<a class="headerlink" href="#defaults-conf" title="Permalink to this heading"></a></h2>
+<h2>defaults.conf<a class="headerlink" href="#defaults-conf" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">defaults.conf</span></code> file configures default values used when none
 are specified. For example: if a node does not have a “runtime
 overlay” specified, the respective value from <code class="docutils literal notranslate"><span class="pre">defaultnode</span></code> is
@@ -263,7 +264,7 @@ compiled into Warewulf at build-time:</p>
 parameters should be specified using either nodes or profiles.</p>
 </section>
 <section id="directories">
-<h2>Directories<a class="headerlink" href="#directories" title="Permalink to this heading"></a></h2>
+<h2>Directories<a class="headerlink" href="#directories" title="Link to this heading"></a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">/etc/warewulf/ipxe/</span></code> directory contains <em>text/templates</em> that
 are used by the Warewulf configuration process to configure the
 <code class="docutils literal notranslate"><span class="pre">ipxe</span></code> service.</p>
