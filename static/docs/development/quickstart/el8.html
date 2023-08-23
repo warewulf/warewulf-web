@@ -123,6 +123,7 @@
 <h2>Install Warewulf and dependencies<a class="headerlink" href="#install-warewulf-and-dependencies" title="Link to this heading"></a></h2>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>groupinstall<span class="w"> </span><span class="s2">&quot;Development Tools&quot;</span>
 sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>epel-release
+sudo<span class="w"> </span>dnf<span class="w"> </span>config-manager<span class="w"> </span>--set-enabled<span class="w"> </span>powertools
 sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>golang<span class="w"> </span>tftp-server<span class="w"> </span>dhcp-server<span class="w"> </span>nfs-utils<span class="w"> </span>gpgme-devel<span class="w"> </span>libassuan-devel
 
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/hpcng/warewulf.git
