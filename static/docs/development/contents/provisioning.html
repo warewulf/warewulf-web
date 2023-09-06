@@ -208,19 +208,20 @@ expect</p></li>
 <section id="node-status">
 <h2>Node status<a class="headerlink" href="#node-status" title="Link to this heading"></a></h2>
 <p>During the whole provisioning process of your nodes, you can check their status
-through the following command :
-.. code-block:: console</p>
-<blockquote>
-<div><p># wwctl node status
-NODENAME             STAGE                SENT                      LASTSEEN (s)
-================================================================================
-c001                 RUNTIME_OVERLAY      generic.img.gz            16</p>
-</div></blockquote>
-<p>For each node, there is 4 different stages :
-* <strong>IPXE</strong>
-* <strong>KERNEL</strong>
-* <strong>SYSTEM_OVERLAY</strong>
-* <strong>RUNTIME_OVERLAY</strong></p>
+through the following command :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>node<span class="w"> </span>status
+<span class="go">NODENAME             STAGE                SENT                      LASTSEEN (s)</span>
+<span class="go">================================================================================</span>
+<span class="go">c001                 RUNTIME_OVERLAY      generic.img.gz            16</span>
+</pre></div>
+</div>
+<p>For each node, there is 4 different stages :</p>
+<ul class="simple">
+<li><p><strong>IPXE</strong></p></li>
+<li><p><strong>KERNEL</strong></p></li>
+<li><p><strong>SYSTEM_OVERLAY</strong></p></li>
+<li><p><strong>RUNTIME_OVERLAY</strong></p></li>
+</ul>
 <p>Those stages are directly linked to the The Provisioning Process section and are provided
 by the wwclient</p>
 <p>Thanks to <code class="docutils literal notranslate"><span class="pre">wwctl</span> <span class="pre">node</span> <span class="pre">status</span></code> command, you can also check your communication between

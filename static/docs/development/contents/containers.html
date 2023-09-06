@@ -75,6 +75,7 @@
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#container-size-considerations">Container Size Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#duplicating-a-container">Duplicating a container</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="kernel.html">Kernel Management</a></li>
@@ -423,6 +424,14 @@ device” errors, try disabling any “memory hole” features or updating
 your system BIOS or firmware.</p>
 </li>
 </ul>
+</section>
+<section id="duplicating-a-container">
+<h2>Duplicating a container<a class="headerlink" href="#duplicating-a-container" title="Link to this heading"></a></h2>
+<p>It is possible to duplicate an installed image by using :</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp"># </span>wwctl<span class="w"> </span>container<span class="w"> </span>copy<span class="w"> </span>CONTAINER_NAME<span class="w"> </span>DUPLICATED_CONTAINER_NAME
+</pre></div>
+</div>
+<p>This kind of duplication can be useful if you are looking for canary tests.</p>
 </section>
 </section>
 
