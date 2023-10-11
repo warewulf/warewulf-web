@@ -24,12 +24,12 @@ const gettingStartedLinks = [
     button: 'Get Started'
   },
   {
-    name: 'Supported Binary Packages',
-    href: 'https://repo.ctrliq.com',
+    name: 'Binary Packages',
+    href: 'https://github.com/hpcng/warewulf/releases',
     description:
-      'CIQ is graciously providing binary packages for non-production use; you can also find them in EPEL for RHEL dervitives.',
+      'Warewulf Binary packages for Enterprise Linux and SUSE are available in the GitHub releases.',
     icon: SupportIcon,
-    button: 'Repos'
+    button: 'Releases'
   },
 ]
 
