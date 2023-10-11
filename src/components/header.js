@@ -145,64 +145,34 @@ function Header({ siteTitle }) {
                 <nav>
                   <ul className="space-y-4">
                     <li>
-                      <a
-                        href="/"
-                        aria-label="Our product"
-                        title="Our product"
+                      <Link
+                        to="/news"
+                        aria-label="News"
+                        title="News"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-500"
                       >
-                        Product
-                      </a>
+                        News
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="/"
-                        aria-label="Our product"
-                        title="Our product"
+                      <Link
+                        to="/docs"
+                        aria-label="Documentation"
+                        title="Documentation"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-500"
                       >
-                        Features
-                      </a>
+                        Documentation
+                      </Link>
                     </li>
                     <li>
-                      <a
-                        href="/"
-                        aria-label="Product pricing"
-                        title="Product pricing"
+                      <Link
+                        to="/help"
+                        aria-label="Help"
+                        title="Help"
                         className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-500"
                       >
-                        Pricing
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/"
-                        aria-label="About us"
-                        title="About us"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-500"
-                      >
-                        About us
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/"
-                        aria-label="Sign in"
-                        title="Sign in"
-                        className="font-medium tracking-wide text-gray-700 transition-colors duration-200 hover:text-green-500"
-                      >
-                        Sign in
-                      </a>
-                    </li>
-                    <li>
-                      <a
-                        href="/"
-                        className="inline-flex items-center justify-center w-full h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-green-500 hover:bg-green-600 focus:shadow-outline focus:outline-none"
-                        aria-label="Sign up"
-                        title="Sign up"
-                      >
-                        Sign up
-                      </a>
+                        Getting Help
+                      </Link>
                     </li>
                   </ul>
                 </nav>
