@@ -110,10 +110,10 @@ const HelpPage = () => (
         </p>
 
         <Link
-          to="https://ctrliq.com/warewulf/"
+          to="https://ciq.com/products/warewulf/"
           class="inline-flex items-center justify-center h-12 px-6 font-medium tracking-wide text-white transition duration-200 rounded shadow-md bg-green-900 hover:bg-green-800 focus:shadow-outline focus:outline-none"
-          aria-label="Singularity Support"
-          title="Singularity Support"
+          aria-label="Warewulf Support"
+          title="Warewulf Support"
         >
           Get Support
         </Link>
