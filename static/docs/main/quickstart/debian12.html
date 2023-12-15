@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>EL9 Quickstart (Rocky Linux and RHEL) &mdash; Warewulf User Guide main documentation</title>
+  <title>Debian 12 Quickstart &mdash; Warewulf User Guide main documentation</title>
       <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
 
@@ -22,8 +22,8 @@
     <script src="../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
-    <link rel="next" title="openSUSE Leap and SLES 15 Quickstart" href="suse15.html" />
-    <link rel="prev" title="EL8 Quickstart (Rocky Linux and RHEL)" href="el8.html" /> 
+    <link rel="next" title="Contributing" href="../contributing/contributing.html" />
+    <link rel="prev" title="openSUSE Leap and SLES 15 Quickstart" href="suse15.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -71,7 +71,10 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="el7.html">EL7 (CentOS and RHEL)</a></li>
 <li class="toctree-l1"><a class="reference internal" href="el8.html">EL8 (Rocky Linux and RHEL)</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">EL9 (Rocky Linux and RHEL)</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="el9.html">EL9 (Rocky Linux and RHEL)</a></li>
+<li class="toctree-l1"><a class="reference internal" href="suse15.html">openSUSE Leap and SLES 15</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Debian 12</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#install-the-basic-services">Install the basic services</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#install-warewulf-and-dependencies">Install Warewulf and dependencies</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configure-firewalld">Configure firewalld</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#configure-the-controller">Configure the controller</a></li>
@@ -82,8 +85,6 @@
 <li class="toctree-l2"><a class="reference internal" href="#add-a-node">Add a node</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="suse15.html">openSUSE Leap and SLES 15</a></li>
-<li class="toctree-l1"><a class="reference internal" href="debian12.html">Debian 12</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Contributing</span></p>
 <ul>
@@ -110,9 +111,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
-      <li class="breadcrumb-item active">EL9 Quickstart (Rocky Linux and RHEL)</li>
+      <li class="breadcrumb-item active">Debian 12 Quickstart</li>
       <li class="wy-breadcrumbs-aside">
-              <a href="https://github.com/hpcng/warewulf/blob/main/userdocs/quickstart/el9.rst" class="fa fa-github"> Edit on GitHub</a>
+              <a href="https://github.com/hpcng/warewulf/blob/main/userdocs/quickstart/debian12.rst" class="fa fa-github"> Edit on GitHub</a>
       </li>
   </ul>
   <hr/>
@@ -120,35 +121,34 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="el9-quickstart-rocky-linux-and-rhel">
-<h1>EL9 Quickstart (Rocky Linux and RHEL)<a class="headerlink" href="#el9-quickstart-rocky-linux-and-rhel" title="Link to this heading"></a></h1>
+  <section id="debian-12-quickstart">
+<h1>Debian 12 Quickstart<a class="headerlink" href="#debian-12-quickstart" title="Link to this heading"></a></h1>
+<section id="install-the-basic-services">
+<h2>Install the basic services<a class="headerlink" href="#install-the-basic-services" title="Link to this heading"></a></h2>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>firewalld<span class="w"> </span>nfs-kernel-server<span class="w"> </span>tftpd-hpa<span class="w"> </span>isc-dhcp-server
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you get an error message concerning <em>isc-dhcp-server.service</em> you
+probably need to configure the network intarface that isc-dhcp-server
+will listen to. Run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">dpkg-reconfigure</span> <span class="pre">isc-dhcp-server</span></code> and enter
+the name of your cluster’s private network interface (e.g. enp2s0). After that, you might also need to run <code class="docutils literal notranslate"><span class="pre">sudo</span> <span class="pre">systemctl</span> <span class="pre">enable</span> <span class="pre">isc-dhcp-server</span></code>.</p>
+</div>
+</section>
 <section id="install-warewulf-and-dependencies">
 <h2>Install Warewulf and dependencies<a class="headerlink" href="#install-warewulf-and-dependencies" title="Link to this heading"></a></h2>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>dnf<span class="w"> </span>groupinstall<span class="w"> </span><span class="s2">&quot;Development Tools&quot;</span>
-sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>epel-release
-sudo<span class="w"> </span>dnf<span class="w"> </span>config-manager<span class="w"> </span>--set-enabled<span class="w"> </span>crb
-sudo<span class="w"> </span>dnf<span class="w"> </span>install<span class="w"> </span>golang<span class="w"> </span>tftp-server<span class="w"> </span>dhcp-server<span class="w"> </span>nfs-utils<span class="w"> </span>gpgme-devel<span class="w"> </span>libassuan-devel
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>build-essential<span class="w"> </span>curl<span class="w"> </span>unzip
 
+sudo<span class="w"> </span>apt<span class="w"> </span>install<span class="w"> </span>git<span class="w"> </span>golang<span class="w"> </span>libnfs-utils<span class="w"> </span>libgpgme-dev<span class="w"> </span>libassuan-dev
+
+
+mkdir<span class="w"> </span>~/git
+<span class="nb">cd</span><span class="w"> </span>~/git
 git<span class="w"> </span>clone<span class="w"> </span>https://github.com/hpcng/warewulf.git
 <span class="nb">cd</span><span class="w"> </span>warewulf
-make<span class="w"> </span>clean<span class="w"> </span>defaults<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span><span class="nv">PREFIX</span><span class="o">=</span>/usr<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span><span class="nv">BINDIR</span><span class="o">=</span>/usr/bin<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span><span class="nv">SYSCONFDIR</span><span class="o">=</span>/etc<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span><span class="nv">DATADIR</span><span class="o">=</span>/usr/share<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span><span class="nv">LOCALSTATEDIR</span><span class="o">=</span>/var/lib<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span><span class="nv">SHAREDSTATEDIR</span><span class="o">=</span>/var/lib<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span><span class="nv">MANDIR</span><span class="o">=</span>/usr/share/man<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span><span class="nv">INFODIR</span><span class="o">=</span>/usr/share/info<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span><span class="nv">DOCDIR</span><span class="o">=</span>/usr/share/doc<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span><span class="nv">SRVDIR</span><span class="o">=</span>/var/lib<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span><span class="nv">TFTPDIR</span><span class="o">=</span>/var/lib/tftpboot<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span><span class="nv">SYSTEMDDIR</span><span class="o">=</span>/usr/lib/systemd/system<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span><span class="nv">BASHCOMPDIR</span><span class="o">=</span>/etc/bash_completion.d/<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span><span class="nv">FIREWALLDDIR</span><span class="o">=</span>/usr/lib/firewalld/services<span class="w"> </span><span class="se">\</span>
-<span class="w"> </span><span class="nv">WWCLIENTDIR</span><span class="o">=</span>/warewulf
-make<span class="w"> </span>all
-sudo<span class="w"> </span>make<span class="w"> </span>install
+git<span class="w"> </span>checkout<span class="w"> </span>main<span class="w"> </span><span class="c1"># or switch to a tag like &#39;v4.4.0&#39;</span>
+make<span class="w"> </span>all<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>sudo<span class="w"> </span>make<span class="w"> </span>install
 </pre></div>
 </div>
 </section>
@@ -185,26 +185,22 @@ address of your cluster’s private network interface:</p>
 <span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">range start</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.200.50</span>
 <span class="w">  </span><span class="nt">range end</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">192.168.200.99</span>
-<span class="w">  </span><span class="nt">systemd name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dhcpd</span>
+<span class="w">  </span><span class="nt">systemd name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">isc-dhcp-server</span>
 <span class="nt">tftp</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">systemd name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tftp</span>
+<span class="w">  </span><span class="nt">systemd name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">tftpd-hpa</span>
 <span class="nt">nfs</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">enabled</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">export paths</span><span class="p">:</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/home</span>
-<span class="w">    </span><span class="nt">export options</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rw,sync</span>
-<span class="w">    </span><span class="nt">mount options</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">defaults</span>
-<span class="w">    </span><span class="nt">mount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">export options</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rw,sync</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">mount options</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">defaults</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">mount</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">path</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/opt</span>
-<span class="w">    </span><span class="nt">export options</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ro,sync,no_root_squash</span>
-<span class="w">    </span><span class="nt">mount options</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">defaults</span>
-<span class="w">    </span><span class="nt">mount</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">export options</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ro,sync,no_root_squash</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">mount options</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">defaults</span>
+<span class="w">        </span><span class="l l-Scalar l-Scalar-Plain">mount</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">false</span>
 <span class="w">  </span><span class="nt">systemd name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nfs-server</span>
-<span class="nt">container mounts</span><span class="p">:</span>
-<span class="w">  </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="nt">source</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/resolv.conf</span>
-<span class="w">    </span><span class="nt">dest</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">/etc/resolv.conf</span>
-<span class="w">    </span><span class="nt">readonly</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </pre></div>
 </div>
 <div class="admonition note">
@@ -244,7 +240,7 @@ errors with TFTP still.</p>
 <p>This will pull a basic VNFS container from Docker Hub and import the
 default running kernel from the controller node and set both in the
 “default” node profile.</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>container<span class="w"> </span>import<span class="w"> </span>docker://ghcr.io/hpcng/warewulf-rockylinux:9<span class="w"> </span>rocky-9
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>wwctl<span class="w"> </span>container<span class="w"> </span>import<span class="w"> </span>docker://ghcr.io/hpcng/warewulf-debian:12.0<span class="w"> </span>debian-12.0
 </pre></div>
 </div>
 </section>
@@ -255,7 +251,7 @@ is configured to be part of the <code class="docutils literal notranslate"><span
 changes you make to that profile will affect all nodes.</p>
 <p>The following command will set the container we just imported above to
 the <code class="docutils literal notranslate"><span class="pre">default</span></code> node profile:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--yes<span class="w"> </span>--container<span class="w"> </span>rocky-9<span class="w"> </span><span class="s2">&quot;default&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>profile<span class="w"> </span><span class="nb">set</span><span class="w"> </span>--yes<span class="w"> </span>--container<span class="w"> </span>debian-12.0<span class="w"> </span><span class="s2">&quot;default&quot;</span>
 </pre></div>
 </div>
 <p>Next we set some default networking configurations for the first
@@ -291,7 +287,12 @@ typing the following:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>node<span class="w"> </span>list<span class="w"> </span>-a<span class="w"> </span>n0000.cluster
 </pre></div>
 </div>
-<p>Turn on your compute node and watch it boot!</p>
+<p>To make node changes effective, it is a good practice to update warewulf
+overlays with the following command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>wwctl<span class="w"> </span>overlay<span class="w"> </span>build
+</pre></div>
+</div>
+<p>Now, turn on your compute node and watch it boot!</p>
 </section>
 </section>
 
@@ -299,8 +300,8 @@ typing the following:</p>
            </div>
           </div>
           <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
-        <a href="el8.html" class="btn btn-neutral float-left" title="EL8 Quickstart (Rocky Linux and RHEL)" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
-        <a href="suse15.html" class="btn btn-neutral float-right" title="openSUSE Leap and SLES 15 Quickstart" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="suse15.html" class="btn btn-neutral float-left" title="openSUSE Leap and SLES 15 Quickstart" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../contributing/contributing.html" class="btn btn-neutral float-right" title="Contributing" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
     </div>
 
   <hr/>
