@@ -105,7 +105,7 @@ const HelpPage = () => (
         <img src={CtrlIQLogo} className="inline-flex justify-center items-center w-24 mb-5" /><br />
         <p className="mb-10 text-sm text-gray-900">
           CIQ is the leading innovator of modernization of high-performance infrastructures and cloud-native
-          computing and directly offers support and services of several open-source projects like Singularity,
+          computing and directly offers support and services of several open-source projects like Apptainer,
           Warewulf, and Rocky Linux.
         </p>
 
