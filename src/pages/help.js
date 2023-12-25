@@ -48,7 +48,7 @@ const HelpPage = () => (
             </p>
           </div>
           <Link
-            to="https://join.slack.com/t/hpcng/shared_invite/zt-qda4h1ls-OP0Uouq6sSmVE6i_0NrWdw"
+            to="https://join.slack.com/t/warewulf/shared_invite/zt-27moxdo1x-f1ztmeUU5OgmVtdwJVH9Xg"
             aria-label="Slack"
             className="inline-flex items-center font-semibold transition-colors duration-200 text-green-900 hover:text-green-700"
           >
